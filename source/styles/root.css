@@ -15,6 +15,15 @@
   display: none;
 }
 
+.processingPeriod .cs-container .heading h1 {
+  color: var(--bs-text-primary);
+  font-weight: bold;
+}
+.processingPeriod .cs-container .heading p {
+  color: var(--bs-text-secondary);
+  max-width: 550px;
+}
+
 /* 2. Style the <label> as the base card (unselected state) */
 .cs-qna-radio .cs-form-control {
   display: block;
