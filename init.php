@@ -174,6 +174,8 @@ class Seychelles_Protect
 
 
             // Enqueue your custom CSS file
+            wp_enqueue_style('cs_root', plugins_url('/source/styles/root.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
+
             wp_enqueue_style('cs_main', plugins_url('/source/styles/main.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
 
             wp_enqueue_style('cs_sidebar', plugins_url('/source/styles/side-bar.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
