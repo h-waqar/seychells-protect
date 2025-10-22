@@ -103,13 +103,13 @@ class Seychelles_Protect
         $contents = ob_get_contents();
         ob_end_clean();
 
-?>
+        ?>
 
         <script>
             const ajaxUrl = "<?php echo (admin_url('admin-ajax.php')); ?>";
         </script>
 
-<?php
+        <?php
 
         return ($contents);
     }
@@ -129,6 +129,7 @@ class Seychelles_Protect
 
 
             wp_enqueue_style('country-flags-codes-demo', plugins_url('source/plugin-pages/country-flags-codes/css/demo.css', __FILE__));
+
             wp_enqueue_style('country-flags-codes-intlTelInput', plugins_url('source/plugin-pages/country-flags-codes/css/intlTelInput.css', __FILE__));
 
             wp_enqueue_script('country-flags-codes-intlTelInput', plugins_url('source/plugin-pages/country-flags-codes/js/intlTelInput.js', __FILE__));
@@ -174,6 +175,9 @@ class Seychelles_Protect
 
             // Enqueue your custom CSS file
             wp_enqueue_style('cs_main', plugins_url('/source/styles/main.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
+
+            wp_enqueue_style('cs_sidebar', plugins_url('/source/styles/side-bar.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
+
             wp_enqueue_style('cs_pure_main', plugins_url('/source/styles/main-style.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
 
             wp_enqueue_style('niceCountryInput', plugins_url('/source/styles/niceCountryInput.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
@@ -192,7 +196,7 @@ class Seychelles_Protect
         $table_name = $wpdb->prefix . 'establishment';
 
         // Assume $csvFilePath contains the path to your CSV file
-        $csvFilePath = SP_PLUGIN_BASEPATH  . "source/csv/establishment.csv";
+        $csvFilePath = SP_PLUGIN_BASEPATH . "source/csv/establishment.csv";
         $csvFile = fopen($csvFilePath, 'r');
 
         if ($csvFile !== false) {
