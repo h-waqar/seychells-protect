@@ -1,38 +1,43 @@
 <div id="introStepThreeContainer">
 
     <!-- Section for Contact Information -->
-    <section id="three_ContactInfo" class="hidden">
+    <section id="three_ContactInfo" class="">
 
         <div class="cs-container">
 
             <!-- Phone Number Input -->
             <div class="mb-3">
                 <label for="input_ContactYourNumber" class="form-label">Phone Number</label>
-                <input type="tel" id="input_ContactYourNumber" class="form-control d-block" placeholder="Phone Number" name="cs_contact_info_phone_no">
+                <input type="tel" id="input_ContactYourNumber" class="form-control d-block" placeholder="Phone Number"
+                    name="cs_contact_info_phone_no">
             </div>
 
             <!-- Email Input -->
             <div class="mb-3">
                 <label for="input_ContactYourEmail" class="form-label">Email</label>
-                <input type="email" id="input_ContactYourEmail" class="form-control" placeholder="Email" name="cs_contact_info_email">
+                <input type="email" id="input_ContactYourEmail" class="form-control" placeholder="Email"
+                    name="cs_contact_info_email">
             </div>
 
-             <!-- Confirm Email -->
-             <div class="mb-3">
+            <!-- Confirm Email -->
+            <div class="mb-3">
                 <label for="input_ContactConfirmEmail" class="form-label">Confirm Email</label>
-                <input type="email" id="input_ContactConfirmEmail" class="form-control" placeholder="Confirm Email" name="cs_contact_info_confirm_email">
+                <input type="email" id="input_ContactConfirmEmail" class="form-control" placeholder="Confirm Email"
+                    name="cs_contact_info_confirm_email">
             </div>
 
             <!-- Home Address Input -->
             <div class="mb-3">
                 <label for="input_ContactHomeAddress" class="form-label">Home Address</label>
-                <input type="text" id="input_ContactHomeAddress" class="form-control" placeholder="Home Address" name="cs_contact_info_email">
+                <input type="text" id="input_ContactHomeAddress" class="form-control" placeholder="Home Address"
+                    name="cs_contact_info_email">
             </div>
 
             <!-- Select Occupation Dropdown -->
             <div class="mb-3 hidden">
                 <label for="cs_contact_info_occupation" class="form-label">Select Occupation</label>
-                <select name="cs_contact_info_occupation" id="cs_ContactInfoOccupation" class="form-select" aria-label="Default select example">
+                <select name="cs_contact_info_occupation" id="cs_ContactInfoOccupation" class="form-select"
+                    aria-label="Default select example">
                     <option value="" class="d-none">Select Occupation</option>
                     <option value="Employee (government entities)">Employee (government entities)</option>
                     <option value="Employee (private company)">Employee (private company)</option>
@@ -64,12 +69,14 @@
 
                     <!-- Emergency Contact Name Input -->
                     <div class="mb-3">
-                        <input type="text" class="form-control" onchange="_swiftFV.handle_emgContact(this)" name="emg_contact_name" placeholder="Full Name of Emergency Contact">
+                        <input type="text" class="form-control" onchange="_swiftFV.handle_emgContact(this)"
+                            name="emg_contact_name" placeholder="Full Name of Emergency Contact">
                     </div>
 
                     <!-- Emergency Contact Phone Number Input -->
                     <div class="mb-3">
-                        <input type="tel" onchange="_swiftFV.handle_emgTelephone(this)" class="form-control d-block" placeholder="Phone Number" name="cs_contact_info_emergency_no">
+                        <input type="tel" onchange="_swiftFV.handle_emgTelephone(this)" class="form-control d-block"
+                            placeholder="Phone Number" name="cs_contact_info_emergency_no">
                     </div>
 
                 </div>
@@ -101,7 +108,7 @@
             var input = document.querySelector("#input_ContactYourNumber");
             window.intlTelInput(input, {});
             var input2 = $('#customs_select_form input[name="cs_contact_info_emergency_no"]').get(0);
-          
+
             window.intlTelInput(input2, {});
 
         });

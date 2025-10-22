@@ -43,9 +43,14 @@
 
 				<?php
 
-				// include_once('plugin-pages/p-two.php');
-				include_once('plugin-pages/medical-protection.php');
 
+				// |> New Routing
+				// include_once('plugin-pages/medical-protection.php');
+				// include_once('plugin-pages/contact-information.php');
+				include_once('plugin-pages/trip-information.php');
+				
+				// ---------------------------------------------------
+				
 				// |> Templates
 				include_once('plugin-pages/templates.php');
 
@@ -62,11 +67,11 @@
 				include_once('plugin-pages/selfie-photo-response.php');
 
 				// |> Contact Information File
-				include_once('plugin-pages/contact-information.php');
+				// include_once('plugin-pages/contact-information.php');
 
 				// |> Trip Information
-				include_once('plugin-pages/trip-information.php');
-
+				// include_once('plugin-pages/trip-information.php');
+				
 				// |> Health Declaration
 				include_once('plugin-pages/health-declaration.php');
 
@@ -86,8 +91,8 @@
 				include_once('plugin-pages/processing-period.php');
 
 				// |> Medical Protection
-				include_once('plugin-pages/medical-protection.php');
-
+				// include_once('plugin-pages/medical-protection.php');
+				
 				// |> Payment Options
 				include_once('plugin-pages/payment-options.php');
 

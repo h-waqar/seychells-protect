@@ -1,5 +1,5 @@
 <!-- Trip Information -->
-<section id="four_TripInfo" class="four-trip-info hidden">
+<section id="four_TripInfo" class="four-trip-info ">
 
     <div class="cs-container">
         <!-- Purpose of travel dropdown -->
@@ -77,8 +77,7 @@
                     </select>
 
                     <input type="text" name="text_ArrivalPrivateFlightNo" class="form-control hidden"
-                        id="flightSelect_hidden"
-                        placeholder="Enter Your Flight#" style="padding: 0.6rem;">
+                        id="flightSelect_hidden" placeholder="Enter Your Flight#" style="padding: 0.6rem;">
 
                 </div>
 
@@ -391,8 +390,7 @@
                         </select>
 
                         <input type="text" name="text_DeparturePrivateFlightNo" class="form-control hidden"
-                            id="return_flightSelect_hidden"
-                            placeholder="Enter Your Flight#" style="padding: 0.6rem;">
+                            id="return_flightSelect_hidden" placeholder="Enter Your Flight#" style="padding: 0.6rem;">
 
                     </div>
 
@@ -675,17 +673,20 @@
 
                 <!-- Number of Persons -->
                 <div class="mb-3 persons-count">
-                    <input type="number" class="form-control" placeholder="Number of Persons" id="input_NumberOfPersons" name="cs_persons_info_number_of_persons" min="1">
+                    <input type="number" class="form-control" placeholder="Number of Persons" id="input_NumberOfPersons"
+                        name="cs_persons_info_number_of_persons" min="1">
                 </div>
 
                 <!-- Number of Children -->
                 <div class="mb-1 children-count">
-                    <input type="number" class="form-control" placeholder="Number of Children (Under 12)" id="input_NumberOfChildren" name="cs_persons_info_number_of_children" min="0">
+                    <input type="number" class="form-control" placeholder="Number of Children (Under 12)"
+                        id="input_NumberOfChildren" name="cs_persons_info_number_of_children" min="0">
 
                 </div>
                 <p style="color: rgba(0,0,0,0.4);
   font-size: 14px;
-  margin-top: 5px;">Children must be under 12 years of age. If older, include them in the number of persons instead.</p>
+  margin-top: 5px;">Children must be under 12 years of age. If older, include them in the number of persons instead.
+                </p>
             </div>
 
 
@@ -713,9 +714,9 @@
                         <h5>
                             Address in Seychelles
                             <!-- <span onclick="_swiftFV.removeStayingAddress(this)">
-							<i class="fa fa-trash"></i>
-							remove
-						</span> -->
+                            <i class="fa fa-trash"></i>
+                            remove
+                        </span> -->
                         </h5>
 
                         <div class="mb-2 address-in-seychelles demo">
@@ -724,7 +725,8 @@
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </div>
                                 <div class="w-100">
-                                    <input type="text" class="remove-input-style trip_address" name="cs_trip_info_address"
+                                    <input type="text" class="remove-input-style trip_address"
+                                        name="cs_trip_info_address"
                                         placeholder="Where are you staying in the Seychelles?">
 
 
@@ -802,7 +804,7 @@
 
 
 <script>
-    jQuery(document).ready(function($) {
+    jQuery(document).ready(function ($) {
 
         //--------------------> jQuery Date picker
 
@@ -851,115 +853,115 @@
 
         //---------------------> This is the Airlines Object
         const airlines = [{
-                id: 1,
-                name: "Aeroflot",
-                flights: ['244']
-            },
-            {
-                id: 2,
-                name: "Air Austral",
-                flights: ['421']
-            },
-            {
-                id: 3,
-                name: "Air France",
-                flights: ['246', '254']
-            },
-            {
-                id: 4,
-                name: "Air Seychelles",
-                flights: ['021', '048', '060', '062', '075', '077', '123', '151', '261', '263', '1015', '1021', '1023', '1025', '1042', '1068', '1124', '9021', '9022', '9023', '9045', '9047', '9048', '9049', '9268', '9325', '9326']
-            },
-            {
-                id: 5,
-                name: "Arkia",
-                flights: ['611', '631']
-            },
-            {
-                id: 6,
-                name: "Bulgaria Air",
-                flights: ['7075']
-            },
-            {
-                id: 7,
-                name: "Condor",
-                flights: ['2302']
-            },
-            {
-                id: 8,
-                name: "Edelweiss",
-                flights: ['74', '78']
-            },
-            {
-                id: 9,
-                name: "EI AI",
-                flights: ['55']
-            },
-            {
-                id: 10,
-                name: "Emirates",
-                flights: ['705', '707']
-            },
-            {
-                id: 11,
-                name: "Ethiopian",
-                flights: ['879']
-            },
-            {
-                id: 12,
-                name: "Etihad",
-                flights: ['622']
-            },
-            {
-                id: 13,
-                name: "Flynas",
-                flights: ['639']
-            },
-            {
-                id: 14,
-                name: "IndiGo",
-                flights: ['8554']
-            },
-            {
-                id: 15,
-                name: "Kenya Airways",
-                flights: ['250', '258']
-            },
-            {
-                id: 16,
-                name: "Private jet",
-                flights: []
-            },
-            {
-                id: 17,
-                name: "Qatar",
-                flights: ['678']
-            },
-            {
-                id: 18,
-                name: "Spice Jet",
-                flights: ['9909']
-            },
-            {
-                id: 19,
-                name: "Sri Lankan Airlines",
-                flights: ['707']
-            },
-            {
-                id: 20,
-                name: "Swiss International Airline",
-                flights: ['8078']
-            },
-            {
-                id: 21,
-                name: "Turkish",
-                flights: ['748']
-            },
-            {
-                id: 22,
-                name: "Ukraine International Airlines",
-                flights: ['7315']
-            },
+            id: 1,
+            name: "Aeroflot",
+            flights: ['244']
+        },
+        {
+            id: 2,
+            name: "Air Austral",
+            flights: ['421']
+        },
+        {
+            id: 3,
+            name: "Air France",
+            flights: ['246', '254']
+        },
+        {
+            id: 4,
+            name: "Air Seychelles",
+            flights: ['021', '048', '060', '062', '075', '077', '123', '151', '261', '263', '1015', '1021', '1023', '1025', '1042', '1068', '1124', '9021', '9022', '9023', '9045', '9047', '9048', '9049', '9268', '9325', '9326']
+        },
+        {
+            id: 5,
+            name: "Arkia",
+            flights: ['611', '631']
+        },
+        {
+            id: 6,
+            name: "Bulgaria Air",
+            flights: ['7075']
+        },
+        {
+            id: 7,
+            name: "Condor",
+            flights: ['2302']
+        },
+        {
+            id: 8,
+            name: "Edelweiss",
+            flights: ['74', '78']
+        },
+        {
+            id: 9,
+            name: "EI AI",
+            flights: ['55']
+        },
+        {
+            id: 10,
+            name: "Emirates",
+            flights: ['705', '707']
+        },
+        {
+            id: 11,
+            name: "Ethiopian",
+            flights: ['879']
+        },
+        {
+            id: 12,
+            name: "Etihad",
+            flights: ['622']
+        },
+        {
+            id: 13,
+            name: "Flynas",
+            flights: ['639']
+        },
+        {
+            id: 14,
+            name: "IndiGo",
+            flights: ['8554']
+        },
+        {
+            id: 15,
+            name: "Kenya Airways",
+            flights: ['250', '258']
+        },
+        {
+            id: 16,
+            name: "Private jet",
+            flights: []
+        },
+        {
+            id: 17,
+            name: "Qatar",
+            flights: ['678']
+        },
+        {
+            id: 18,
+            name: "Spice Jet",
+            flights: ['9909']
+        },
+        {
+            id: 19,
+            name: "Sri Lankan Airlines",
+            flights: ['707']
+        },
+        {
+            id: 20,
+            name: "Swiss International Airline",
+            flights: ['8078']
+        },
+        {
+            id: 21,
+            name: "Turkish",
+            flights: ['748']
+        },
+        {
+            id: 22,
+            name: "Ukraine International Airlines",
+            flights: ['7315']
+        },
             // Add more airlines and their flights here if needed
         ];
 
@@ -969,8 +971,8 @@
         const frequentOptions = $('#frequentOptions');
 
         // Add frequent options to the "Frequently Selected" group
-        frequentAirlinesIds.forEach(function(airlineId) {
-            const airline = airlines.find(function(a) {
+        frequentAirlinesIds.forEach(function (airlineId) {
+            const airline = airlines.find(function (a) {
                 return a.id === airlineId;
             });
 
@@ -983,7 +985,7 @@
         });
 
         // Add all airlines to the "All Airlines" group
-        airlines.forEach(function(airline) {
+        airlines.forEach(function (airline) {
             const option = $('<option></option>');
             option.val(airline.id);
             option.text(airline.name);
@@ -995,7 +997,7 @@
 
         // Function to update the "Select Flight #" dropdown based on the selected airline
         function updateFlightOptions(selectedAirlineId) {
-            const selectedAirline = airlines.find(function(airline) {
+            const selectedAirline = airlines.find(function (airline) {
                 return airline.id === parseInt(selectedAirlineId);
             });
 
@@ -1004,7 +1006,7 @@
                 flightSelect.empty(); // Clear existing options
 
                 // Add the "Flight #" options for the selected airline
-                selectedAirline.flights.forEach(function(flight) {
+                selectedAirline.flights.forEach(function (flight) {
                     const option = $('<option></option>');
                     option.val(flight);
                     option.text('Flight #' + flight);
@@ -1017,7 +1019,7 @@
         }
 
         // Event handler for when the "Select Airline" dropdown value changes
-        $('#airlineSelect').change(function() {
+        $('#airlineSelect').change(function () {
             const selectedAirlineId = $(this).val();
 
             //  Fabricated
@@ -1059,7 +1061,7 @@
         // -_-_-_-_-_-_-_-_-_-_  This is for the RETURN/DEPARTURE if known :D
 
 
-        jQuery(document).ready(function($) {
+        jQuery(document).ready(function ($) {
 
 
             //---------------------> This is the Return Airlines Object
@@ -1071,8 +1073,8 @@
             const returnFrequentOptions = $('#return_frequentOptions');
 
             // Add frequent options to the "Frequently Selected" group for return airlines
-            returnFrequentAirlinesIds.forEach(function(airlineId) {
-                const airline = returnAirlines.find(function(a) {
+            returnFrequentAirlinesIds.forEach(function (airlineId) {
+                const airline = returnAirlines.find(function (a) {
                     return a.id === airlineId;
                 });
 
@@ -1085,7 +1087,7 @@
             });
 
             // Add all return airlines to the "All Airlines" group
-            returnAirlines.forEach(function(airline) {
+            returnAirlines.forEach(function (airline) {
                 const option = $('<option></option>');
                 option.val(airline.id);
                 option.text(airline.name);
@@ -1094,7 +1096,7 @@
 
             // Function to update the "Select Return Flight #" dropdown based on the selected return airline
             function updateReturnFlightOptions(selectedReturnAirlineId) {
-                const selectedReturnAirline = returnAirlines.find(function(airline) {
+                const selectedReturnAirline = returnAirlines.find(function (airline) {
                     return airline.id === parseInt(selectedReturnAirlineId);
                 });
 
@@ -1103,7 +1105,7 @@
                     returnFlightSelect.empty(); // Clear existing options
 
                     // Add the "Return Flight #" options for the selected return airline
-                    selectedReturnAirline.flights.forEach(function(flight) {
+                    selectedReturnAirline.flights.forEach(function (flight) {
                         const option = $('<option></option>');
                         option.val(flight);
                         option.text('Return Flight #' + flight);
@@ -1116,7 +1118,7 @@
             }
 
             // Event handler for when the "Select Return Airline" dropdown value changes
-            $('#return_airlineSelect').change(function() {
+            $('#return_airlineSelect').change(function () {
                 const selectedReturnAirlineId = $(this).val();
                 updateReturnFlightOptions(selectedReturnAirlineId);
 
