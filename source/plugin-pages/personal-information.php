@@ -5,6 +5,14 @@
 
         <div class="cs-container">
 
+            <div class="headings">
+                <h1>Personal Information</h1>
+                <p>
+                    Please provide a photo or scan of the biographic data page of our passport.
+                    This is the page featuring your photo, name, etc.
+                </p>
+            </div>
+
             <div class="row">
                 <div class="col-md-6">
                     <!-- Phone Number Input -->
@@ -90,8 +98,8 @@
             </div>
 
             <!-- Button to Add Emergency Contact -->
-            <span id="btn_AddContact" class="fw-bold">
-                <a class="link-underline-primary" href="#">+ Add More
+            <span id="btn_AddContact">
+                <a class="fw-bold" style="text-decoration: underline;" href="#">+ Add More
                     Applicants</a></span>
 
         </div>

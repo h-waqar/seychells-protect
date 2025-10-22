@@ -24,20 +24,20 @@
                         <h4>ESSENTIAL PROTECTION</h4>
                         <span>€3.95 / day / Adult</span>
                         <div>
-                            <p> All pre-existing conditions are covered and children under 10 are covered free of
-                                charge
+                            <p>
+                                All pre-existing conditions are covered and children under 10 are covered free of charge
                                 when traveling with a protected adult.
                             </p>
-                            <p> 24/7 medical hotline to assist however small or serious the problem is. </p>
-                            <p> Guaranteed same-day medical assistance. Doctor and nurse assistance to your hotel,
-                                boat
-                                or
-                                villa on any island in the Seychelles.
+                            <p>
+                                24/7 medical hotline to assist however small or serious the problem is.
                             </p>
-                            <p> Services available: serious injury, general illnesses, flu/fever, food poisoning,
-                                cuts
-                                and
-                                scrapes, jellyfish stings, insect bites, Covid-19 tests, refill of medication, heat
+                            <p>
+                                Guaranteed same-day medical assistance. Doctor and nurse assistance to your hotel, boat
+                                or villa on any island in the Seychelles.
+                            </p>
+                            <p>
+                                Services available: serious injury, general illnesses, flu/fever, food poisoning, cuts
+                                and scrapes, jellyfish stings, insect bites, Covid-19 tests, refill of medication, heat
                                 exhaustion, trauma, epidemic care or any other medical assistance required.
                             </p>
                         </div>
@@ -60,22 +60,14 @@
                                 24/7 medical hotline to assist however small or serious the problem is.
                             </p>
                             <p>
-                                Priority medical assistance within 1–3 hours. Doctor and nurse assistance to your hotel,
-                                boat or villa on any Island in the Seychelles.
+                                Guaranteed same-day medical assistance. Doctor and nurse assistance to your hotel, boat
+                                or villa on any island in the Seychelles.
                             </p>
                             <p>
                                 Services available: serious injury, general illnesses, flu/fever, food poisoning, cuts
-                                and
-                                scrapes, jellyfish stings, insect bites, Covid-19 tests, refill of medication, heat
+                                and scrapes, jellyfish stings, insect bites, Covid-19 tests, refill of medication, heat
                                 exhaustion, trauma, epidemic care or any other medical assistance required.
                             </p>
-                            <p>
-                                Concierge to assist with rebooking of hotels and flights or any travel changes in the
-                                event
-                                that you are not fit to travel.
-                            </p>
-                            <p>Assistance liaising with emergency medical evacuation if necessary. </p>
-                            <p>Full private medical concierge assistance.</p>
                         </div>
 
                         <!--           Alert Danger           -->

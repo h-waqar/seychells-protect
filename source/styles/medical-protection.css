@@ -1,0 +1,103 @@
+/* 1. Hide the actual radio button */
+.cs-qna-radio input[type="radio"] {
+  display: none;
+}
+
+.processingPeriod .cs-container .heading h1 {
+  color: var(--bs-text-primary);
+  font-weight: bold;
+}
+.processingPeriod .cs-container .heading p {
+  color: var(--bs-text-secondary);
+  max-width: 550px;
+}
+
+/* 2. Style the <label> as the base card (unselected state) */
+.cs-qna-radio .cs-form-control {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1rem 2rem 0;
+  border: 2px solid var(--bs-primary-color);
+  border-radius: 0.5rem;
+  background-color: var(--bs-bg-light);
+  color: var(--bs-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* 3. Style the <h4> title */
+.cs-qna-radio .cs-form-control h4 {
+  font-weight: 700;
+  font-size: 1.5rem; /* 24px */
+  color: var(--bs-text-primary);
+  text-align: left;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* 4. Style the <span> inside the <h4> as the Price Button (unselected) */
+.cs-qna-radio .cs-form-control span {
+  display: block; /* Makes it a block-level element */
+  width: fit-content; /* Fit to its own content */
+  margin: 0.5rem 0 1.5rem 1rem; /* Center the button */
+  padding: 0.5rem 1.5rem; /* Button padding */
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: var(--bs-primary-color);
+  color: var(--bs-white);
+  border: 2px solid var(--bs-primary-color);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+/* 5. Style the <p> tags as list items */
+.cs-qna-radio .cs-form-control p {
+  font-size: 0.95rem;
+  color: var(--bs-text-muted);
+  position: relative;
+  padding-left: 2.5rem;
+  line-height: 1.6;
+  margin-bottom: 0.75rem !important;
+}
+
+/* 6. Add the '✓' checkmark before each <p> tag */
+.cs-qna-radio .cs-form-control p::before {
+  content: "✓";
+  font-weight: bold;
+  position: absolute;
+  left: 1rem; /* Position checkmark inside the padding */
+  top: 0;
+  color: var(--bs-primary-color); /* Blue checkmark */
+}
+
+/* === SELECTED STATE STYLING === */
+
+/* 7. Style the card when its radio button is :checked */
+.cs-qna-radio input[type="radio"]:checked + .cs-form-control {
+  background-color: var(--bs-primary-color);
+  border-color: var(--bs-primary-color);
+  color: var(--bs-white); /* All text inside becomes white */
+}
+
+/* 8. Change title color on selection */
+.cs-qna-radio input[type="radio"]:checked + .cs-form-control h4 {
+  color: var(--bs-white);
+}
+
+/* 9. Invert the Price Button style on selection */
+.cs-qna-radio input[type="radio"]:checked + .cs-form-control span {
+  background-color: var(--bs-white);
+  color: var(--bs-primary-color);
+  border-color: var(--bs-white);
+}
+
+/* 10. Change <p> text color on selection */
+.cs-qna-radio input[type="radio"]:checked + .cs-form-control p {
+  color: var(--bs-white);
+}
+
+/* 11. Change checkmark color on selection */
+.cs-qna-radio input[type="radio"]:checked + .cs-form-control p::before {
+  color: var(--bs-white); /* White checkmark */
+}
