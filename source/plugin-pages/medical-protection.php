@@ -2,9 +2,9 @@
     <!-- medicalProtection -->
     <div class="cs-container">
 
-        <div class="heading">
+        <div class="bs-heading">
             <h1 class="mb-2">24/7 Medical Protection</h1>
-            <p class="mb-4">
+            <p class="mb-4" style="max-width: 550px;">
                 Get medical help fast, day or night. A private visit can be very expensive and
                 hard to arrange. With Doctors 24/7 a clinician comes to your hotel, villa or
                 boat on any island in Seychelles. This is medical assistance, not insurance so

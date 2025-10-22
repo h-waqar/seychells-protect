@@ -19,7 +19,7 @@
 
 <!-- This is the Side Bar || Content Box d-flex hidden -->
 <!-- <div class="container flex-row flex-wrap hidden" id="bsContainer"> -->
-<div class="container flex-row flex-wrap row" id="bsContainer">
+<div class="container flex-row flex-wrap row py-4" id="bsContainer">
 
 	<!-- This is for the Home Page Titles -->
 	<!-- <div class="cs-home-title"> -->
@@ -46,9 +46,9 @@
 
 				// |> New Routing
 				// include_once('plugin-pages/medical-protection.php');
-				include_once('plugin-pages/personal-information.php');
-				// include_once('plugin-pages/trip-information.php');
-				
+				// include_once('plugin-pages/personal-information.php');
+				include_once('plugin-pages/trip-information.php');
+
 				// ---------------------------------------------------
 				
 				// |> Templates

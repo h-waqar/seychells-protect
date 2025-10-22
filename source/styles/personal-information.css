@@ -6,11 +6,3 @@
   border-radius: none !important;
   border-color: black !important;
 }
-
-#three_ContactInfo .heading h1 {
-  color: var(--bs-text-primary) !important;
-  font-weight: bold !important;
-}
-#three_ContactInfo .heading p {
-  color: var(--bs-text-secondary) !important;
-}

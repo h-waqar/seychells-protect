@@ -5,7 +5,7 @@
 
         <div class="cs-container">
 
-            <div class="headings">
+            <div class="bs-headings">
                 <h1>Personal Information</h1>
                 <p>
                     Please provide a photo or scan of the biographic data page of our passport.

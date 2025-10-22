@@ -2726,4 +2726,14 @@ section.container_PageZero
 
 .form-label {
   color: var(--bs-text-secondary) !important;
+  display: block !important;
+}
+
+.bs-heading h1 {
+  color: var(--bs-text-primary) !important;
+  font-weight: bold !important;
+}
+
+.bs-heading p {
+  color: var(--bs-text-secondary) !important;
 }
