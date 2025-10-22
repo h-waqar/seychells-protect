@@ -1,0 +1,5 @@
+-- First Name and Last Name validation Lose done
+-- Summary not working fine
+-- double passport testing -- 
+-- In double Passport booking also need to test selfie upload
+-- Double Passport booking make summary correct

@@ -1,0 +1,327 @@
+	_data.append('documentNumber', _swiftStorage._documentNumber); 
+    in visaSwift
+    function name handle_inputUploadOptionalDocs
+
+
+
+    
+
+        // let passports = {
+        //     "FC1875731": {
+        //         "fullName": "ARYAN NAIB",
+        //         "dateOfBirth": "2000-05-12",
+        //         "dateOfExpiry": "2032-08-03",
+        //         "mrz_img_url": "https://s3.amazonaws.com/media.pixlab.xyz/12114p654f35229ebe8.jpg",
+        //         "mrz_raw_text": "P<PAKARYAN<<NAIB<<<<<<<<<<<<<<<<<<<<<<<<<<<<\nFC18757313PAK0005120M32080361610174975735<28-",
+        //         "issuingCountry": "PAK",
+        //         "nationality": "PAK",
+        //         "personalNumber": "1610174975735",
+        //         "files": []
+        //     },
+        //     "FC18757341": {
+        //         "fullName": "Rana",
+        //         "dateOfBirth": "2000-05-12",
+        //         "dateOfExpiry": "2032-08-03",
+        //         "mrz_img_url": "https://s3.amazonaws.com/media.pixlab.xyz/12114p654f35229ebe8.jpg",
+        //         "mrz_raw_text": "P<PAKARYAN<<NAIB<<<<<<<<<<<<<<<<<<<<<<<<<<<<\nFC18757313PAK0005120M32080361610174975735<28-",
+        //         "issuingCountry": "PAK",
+        //         "nationality": "PAK",
+        //         "personalNumber": "1610174975735",
+        //         "files": []
+        //     }
+        // } 
+
+        // _swiftStorage.passports = passports;
+
+
+
+
+
+// Group Passport 
+
+
+    let passports =  {
+  "FC1875731": {
+    "fullName": "ARYAN NAIB",
+    "dateOfBirth": "2000-05-12",
+    "dateOfExpiry": "2032-08-03",
+    "mrz_img_url": "https://s3.amazonaws.com/media.pixlab.xyz/12114p65599afa6291f.jpg",
+    "mrz_raw_text": "P<PAKARYAN<<NAIB<<<<<<<<<<<<<<<<<<<<<<<<<<<<\nFC18757313PAK0005120M32080361610174975735<28-",
+    "issuingCountry": "PAK",
+    "nationality": "PAK",
+    "personalNumber": "1610174975735",
+    "files": [
+      {
+        "filename": "Govtas-Questions-20.pdf",
+        "attachment_id": 1445,
+        "file_url": "https://visitseychellesislands.com/wp-content/uploads/2023/11/Govtas-Questions-20.pdf"
+      }
+    ],
+    "selfieUrl": "https://visitseychellesislands.com/wp-content/uploads/2023/11/passport-one-selfie-80.jpeg",
+    "health_countries": [
+      "Pakistan",
+      "Algeria",
+      "Barbados",
+      "Central African Republic",
+      "Cuba",
+      "French Southern and Antarctic Lands",
+      "Laos"
+    ]
+  }
+}
+
+     _swiftStorage.passports = passports;
+
+
+
+
+
+
+
+
+     0
+Pixlab Object
+(
+    [key:Pixlab:private] => 66b82a3ac80fd0d8a8531c7baf290374
+    [status] => 200
+    [json] => stdClass Object
+        (
+            [type] => PASSPORT
+            [face_url] => https://s3.amazonaws.com/media.pixlab.xyz/12114p655b45d089915.jpg
+            [mrz_img_url] => https://s3.amazonaws.com/media.pixlab.xyz/12114p655b45d63c349.jpg
+            [mrz_raw_text] => P stdClass Object
+                (
+                    [issuingCountry] => IND
+                    [fullName] =>  WILSON KUNJUKKUTTY
+                    [documentNumber] => R2316110
+                    [checkDigit] => 1/0/3/0
+                    [nationality] => IND
+                    [dateOfBirth] => 1978-05-02
+                    [sex] => M
+                    [dateOfExpiry] => 2027-03-21
+                )
+
+            [status] => 200
+        )
+
+    [raw_json] => {"type":"PASSPORT","face_url":"https:\/\/s3.amazonaws.com\/media.pixlab.xyz\/12114p655b45d089915.jpg","mrz_img_url":"https:\/\/s3.amazonaws.com\/media.pixlab.xyz\/12114p655b45d63c349.jpg","mrz_raw_text":"P 
+    [mime] => application/json
+    [error] => 
+    [scheme] => https://
+)
+
+No potential MRZ were located on this input image. Stopping scan.
+
+1
+Pixlab Object
+(
+    [key:Pixlab:private] => 66b82a3ac80fd0d8a8531c7baf290374
+    [status] => 400
+    [json] => stdClass Object
+        (
+            [status] => 400
+            [error] => No potential MRZ were located on this input image. Stopping scan.
+        )
+
+    [raw_json] => {"status":400,"error":"No potential MRZ were located on this input image. Stopping scan."}
+    [blob] => 
+    [mime] => application/json
+    [error] => No potential MRZ were located on this input image. Stopping scan.
+    [scheme] => https://
+)
+
+
+
+
+
+
+
+
+
+
+
+	// include(SP_PLUGIN_BASEPATH  . "source/lib/cybersource/cybersource.php");
+
+	// print_r(file_exists(PLUGIN_BASEURL_SY . "source/lib/cybersource/cybersource.php"));
+
+
+
+	// $request = new CyberSource(
+
+	// 	"absa_seytravel_eur_0981357",
+
+	// 	"7cjFq6TOvPnaaYRVlXvibTBiynPHtVH3SyjXxwlvGvZBM+4D+Mbm4gHPoIOZIZ3/YXILaCMVciIEA1THaXnmTVkiPdo6/9vWFotdYmO5OoAXnZvzdRGQOX43FBlqTc66zSxzO7CFU4Qi3qy+YWBM6OOS3ZR7QYN/0YAkxWhgJWZTomjUg8BJIcXGkc5LDyMF/P3eAk56Jzb+tmvwpEX+lGl78aBgq8kGd/+HmWAP+QDB6eCjJftNcFgS+IJ/vwTNKfeTMwc2G8s0WQ3zPpU0YR0IyhIaPBK3LVx4kOglg6GR0WpHrsmP9lJPFcxF58T4S07RKQ2EPzSoH8fkGk16ZQ==",
+
+	// 	"Live"
+
+	// );
+
+
+	// $request = new CyberSource("absa_seytravel_eur_0981357", "jpwlcXvYQ0qlY0j8qqgYHIBDsqKyODJLB/zZg3Z61+Tpj5yG2rzNuKjnAnKiSYQ34J99B6xogm12uxYZAlrobUiSZ3X/26x5ll5kYqMWbsRWaMS78ShJTJIK5v/6+MjDuV4y/V53aYsthV2JGzWkPWx8SKQPr/pYmaddifG482SC+EY6iLyvcn7nSm6/2XiNRwdurvrmPzEImT8OGGukDxGAXVSbZ3Pfh5PtcFjzZVx0Rt8ms7qFOdalFkVZ684tfS3Nlk1d15vdQjV6odLuWmKFKYUpBrZXf4Q/v5DCj/h0/89it3Emerfui9mjix2y8kpTEV9sCsYw7Rkf6jeFvw==", "Live");
+
+
+
+	// $request = new CyberSource("absa_seymedser_eur_0980284", "RI7DrCchKS7iInkmtlYEdFY/ylRUmDXHa4sAKlN2yD2+r0uEcbKBpdai8tBle/PsKC0nljo669wH1w6ebzD0XER9yxmPxf5aYE4tGhWOC0WLhF6s/oRUQwWmnQCYP7hIKAUgUtAfTdDhOqnx11/zaC675ClM/PTGDYaTZfTCFjNGFlclkogHcbt8oGXEJXNch45sS3l+nBQF8pPeanQrvPwWsG5wsQTwMayEDchFpg51SdJbnWHChvMoeaJ4MvwBd/PEqhlY0TyScdSlHdxgHaPPQ3MClMNYEKG0L3SMQpJHnXBkFicnjUcn0R2qVd3EobmKwClE5SgpXm9Px4TyAA==", "Test");
+
+	// $request->currency  = 'EUR';
+
+
+
+	// absa_seymedser_eur_0980284
+
+	// TyjfGjssAE6/UfRndDqk2jjTxHUaCm4rbQjKNnxMQ4YWdOI+DbmaWUxQxpKajHfiDYZuliw0J4ezMP8dgKYu1SscveV5dBO4nNTsRgZOmNv3Pt2GCjTPhh13coeOIu+EBj1duO8CYuIoFVrST0TeYfh0xrJWs6mN6lQmydQiywBxdbxzMey9FX9bqWnVDTIsaV/oQG9LZLHnI2R5CLA7uxDr0ZYO+t02jLCiZLRb82l/z9xGerM1OQaQgJthe6xoPhPargQrmWYVLzbBb1ZjQv/bLYAdn1SEQ9FLxvWl+sGh/ia0DUr3xTDFiiQAJO3sqw8Wy4hUdreF67swTJhrAA==
+
+
+	// $request->reference_code = "Order-1332";
+
+
+
+	// $billTo             = new stdClass();
+
+	// $billTo->firstName  = "Justin";
+
+	// $billTo->lastName   = "Etzin";
+
+	// $billTo->street1    = "Street No 5 Gulistan Colony";
+
+	// $billTo->city       = "Faisalabad";
+
+	// $billTo->state      = "Punjab";
+
+	// $billTo->postalCode = "38000";
+
+	// $billTo->country    = "Pakistan";
+
+	// $billTo->email      = "faheemh127@gmail.com";
+
+	// $billTo->ipAddress  = $_SERVER['REMOTE_ADDR'];
+
+
+	
+	
+
+
+
+
+	// $card                  = new stdClass();
+
+	// $card->accountNumber   = "5555555555554444";
+
+	// $card->fullName        = "Justin Etzin";
+
+	// $card->expirationMonth = "12";
+
+	// $card->expirationYear  = "28";
+
+	// $card->cardType        = "002";
+
+	// // $card->cvNumber        = "169";
+
+
+
+	// $request->billTo = $billTo;
+
+	// $request->card   = $card;
+
+
+
+
+
+	// try {
+
+	// 	$request->charge(100);
+	// 	// $request->validate_card();
+	// } catch (Exception $exp) {
+
+
+
+	// 	$response['error'] = $exp->getMessage();
+	// }
+
+	// if ($request->response && $request->response->resMessage) {
+
+	// 	if (!$request->response->success) {
+
+	// 		// error Message
+
+	// 		$response['success'] = false;
+
+	// 		$response['message'] = $request->response->resMessage;
+	// 	} else {
+
+	// 		$response['success'] = true;
+
+	// 		$response['message'] = "Payment processed";
+	// 	}
+	// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// require_once PLUGIN_BASEURL_SY . "source/lib/cybersource/cybersource.php";
+
+
+
+	// $request = new CyberSource (
+
+	// 	"absa_seytravel_eur_0981357",
+
+	// 	"7cjFq6TOvPnaaYRVlXvibTBiynPHtVH3SyjXxwlvGvZBM+4D+Mbm4gHPoIOZIZ3/YXILaCMVciIEA1THaXnmTVkiPdo6/9vWFotdYmO5OoAXnZvzdRGQOX43FBlqTc66zSxzO7CFU4Qi3qy+YWBM6OOS3ZR7QYN/0YAkxWhgJWZTomjUg8BJIcXGkc5LDyMF/P3eAk56Jzb+tmvwpEX+lGl78aBgq8kGd/+HmWAP+QDB6eCjJftNcFgS+IJ/vwTNKfeTMwc2G8s0WQ3zPpU0YR0IyhIaPBK3LVx4kOglg6GR0WpHrsmP9lJPFcxF58T4S07RKQ2EPzSoH8fkGk16ZQ==",
+
+	// 	"Live"
+
+	// );
+
+
+
+
+
+
+
+	// $response['message'] = "Dummy Error Message";
+
+
+
+
+data[firstName]	"da"
+data[lastName]	"Hassan"
+data[city]	"faisalabad"
+data[state]	"punjab"
+data[postalCode]	"38000"
+data[street1]	"home+address"
+data[email]	"abc@gmail.com"
+data[country]	"\n++++++\n++++++Albania\n++++"
+data[cardNumber]	"5555555555554444"
+data[cardHolderName]	"djfalksjdlakfjds"
+data[cardCvv]	"342"
+data[cardExpMonth]	"12"
+data[cardExpYear]	"2033"
+data[cardType]	"MasterCard"
+applicantId	"2011"
+amount	"13.85"
+processing_period	"standard"
+
+

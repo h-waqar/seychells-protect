@@ -1,0 +1,2099 @@
+@charset "UTF-8";
+/* Classes for Keyframes */
+.slide-top {
+  animation: slide-top 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.slide-bottom {
+  animation: slide-bottom 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* KeyFrames */
+@keyframes slide-top {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: 0;
+  }
+}
+@keyframes slide-bottom {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+.payment-form {
+  position: relative;
+  /* Style for the spinner wrapper */
+}
+.payment-form .cs_ParentForm {
+  opacity: 0.3;
+  pointer-events: none;
+}
+.payment-form .spinner-wrapper {
+  opacity: 1 !important;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  /* Style for the spinner animation */
+}
+.payment-form .spinner-wrapper .spinner {
+  border: 4px solid #046055;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 0.5s linear infinite;
+  /* Animation for the spinner */
+  /* Spinner animation keyframes */
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.cs-container {
+  height: 100%;
+  overflow: auto;
+  padding: 0 1rem 1rem 0.25rem;
+}
+
+#container_PageOne,
+#one_PassportResponse,
+#container_PageTwo,
+#container_PageThree,
+#container_PageFour,
+#container_PageFive {
+  width: 70% !important;
+  min-width: 70% !important;
+}
+
+.cs-srcollable {
+  height: 65%;
+  overflow: auto;
+}
+
+.cs-page-container {
+  padding: 30px 30px 30px 30px;
+}
+
+.form-control {
+  border: 1px solid rgba(0, 0, 0, 0.4) !important;
+}
+
+.country-select-shadow {
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px 0, rgba(0, 0, 0, 0.08) 0 0 0 1px;
+}
+
+.cs-button-wrapper {
+  margin-top: 2rem;
+  float: right;
+}
+.cs-button-wrapper button {
+  border-color: #046055;
+  color: #046055;
+  cursor: pointer;
+}
+.cs-button-wrapper button:last-of-type {
+  background-color: #046055;
+  color: white;
+}
+.cs-button-wrapper button:hover:not(:last-of-type) {
+  background-color: transparent;
+  color: #046055;
+}
+
+hr {
+  width: 100%;
+}
+
+.cs-primary-button {
+  background-color: #046055;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+}
+.cs-primary-button i {
+  color: white;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.cs-outlined-button button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 500;
+  border-color: #046055;
+}
+.cs-outlined-button button:hover {
+  background-color: #046055 !important;
+}
+.cs-outlined-button button i {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  height: 42px;
+  margin-right: 0.5rem;
+}
+
+.question-wrapper .cs-qna-radio .cs-form-control {
+  width: 150px;
+  font-weight: bold;
+  font-size: 20px;
+  display: inline-block;
+  padding: 12px 20px;
+  margin: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+}
+.question-wrapper .cs-qna-radio .cs-form-control:before {
+  content: "";
+  color: white;
+  border: 2px solid rgba(0, 0, 0, 0.6);
+  padding: 9px;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.question-wrapper .cs-qna-radio.qna-active {
+  border-color: #046055;
+}
+.question-wrapper .cs-qna-radio input[type=radio] {
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  margin: auto;
+  display: none;
+}
+.question-wrapper .cs-qna-radio input[type=radio]:checked + .cs-form-control::before {
+  content: "✓";
+  background-color: #046055;
+  border: 1px solid #046055;
+  transition: 0.3s;
+}
+.question-wrapper .cs-qna-radio input[type=radio]:checked + .cs-form-control {
+  border: 1px solid #046055;
+}
+
+.loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 4px solid white;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.cs-form-outline {
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  cursor: text;
+}
+.cs-form-outline i {
+  margin-right: 1rem;
+}
+.cs-form-outline .remove-input-style {
+  border: none;
+  font-size: 1rem;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+.cs-form-outline .remove-input-style:focus-visible {
+  outline: none;
+}
+
+.add-custom-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #046055;
+  border-radius: 8px;
+  background-color: #ffffff;
+  opacity: 1;
+  height: 2.5rem;
+  width: 100%;
+  color: #046055;
+  /* Text color */
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: bold;
+}
+.add-custom-button:hover {
+  background-color: #046055;
+  color: #ffffff;
+}
+
+.ui-datepicker-unselectable {
+  opacity: 0.3;
+  /* Adjust the opacity as needed */
+  cursor: not-allowed;
+  /* Change the cursor to indicate non-selectable */
+}
+
+.cs-pop-up-view-docs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.32);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cs-pop-up-view-docs .cs-iframe-wrapper {
+  margin: auto;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 10000000000000000000000000000000000000000000 !important;
+}
+.cs-pop-up-view-docs .cs-iframe-wrapper iframe {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.btn-best-value {
+  background-color: #007aff;
+  color: white;
+  border: none;
+  padding: 4px 14px;
+  border-radius: 8px;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+}
+.btn-best-value i {
+  color: white;
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+#group_UseThisSelfie .group-p-response-show-selfie .img-wrapper {
+  max-width: 300px;
+  max-height: 400px;
+  margin: auto;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#group_UseThisSelfie .group-p-response-show-selfie .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+section.alert_ValidPassport {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  z-index: 1000000000000000000000;
+  top: 0;
+  left: 0;
+}
+section.alert_ValidPassport .cs-container {
+  height: auto;
+  margin: auto;
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem 0;
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2);
+}
+section.alert_ValidPassport .cs-container .cs-alert-danger {
+  max-width: 800px;
+  min-width: 300px;
+  width: 50vw;
+  display: inline-block;
+}
+section.alert_ValidPassport .cs-container .cs-alert-danger .icon-wrapper {
+  width: 80px;
+  height: 80px;
+  margin: 1rem auto 1rem auto;
+}
+section.alert_ValidPassport .cs-container .cs-alert-danger .content-wrapper {
+  padding: 0 2rem;
+}
+section.alert_ValidPassport .cs-container .cs-alert-danger .cs-button-wrapper {
+  padding: 0 2rem;
+  margin-top: 0;
+}
+section.alert_ValidPassport .cs-container .cs-alert-danger .cs-button-wrapper span {
+  background-color: #046055;
+  color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+}
+section.alert_ValidPassport .cs-container .cs-alert-danger .cs-button-wrapper span:hover {
+  background-color: #046055;
+}
+
+.form-control,
+.form-select {
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+.form-control {
+  padding: 0.8rem 1rem;
+}
+
+input[type=tel].form-control {
+  padding-left: 5rem;
+}
+
+.form-select {
+  padding: 0.6rem 1rem;
+}
+
+#container_StartTrip .cs-page-container {
+  padding: 2rem;
+  height: 80%;
+  width: 70%;
+  background: #f4f4f4;
+  border-radius: 0.5rem;
+  margin: auto;
+}
+#container_StartTrip .cs-page-container .content-wrapper h1 {
+  margin-bottom: 1rem;
+}
+#container_StartTrip .cs-page-container .content-wrapper p {
+  font-size: 16px;
+}
+#container_StartTrip .cs-page-container .cs-card-wrapper .radio-btn {
+  display: none;
+  /* Hide the radio buttons */
+}
+#container_StartTrip .cs-page-container .cs-card-wrapper .radio-card-wrapper .radio-label {
+  width: 100%;
+  /* Each radio button takes half the width */
+  display: block;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#container_StartTrip .cs-page-container .cs-card-wrapper .radio-card-wrapper .radio-label .cs-card {
+  height: 400px;
+  width: 100%;
+  background: #0085f2;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: border 0.3s;
+}
+#container_StartTrip .cs-page-container .cs-card-wrapper .radio-card-wrapper .radio-label .cs-card .cs-icon-wrapper {
+  margin: 1rem auto;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#container_StartTrip .cs-page-container .cs-card-wrapper .radio-card-wrapper .radio-label .cs-card .cs-icon-wrapper img {
+  width: 100%;
+  height: 100%;
+  transform: scale(1.3);
+}
+#container_StartTrip .cs-page-container .cs-card-wrapper .radio-card-wrapper .radio-label .cs-card .cs-content-wrapper {
+  background-color: transparent;
+}
+#container_StartTrip .cs-page-container .cs-card-wrapper .radio-card-wrapper .radio-label .cs-card .cs-content-wrapper h2 {
+  color: white;
+  text-align: center;
+}
+#container_StartTrip .cs-page-container .cs-card-wrapper .radio-card-wrapper .radio-label .cs-card .cs-content-wrapper p {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}
+
+section.container_PageZero .complete-your-app {
+  background-color: #f4f4f4;
+  border: 1px solid #b9acad;
+  border-radius: 0.5rem;
+}
+section.container_PageZero .complete-your-app hr {
+  color: #b9acad;
+}
+section.container_PageZero .complete-your-app .travel-to-seychelles {
+  color: #046055;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1rem 0 1rem;
+}
+section.container_PageZero .complete-your-app .travel-to-seychelles .fa-plane {
+  transform: rotate(-90deg);
+  margin-right: 0.25rem;
+}
+section.container_PageZero .complete-your-app .your-info .img-wrapper {
+  width: 60px;
+  height: 80px;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  float: right;
+}
+section.container_PageZero .complete-your-app .your-info .img-wrapper img {
+  width: 100%;
+  height: 100%;
+}
+section.container_PageZero .cs-your-data-discarded .row {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+section.container_PageZero .cs-your-data-discarded .row .cs-outlined-button button {
+  border-color: #046055;
+  color: #046055;
+}
+section.container_PageZero .cs-your-data-discarded .row .cs-outlined-button button:hover {
+  background-color: transparent !important;
+  color: #046055;
+}
+section.container_PageZero .cs-your-data-discarded .row .cs-outlined-button button:focus {
+  color: #046055 !important;
+  background-color: transparent !important;
+}
+
+#container_PageOne {
+  max-width: 100%;
+}
+#container_PageOne .cs-pop-up {
+  padding: 30px 30px 30px 30px;
+}
+#container_PageOne .cs-pop-up .cs-content-wrapper {
+  height: 65%;
+  overflow: auto;
+}
+#container_PageOne .cs-pop-up .cs-content-wrapper ul {
+  margin-left: 30px;
+}
+#container_PageOne .cs-pop-up .cs-content-wrapper ul ul {
+  margin-left: 30px;
+}
+#container_PageOne .cs-pop-up .cs-content-wrapper ul ul ul {
+  margin-left: 30px;
+}
+#container_PageOne .cs-pop-up .cs-content-wrapper a {
+  color: #046055;
+}
+#container_PageOne .cs-pop-up hr {
+  margin: 0;
+}
+
+#container_pageTwo {
+  max-width: 100vw;
+}
+#container_pageTwo .cs-page-container .cs-srcollable {
+  height: 65vh;
+}
+#container_pageTwo .cs-page-container .cs-checkbox-wrapper label input[type=checkbox] {
+  width: 1rem !important;
+  height: 15px !important;
+  margin: 8px !important;
+}
+
+#container_PageThree {
+  max-width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#container_PageThree div.row {
+  justify-content: center;
+  align-items: center;
+}
+#container_PageThree div.row .cs-card-wrapper {
+  background-color: rgba(244, 244, 244, 0.3);
+  margin: 5px;
+  padding: 30px;
+  text-align: center;
+  max-width: 450px;
+  min-height: 450px;
+  max-height: 450px;
+  border: 3px solid #f4f4f4;
+  border-radius: 7px;
+  cursor: pointer;
+}
+#container_PageThree div.row .cs-card-wrapper input[type=radio] {
+  display: none;
+}
+#container_PageThree div.row .cs-card-wrapper .cs-card-icon-wrapper {
+  margin: auto;
+  width: 150px;
+}
+#container_PageThree div.row .cs-card-wrapper .cs-card-icon-wrapper svg {
+  fill: #046055;
+}
+#container_PageThree div.row .cs-card-wrapper .cs-card-content-wrapper p:first-of-type {
+  margin: 15px 0;
+  font-size: 17px;
+  font-weight: bolder;
+}
+#container_PageThree div.row .cs-card-wrapper .cs-card-content-wrapper p:last-of-type {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+}
+#container_PageThree div.row .cs-card-wrapper.cs-active {
+  background: #f4f4f4;
+  border-color: #b9acad;
+}
+
+#page_four,
+#five_HealthDeclaration,
+#group_HealthDeclaration {
+  min-width: 100%;
+}
+#page_four .cs-container,
+#five_HealthDeclaration .cs-container,
+#group_HealthDeclaration .cs-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+}
+#page_four .cs-container .cs-country-select .popup-content,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content {
+  padding: 20px;
+  position: relative;
+}
+#page_four .cs-container .cs-country-select .popup-content .cs-search-bar,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .cs-search-bar,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .cs-search-bar {
+  padding: 0.5rem 1rem 0.5rem 0.5rem;
+  border-radius: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background-color: #f4f4f4;
+  margin-bottom: 1rem;
+  cursor: text;
+}
+#page_four .cs-container .cs-country-select .popup-content .cs-search-bar i,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .cs-search-bar i,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .cs-search-bar i {
+  font-size: 1.5rem;
+  margin-right: 5px;
+}
+#page_four .cs-container .cs-country-select .popup-content .cs-search-bar .remove-input-style,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .cs-search-bar .remove-input-style,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .cs-search-bar .remove-input-style {
+  width: 99%;
+  font-size: 1rem;
+  border: none;
+  background-color: #f4f4f4;
+}
+#page_four .cs-container .cs-country-select .popup-content .cs-search-bar .remove-input-style:focus-visible,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .cs-search-bar .remove-input-style:focus-visible,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .cs-search-bar .remove-input-style:focus-visible {
+  outline: none;
+}
+#page_four .cs-container .cs-country-select .popup-content .scrollable-container,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .scrollable-container,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .scrollable-container {
+  height: 500px;
+  overflow: auto;
+  padding: 0 30px;
+}
+#page_four .cs-container .cs-country-select .popup-content .scrollable-container .countries-list div,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .scrollable-container .countries-list div,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .scrollable-container .countries-list div {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  max-height: 50px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  padding: 1.5rem 0;
+}
+#page_four .cs-container .cs-country-select .popup-content .scrollable-container .countries-list div p,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .scrollable-container .countries-list div p,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .scrollable-container .countries-list div p {
+  width: 100%;
+  font-size: 1rem;
+  margin: 0;
+}
+#page_four .cs-container .cs-country-select .popup-content .scrollable-container .countries-list div img,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .scrollable-container .countries-list div img,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .scrollable-container .countries-list div img {
+  margin-right: 15px;
+}
+#page_four .cs-container .cs-country-select .popup-content .selected-country,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country {
+  padding: 0 1rem;
+}
+#page_four .cs-container .cs-country-select .popup-content .selected-country div,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div {
+  width: 100% !important;
+  padding-left: 20px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background-color: rgba(4, 96, 85, 0.4);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+#page_four .cs-container .cs-country-select .popup-content .selected-country div img,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div img,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div img {
+  margin-right: 10px;
+}
+#page_four .cs-container .cs-country-select .popup-content .selected-country div p,
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div p,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div p {
+  margin: 10px 0;
+  font-size: 1.4rem;
+}
+
+.cs-home-title {
+  padding: 0 2rem 0 2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  width: 100%;
+}
+.cs-home-title p {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.bs-sidebar-container {
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+#sidebar_ProgressBar {
+  margin: 0 auto;
+}
+#sidebar_ProgressBar .cs-container {
+  width: 100%;
+}
+#sidebar_ProgressBar .cs-container .cs-side-bar ul {
+  list-style: none;
+}
+#sidebar_ProgressBar .cs-container .cs-side-bar ul li {
+  margin: 0 0 0.7rem;
+  position: relative;
+  cursor: pointer;
+}
+#sidebar_ProgressBar .cs-container .cs-side-bar ul li:hover {
+  opacity: 0.3;
+}
+#sidebar_ProgressBar .cs-container .cs-side-bar ul li::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: grey;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  transform: translateY(-50%);
+  border: 2px solid grey;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
+#sidebar_ProgressBar .cs-container .cs-side-bar ul li.cs-arrow:before {
+  content: "➔";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  padding: 10px;
+  background-color: green;
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  transform: translateY(-50%);
+  border: 2px solid green;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  transition: 1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#sidebar_ProgressBar .cs-container .cs-side-bar ul li.cs-checked:before {
+  content: "✓";
+  color: white !important;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: green;
+  border: 2px solid green;
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  transform: translateY(-50%);
+  transition: 1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#one_UploadPassport,
+#two_SelfiePhoto,
+.group_passport {
+  width: 100%;
+  margin-top: 0 !important;
+  margin-bottom: 40px;
+}
+#one_UploadPassport .cs-dotted-container,
+#two_SelfiePhoto .cs-dotted-container,
+.group_passport .cs-dotted-container {
+  height: 60vh;
+  text-align: center;
+  border: 2px dashed grey;
+  background-color: #f4f4f4;
+  padding: 2rem;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#one_UploadPassport .cs-dotted-container .cs-image-wrapper,
+#two_SelfiePhoto .cs-dotted-container .cs-image-wrapper,
+.group_passport .cs-dotted-container .cs-image-wrapper {
+  width: 200px;
+  height: 100px;
+  margin: 10px auto;
+}
+#one_UploadPassport .cs-dotted-container p,
+#two_SelfiePhoto .cs-dotted-container p,
+.group_passport .cs-dotted-container p {
+  margin: 10px 0;
+}
+#one_UploadPassport .cs-dotted-container .cs-button-wrapper label,
+#two_SelfiePhoto .cs-dotted-container .cs-button-wrapper label,
+.group_passport .cs-dotted-container .cs-button-wrapper label {
+  display: inline-block;
+  font-size: 18px !important;
+}
+
+#selfiePhotoResponse .cs-container .image-wrapper {
+  margin: auto;
+  max-width: 300px;
+  height: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+#selfiePhotoResponse .cs-container .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+#selfiePhotoResponse .cs-button-wrapper .cs-btn-outlined {
+  border: 1px solid #046055 !important;
+  font-size: 1rem;
+  padding: 3px 1rem 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+}
+
+#one_PassportResponse,
+.group_PRes {
+  width: 100% !important;
+  overflow-x: hidden !important;
+}
+#one_PassportResponse .cs-container,
+.group_PRes .cs-container {
+  overflow-x: hidden !important;
+  background: #f4f4f4;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+}
+#one_PassportResponse .cs-container .row,
+.group_PRes .cs-container .row {
+  padding: 1rem;
+}
+#one_PassportResponse .cs-container .row .col-md-6 .image-wrapper,
+.group_PRes .cs-container .row .col-md-6 .image-wrapper {
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+#one_PassportResponse .cs-container .row .col-md-6 .image-wrapper img,
+.group_PRes .cs-container .row .col-md-6 .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+#one_PassportResponse .cs-container .row .col-md-6 .cs-user-info .user-bio p:first-of-type,
+.group_PRes .cs-container .row .col-md-6 .cs-user-info .user-bio p:first-of-type {
+  font-size: 1rem;
+}
+#one_PassportResponse .cs-container .row .col-md-6 .cs-user-info .user-bio p:last-of-type,
+.group_PRes .cs-container .row .col-md-6 .cs-user-info .user-bio p:last-of-type {
+  font-size: 18px;
+}
+#one_PassportResponse .cs-container .row .col-md-12 .form-check input[type=checkbox],
+.group_PRes .cs-container .row .col-md-12 .form-check input[type=checkbox] {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+#one_PassportResponse .cs-container .row .col-md-12 .form-check input[type=checkbox]:checked,
+.group_PRes .cs-container .row .col-md-12 .form-check input[type=checkbox]:checked {
+  background-color: #046055;
+}
+#one_PassportResponse .cs-container .row .col-md-12 .form-check label,
+.group_PRes .cs-container .row .col-md-12 .form-check label {
+  font-size: 1.2rem !important;
+  margin-left: 10px;
+}
+
+#three_ContactInfo {
+  width: 100%;
+}
+#three_ContactInfo .cs-container .iti--allow-dropdown {
+  width: 100%;
+}
+#three_ContactInfo .cs-container #contact_Duplicate .cs-contact-details {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f4f4f4;
+  border-radius: 14px;
+}
+#three_ContactInfo .cs-container #contact_Duplicate .cs-contact-details h6 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#three_ContactInfo .cs-container #contact_Duplicate .cs-contact-details h6 span {
+  color: red;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+#three_ContactInfo .cs-container #contact_Duplicate .cs-contact-details h6 span i {
+  margin-right: 7px;
+}
+#three_ContactInfo .cs-container #btn_AddContact {
+  font-size: 1rem;
+  color: #046055;
+  margin-top: 1rem;
+  display: block;
+  cursor: pointer;
+}
+#three_ContactInfo .cs-container #btn_AddContact i {
+  margin-right: 1rem;
+}
+
+#four_TripInfo {
+  width: 100%;
+}
+#four_TripInfo .cs-container .purpose-of-travel select optgroup {
+  background-color: #f4f4f4;
+  color: #b9acad !important;
+  font-size: 18px;
+}
+#four_TripInfo .cs-container .purpose-of-travel select optgroup option {
+  color: black;
+  font-size: 16px;
+}
+#four_TripInfo .cs-container .datepicker,
+#four_TripInfo .cs-container .return-datepicker {
+  width: 100%;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  border-color: black;
+  padding: 0.6rem 1rem;
+}
+#four_TripInfo .cs-container .cs-arrival-details .alert-warning {
+  display: flex;
+}
+#four_TripInfo .cs-container .cs-arrival-details .alert-warning i {
+  color: orange;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+#four_TripInfo .cs-container .cs-arrival-details .alert-warning p {
+  color: black;
+  margin: 0;
+}
+#four_TripInfo .cs-container .datepicker::after,
+#four_TripInfo .cs-container .return-datepicker::after {
+  color: #30a9ab;
+  /* Icon color */
+}
+#four_TripInfo .cs-container .cs-where-staying .address-in-seychelles {
+  position: relative;
+}
+#four_TripInfo .cs-container .cs-where-staying .address-in-seychelles .cs-form-outline {
+  margin-bottom: 0;
+}
+#four_TripInfo .cs-container .cs-where-staying .address-in-seychelles .cs-hotel-autocomplete {
+  background: white;
+  border-radius: 0 0 0.5rem 0.5rem;
+  padding: 0.1rem 1rem;
+  border: 1px solid black;
+  border-top: none;
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  margin-top: -7px;
+}
+#four_TripInfo .cs-container .cs-where-staying .address-in-seychelles .cs-hotel-autocomplete .cs-suggested-hotel {
+  margin: 0;
+  padding: 0.25rem 0;
+  cursor: pointer;
+}
+#four_TripInfo .cs-container .cs-where-staying .tripInfoWrap {
+  background: #f4f4f4;
+  border: 1px solid rgba(185, 172, 173, 0.3);
+  padding: 1rem 1.2rem 0 1.2rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+#four_TripInfo .cs-container .cs-where-staying .tripInfoWrap h5 span {
+  float: right;
+  color: red;
+  font-size: 14px;
+  cursor: pointer;
+}
+#four_TripInfo .cs-container .cs-where-staying .tripInfoWrap h5 span i {
+  color: red;
+  font-size: 1rem;
+}
+#four_TripInfo .cs-container .cs-where-staying .tripInfoWrap .trip-from-to label {
+  border-right: 1px solid black;
+  cursor: pointer;
+}
+#four_TripInfo .cs-container .cs-where-staying .tripInfoWrap .trip-from-to input[type=text] {
+  cursor: text;
+  width: 90% !important;
+  padding: 0.6rem 1rem;
+}
+#four_TripInfo .cs-container .btn_add-staying-address {
+  font-size: 1rem;
+  color: #046055;
+  display: block;
+  cursor: pointer;
+}
+#four_TripInfo .cs-container .btn_add-staying-address .fa-plus {
+  margin-right: 0.5rem;
+}
+
+#five_HealthDeclaration .cs-container,
+#group_HealthDeclaration .cs-container {
+  height: 100%;
+  overflow: auto;
+  padding: 0 0.5rem 1rem 1rem;
+}
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .cs-search-bar .remove-input-style,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .cs-search-bar .remove-input-style {
+  padding: 0.4rem 0.1rem;
+}
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .scrollable-container,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .scrollable-container {
+  height: 15rem;
+}
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country {
+  display: flex;
+  flex-wrap: wrap;
+}
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div {
+  width: auto !important;
+  padding: 0 0.5rem;
+  margin: 0 0.25rem 0.5rem 0;
+  border-radius: 2rem;
+  background-color: rgba(4, 96, 85, 0.4);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div img,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div img {
+  width: 30px;
+  height: 20px;
+  border-radius: 12px;
+}
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div p,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+#five_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div i,
+#group_HealthDeclaration .cs-container .cs-country-select .popup-content .selected-country div i {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-top: 2px;
+  cursor: pointer;
+  color: red;
+}
+
+#six_Customs .cs-container .question-wrapper .cs-qna-radio p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4rem;
+}
+#six_Customs .cs-container .question-wrapper .cs-qna-radio .cs-form-control {
+  margin: 0 0 2rem 0;
+}
+#six_Customs .cs-container .question-wrapper .monetaryInstrument {
+  margin-bottom: 2rem;
+}
+#six_Customs .cs-container .question-wrapper .monetaryInstrument .row {
+  background: #f4f4f4;
+  border: 1px solid rgba(185, 172, 173, 0.3);
+  padding: 1rem 0 0.5rem 0;
+  border-radius: 0.5rem;
+  width: 100%;
+  margin: 0 auto 1rem auto;
+}
+#six_Customs .cs-container .question-wrapper .monetaryInstrument .row h6 {
+  margin-bottom: 1rem;
+}
+#six_Customs .cs-container .question-wrapper .monetaryInstrument .row h6 .remove-button {
+  float: right;
+  color: red;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#six_Customs .cs-container .question-wrapper .monetaryInstrument .row input[type=number] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+#six_Customs .cs-container .question-wrapper .monetaryInstrument .add-btn {
+  color: #046055;
+  cursor: pointer;
+}
+
+#seven_RequiredDocs .cs-select-file,
+#eight_OptionalDocs .cs-select-file,
+#group_OptDocs .cs-select-file {
+  padding: 1rem;
+  border: 1px dashed rgba(0, 0, 0, 0.6);
+  border-radius: 0.5rem;
+}
+#seven_RequiredDocs .cs-select-file .cs-view-docs,
+#eight_OptionalDocs .cs-select-file .cs-view-docs,
+#group_OptDocs .cs-select-file .cs-view-docs {
+  display: flex;
+  margin-top: 1rem;
+}
+#seven_RequiredDocs .cs-select-file .cs-view-docs div,
+#eight_OptionalDocs .cs-select-file .cs-view-docs div,
+#group_OptDocs .cs-select-file .cs-view-docs div {
+  border: 1px solid #f4f4f4;
+  border-radius: 0.5rem;
+  margin: 0 3px;
+}
+#seven_RequiredDocs .cs-select-file .cs-view-docs div:first-of-type,
+#eight_OptionalDocs .cs-select-file .cs-view-docs div:first-of-type,
+#group_OptDocs .cs-select-file .cs-view-docs div:first-of-type {
+  padding: 1rem 1rem 0 1rem;
+}
+#seven_RequiredDocs .cs-select-file .cs-view-docs div .file-name,
+#eight_OptionalDocs .cs-select-file .cs-view-docs div .file-name,
+#group_OptDocs .cs-select-file .cs-view-docs div .file-name {
+  padding-left: 15px;
+  line-height: 1.2rem;
+  position: relative;
+}
+#seven_RequiredDocs .cs-select-file .cs-view-docs div .file-name::before,
+#eight_OptionalDocs .cs-select-file .cs-view-docs div .file-name::before,
+#group_OptDocs .cs-select-file .cs-view-docs div .file-name::before {
+  content: "✓";
+  color: white;
+  background-color: #046055;
+  border: 1px solid #046055;
+  padding: 9px;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#seven_RequiredDocs .cs-select-file .cs-view-docs div .fa,
+#eight_OptionalDocs .cs-select-file .cs-view-docs div .fa,
+#group_OptDocs .cs-select-file .cs-view-docs div .fa {
+  padding: 1rem;
+  cursor: pointer;
+}
+#seven_RequiredDocs .cs-select-file .cs-view-docs div .fa-eye,
+#eight_OptionalDocs .cs-select-file .cs-view-docs div .fa-eye,
+#group_OptDocs .cs-select-file .cs-view-docs div .fa-eye {
+  font-size: 16px;
+  color: #046055;
+  margin-top: 6%;
+}
+#seven_RequiredDocs .cs-select-file .cs-view-docs div .fa-trash,
+#eight_OptionalDocs .cs-select-file .cs-view-docs div .fa-trash,
+#group_OptDocs .cs-select-file .cs-view-docs div .fa-trash {
+  font-size: 18px;
+  color: red;
+}
+
+#nine_Proceed .cs-container label,
+#processingPeriod .cs-container label,
+#medicalProtection .cs-container label {
+  width: 100%;
+  text-align: left;
+  padding-left: 50px;
+  margin: 0 0 0.5rem 0;
+}
+#nine_Proceed .cs-container label input[type=radio],
+#processingPeriod .cs-container label input[type=radio],
+#medicalProtection .cs-container label input[type=radio] {
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  margin: auto;
+}
+#nine_Proceed .cs-container label input[type=radio]:before,
+#processingPeriod .cs-container label input[type=radio]:before,
+#medicalProtection .cs-container label input[type=radio]:before {
+  top: 12px;
+  left: 2%;
+  transform: translate(0, 0);
+}
+#nine_Proceed .cs-container label .processing-alert,
+#processingPeriod .cs-container label .processing-alert,
+#medicalProtection .cs-container label .processing-alert {
+  position: relative;
+  left: -4%;
+  width: 104% !important;
+  display: block;
+  margin: 1rem 0 0 0 !important;
+}
+#nine_Proceed .cs-container label .processing-alert .alert-danger,
+#processingPeriod .cs-container label .processing-alert .alert-danger,
+#medicalProtection .cs-container label .processing-alert .alert-danger {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin: 0 !important;
+}
+#nine_Proceed .cs-container label .processing-alert .alert-danger i,
+#processingPeriod .cs-container label .processing-alert .alert-danger i,
+#medicalProtection .cs-container label .processing-alert .alert-danger i {
+  color: red;
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+#nine_Proceed .cs-container label .processing-alert .alert-danger p,
+#processingPeriod .cs-container label .processing-alert .alert-danger p,
+#medicalProtection .cs-container label .processing-alert .alert-danger p {
+  color: black;
+  margin: 0;
+  font-size: 14px;
+}
+#nine_Proceed .cs-container label .processing-alert .alert-danger p strong,
+#processingPeriod .cs-container label .processing-alert .alert-danger p strong,
+#medicalProtection .cs-container label .processing-alert .alert-danger p strong {
+  font-weight: 600;
+  font-size: 16px;
+}
+#nine_Proceed .cs-container label .processing-alert .alert-success,
+#processingPeriod .cs-container label .processing-alert .alert-success,
+#medicalProtection .cs-container label .processing-alert .alert-success {
+  display: flex;
+  align-items: center;
+}
+#nine_Proceed .cs-container label .processing-alert .alert-success i,
+#processingPeriod .cs-container label .processing-alert .alert-success i,
+#medicalProtection .cs-container label .processing-alert .alert-success i {
+  font-size: 1.5rem;
+}
+#nine_Proceed .cs-container label:before,
+#processingPeriod .cs-container label:before,
+#medicalProtection .cs-container label:before {
+  top: 1.8rem;
+}
+#nine_Proceed .cs-container .cs-additional-notes textarea,
+#processingPeriod .cs-container .cs-additional-notes textarea,
+#medicalProtection .cs-container .cs-additional-notes textarea {
+  width: 100%;
+  border: 1px solid #b9acad;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+#nine_Proceed .cs-container #proceed_NotApplicantContact .cs-contact-details .form-control-input .iti--allow-dropdown,
+#processingPeriod .cs-container #proceed_NotApplicantContact .cs-contact-details .form-control-input .iti--allow-dropdown,
+#medicalProtection .cs-container #proceed_NotApplicantContact .cs-contact-details .form-control-input .iti--allow-dropdown {
+  width: 100% !important;
+}
+#nine_Proceed .cs-container #proceed_NotApplicantContact .cs-contact-details input[type=tel],
+#processingPeriod .cs-container #proceed_NotApplicantContact .cs-contact-details input[type=tel],
+#medicalProtection .cs-container #proceed_NotApplicantContact .cs-contact-details input[type=tel] {
+  padding-left: 5rem;
+}
+#nine_Proceed .cs-container #proceed_NotApplicantContact .cs-contact-details input,
+#processingPeriod .cs-container #proceed_NotApplicantContact .cs-contact-details input,
+#medicalProtection .cs-container #proceed_NotApplicantContact .cs-contact-details input {
+  padding: 0.6rem 1rem;
+  border-color: black;
+}
+
+#ten_PaymentOptions .cs-container {
+  overflow-x: hidden;
+  height: -moz-max-content;
+  height: max-content;
+}
+#ten_PaymentOptions .cs-container .payment-method {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#ten_PaymentOptions .cs-container .payment-method h4 {
+  margin-top: 1rem;
+}
+#ten_PaymentOptions .cs-container .payment-method .col-md-2 {
+  width: 170px;
+}
+#ten_PaymentOptions .cs-container .payment-method .col-md-2 input[type=radio] {
+  display: none;
+}
+#ten_PaymentOptions .cs-container .payment-method .col-md-2 label {
+  cursor: pointer;
+  display: block;
+  margin-bottom: 10px;
+  min-height: 94px;
+  width: 160px;
+  border: 2px solid #f4f4f4;
+  border-radius: 0.5rem;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+#ten_PaymentOptions .cs-container .payment-method .col-md-2 label.checked {
+  border-color: #046055;
+}
+#ten_PaymentOptions .cs-container .payment-method .col-md-2 label:hover {
+  background-color: #f4f4f4;
+  border-color: rgba(185, 172, 173, 0.25);
+}
+#ten_PaymentOptions .cs-container .payment-method .col-md-2 .img-wrapper {
+  margin-bottom: 5px;
+}
+#ten_PaymentOptions .cs-container .payment-method .col-md-2 .img-wrapper svg {
+  width: 24px;
+  height: 24px;
+  fill: #0570de;
+}
+#ten_PaymentOptions .cs-container .payment-method .col-md-2 .img-wrapper img {
+  max-width: 30px;
+  height: auto;
+}
+#ten_PaymentOptions .cs-container .payment-method .col-md-2 .content-wrapper p {
+  font-size: 14px;
+}
+#ten_PaymentOptions .cs-container .payment-method .col-md-2 input[type=radio]:checked + label {
+  border-color: #046055;
+  background-color: rgba(4, 96, 85, 0.1);
+}
+#ten_PaymentOptions .cs-container .payment-by-card {
+  overflow-x: hidden;
+}
+#ten_PaymentOptions .cs-container .payment-by-card .mb-3 {
+  width: 100%;
+}
+#ten_PaymentOptions .cs-container .payment-by-card .mb-3 .card-img-wrapper svg {
+  width: 60px;
+  height: 45px;
+}
+#ten_PaymentOptions .cs-container .payment-by-card .mb-3 .card-img-wrapper svg:nth-of-type(2) {
+  height: 47px;
+  width: 49px;
+}
+#ten_PaymentOptions .cs-container .payment-by-card .mb-3 .card-img-wrapper svg:nth-of-type(3) {
+  width: 50px;
+}
+#ten_PaymentOptions .cs-container .payment-by-giropay p {
+  opacity: 0.6;
+}
+#ten_PaymentOptions .cs-container .payment-by-giropay p svg {
+  width: 3rem;
+}
+#ten_PaymentOptions .cs-container select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 10px;
+  transition: all ease 0.5s;
+  cursor: pointer;
+}
+#ten_PaymentOptions .cs-container select:focus {
+  border-radius: 10px 0 10px 0;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+#ten_PaymentOptions .cs-container .payment-by-wechat,
+#ten_PaymentOptions .cs-container .payment-by-alipay {
+  padding: 1rem;
+  border: 1px solid #f4f4f4;
+  border-radius: 0.5rem;
+}
+#ten_PaymentOptions .cs-container .payment-by-wechat svg,
+#ten_PaymentOptions .cs-container .payment-by-alipay svg {
+  width: 40px;
+}
+#ten_PaymentOptions .cs-container .payment-by-wechat p:first-of-type,
+#ten_PaymentOptions .cs-container .payment-by-alipay p:first-of-type {
+  font-size: 18px;
+}
+#ten_PaymentOptions .cs-container .payment-by-wechat .mb-3 p,
+#ten_PaymentOptions .cs-container .payment-by-alipay .mb-3 p {
+  opacity: 0.6;
+}
+#ten_PaymentOptions .cs-container .payment-by-wechat .mb-3 p svg,
+#ten_PaymentOptions .cs-container .payment-by-alipay .mb-3 p svg {
+  width: 3rem;
+}
+#ten_PaymentOptions .cs-container .cs-bg-black {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.32);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#ten_PaymentOptions .cs-container .cs-bg-black .cs-application-summary {
+  max-width: 800px;
+  min-width: 350px;
+  width: 50vw;
+  text-align: center;
+  background-color: white;
+  padding: 0.5rem 0 0 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+}
+#ten_PaymentOptions .cs-container .cs-bg-black .cs-application-summary span {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+#ten_PaymentOptions .cs-container .cs-bg-black .cs-application-summary button {
+  background-color: white !important;
+  border: none !important;
+  outline: none !important;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}
+#ten_PaymentOptions .cs-container .cs-bg-black .cs-application-summary button:focus {
+  outline: none;
+}
+#ten_PaymentOptions .cs-container .cs-bg-black .cs-application-summary button i {
+  color: black;
+  font-size: 1.3rem;
+}
+#ten_PaymentOptions .cs-container .cs-bg-black .cs-application-summary .cs-summary-info {
+  background-color: #f4f4f4;
+  padding: 0.5rem 1rem 1rem 1rem;
+  text-align: start;
+}
+#ten_PaymentOptions .cs-container .cs-bg-black .cs-application-summary .cs-summary-info span {
+  font-size: 1.2rem;
+  float: right;
+}
+
+.processingPeriod .cs-container .question-wrapper .mb-2 label h4 span {
+  float: right;
+}
+.processingPeriod .cs-container .question-wrapper .mb-2 label p {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 4px 0;
+}
+
+.cs-summary-info h5 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 15px;
+}
+
+.cs_summary_persons p {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 15px;
+}
+
+.thank-you-page .cs-container {
+  padding: 1rem 10%;
+}
+.thank-you-page .cs-container .content-wrapper {
+  text-align: left;
+  max-width: 800px;
+  margin: auto;
+}
+.thank-you-page .cs-container .content-wrapper p {
+  font-size: 16px;
+}
+.thank-you-page .cs-container .btn-wrapper .btn-success {
+  background-color: #046055;
+  border-color: #046055;
+  color: white;
+  font-weight: 600;
+  border-radius: 2rem;
+  margin: auto;
+  display: block;
+}
+
+.sy_logo_wray {
+  background-color: #3b73c8;
+  padding: 13px 30px;
+  display: inline-block;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.sy_logo_wray img {
+  max-width: 150px;
+}
+
+/**
+*************************************************************************************
+**********************************     For Group   **********************************
+*************************************************************************************
+*/
+.group_PRes .cs-container .row .image-wrapper button {
+  background-color: rgb(255, 231, 237);
+  padding: 0.5rem 0.8rem;
+  position: absolute;
+  top: -7px;
+  right: 12px;
+}
+.group_PRes .cs-container .row .image-wrapper button i {
+  color: #c90000;
+}
+.group_PRes .cs-container .row .row-for-btn-wrapper .col-md-6 button {
+  text-align: left;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  border: 1px solid rgba(185, 172, 173, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.group_PRes .cs-container .row .row-for-btn-wrapper .col-md-6 button .cs-svg-wrapper {
+  width: 24px;
+  height: 24px;
+}
+.group_PRes .cs-container .row .row-for-btn-wrapper .col-md-6 button .cs-svg-wrapper img {
+  fill: #046055;
+  width: 100%;
+  height: 100%;
+}
+.group_PRes .cs-container .row .row-for-btn-wrapper .col-md-6:last-of-type button {
+  background-color: #f4f4f4;
+}
+
+#group_ResSelfie .passport-group-selfie {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  border-radius: 0.5rem;
+  justify-content: space-between;
+  background-color: #f4f4f4;
+}
+#group_ResSelfie .passport-group-selfie .img-wrapper {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#group_ResSelfie .passport-group-selfie .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#group_ResSelfie .passport-group-selfie .content-wrapper {
+  text-transform: uppercase;
+}
+#group_ResSelfie .passport-group-selfie .content-wrapper p {
+  margin: 0;
+}
+#group_ResSelfie .passport-group-selfie .content-wrapper .text-secondary {
+  font-size: 12px;
+}
+#group_ResSelfie .passport-group-selfie .p-validity {
+  text-align: right;
+}
+
+.cs-slide-popup {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  width: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background-color: white;
+}
+.cs-slide-popup .cs-close-popup {
+  padding: 0.5rem;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.cs-slide-popup .cs-close-popup span {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #046055;
+}
+.cs-slide-popup .cs-close-popup span i {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.cs-slide-popup .cs-popup-body {
+  background-color: white;
+  height: 100%;
+  max-height: 70vh;
+  padding: 0.75rem 1rem;
+  overflow: auto;
+}
+.cs-slide-popup .cs-popup-body .group-p-upload-selfie {
+  text-align: center;
+  background-color: #f4f4f4;
+  padding: 2rem;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.cs-slide-popup .cs-popup-body .group-p-upload-selfie .cs-image-wrapper {
+  width: 200px;
+  height: 100px;
+  margin: 10px auto;
+}
+.cs-slide-popup .cs-popup-body .group-p-upload-selfie p {
+  margin: 10px 0;
+}
+.cs-slide-popup .cs-popup-body .group-p-upload-selfie .cs-button-wrapper label {
+  display: inline-block;
+  font-size: 18px !important;
+}
+.cs-slide-popup .cs-popup-body .cs-group-pop-up-btn {
+  position: absolute;
+  bottom: 1rem;
+}
+.cs-slide-popup .cs-popup-footer .btn-upload-your-selfie .cs-group-pop-up-btn {
+  width: 100%;
+}
+.cs-slide-popup .cs-popup-footer .btn-upload-your-selfie .cs-group-pop-up-btn .cs-button-wrapper {
+  padding: 0.5rem 1rem;
+  float: none;
+  margin: 0;
+}
+.cs-slide-popup .cs-popup-footer .btn-upload-your-selfie .cs-group-pop-up-btn .cs-button-wrapper button {
+  width: 100%;
+}
+.cs-slide-popup .cs-popup-footer .btn-retry-upload-selfie {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.cs-slide-popup .cs-popup-footer .btn-retry-upload-selfie .cs-outlined-button {
+  width: 45%;
+}
+.cs-slide-popup .cs-popup-footer .btn-retry-upload-selfie .cs-outlined-button button {
+  color: black;
+}
+.cs-slide-popup .cs-popup-footer .btn-retry-upload-selfie .cs-outlined-button button:hover {
+  color: white;
+}
+.cs-slide-popup .cs-popup-footer .btn-retry-upload-selfie .cs-button-wrapper {
+  margin: 0;
+  width: 45%;
+}
+.cs-slide-popup .cs-popup-footer .btn-group-health-declaration {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.cs-slide-popup .cs-popup-footer .btn-group-health-declaration .cs-outlined-button {
+  width: 45%;
+}
+.cs-slide-popup .cs-popup-footer .btn-group-health-declaration .cs-outlined-button button {
+  color: black;
+}
+.cs-slide-popup .cs-popup-footer .btn-group-health-declaration .cs-outlined-button button:hover {
+  color: white;
+}
+.cs-slide-popup .cs-popup-footer .btn-group-health-declaration .cs-button-wrapper {
+  margin: 0;
+  width: 45%;
+}
+.cs-slide-popup .cs-popup-footer .btn-group-document {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  justify-content: space-around;
+}
+.cs-slide-popup .cs-popup-footer .btn-group-document .cs-outlined-button {
+  width: 45%;
+}
+.cs-slide-popup .cs-popup-footer .btn-group-document .cs-outlined-button button {
+  color: black;
+}
+.cs-slide-popup .cs-popup-footer .btn-group-document .cs-outlined-button button:hover {
+  color: white;
+}
+.cs-slide-popup .cs-popup-footer .btn-group-document .cs-button-wrapper {
+  margin: 0;
+  width: 45%;
+}
+
+#group_OptDocs .cs-select-file {
+  background: #f4f4f4;
+}
+#group_OptDocs .cs-select-file .cs-view-docs div {
+  border: 1px solid #b9acad;
+}
+
+.health_country_search .popup-content {
+  padding: 20px;
+  position: relative;
+}
+.health_country_search .popup-content .cs-search-bar {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background-color: #f4f4f4;
+  margin-bottom: 1rem;
+  cursor: text;
+}
+.health_country_search .popup-content .cs-search-bar i {
+  font-size: 1.5rem;
+  margin-right: 5px;
+}
+.health_country_search .popup-content .cs-search-bar .remove-input-style {
+  width: 99%;
+  font-size: 1rem;
+  border: none;
+  background-color: #f4f4f4;
+}
+.health_country_search .popup-content .cs-search-bar .remove-input-style:focus-visible {
+  outline: none;
+}
+.health_country_search .popup-content .scrollable-container {
+  height: 200px;
+  overflow: auto;
+  padding: 0 20px;
+}
+.health_country_search .popup-content .scrollable-container .countries-list div {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  max-height: 40px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  padding: 0.5rem 0;
+}
+.health_country_search .popup-content .scrollable-container .countries-list div p {
+  width: 100%;
+  font-size: 1rem;
+  margin: 0;
+}
+.health_country_search .popup-content .scrollable-container .countries-list div img {
+  margin-right: 15px;
+}
+.health_country_search .popup-content .selected-country div {
+  width: 100% !important;
+  padding-left: 20px;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background-color: rgba(4, 96, 85, 0.4);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.health_country_search .popup-content .selected-country div img {
+  margin-right: 10px;
+}
+.health_country_search .popup-content .selected-country div p {
+  margin: 10px 0;
+  font-size: 1.4rem;
+}
+.health_country_search .popup-content .selected-country {
+  display: flex;
+  flex-wrap: wrap;
+}
+.health_country_search .popup-content .selected-country div {
+  width: auto !important;
+  padding: 0 0.5rem;
+  margin: 0 0.25rem 0.5rem 0;
+  border-radius: 2rem;
+  background-color: rgba(4, 96, 85, 0.4);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.health_country_search .popup-content .selected-country div img {
+  width: 30px;
+  height: 20px;
+  border-radius: 12px;
+}
+.health_country_search .popup-content .selected-country div p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+.health_country_search .popup-content .selected-country div i {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-top: 2px;
+  cursor: pointer;
+  color: red;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.cs-filled {
+  border-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+.cs-error {
+  border-color: red !important;
+}
+
+.cs_disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+@media screen and (max-width: 768px) {
+  #page_four .cs-container {
+    padding: 2px !important;
+  }
+  #container_PageOne,
+  #one_PassportResponse,
+  #container_PageTwo,
+  #container_PageThree,
+  #container_PageFour,
+  #container_PageFive {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+  .cs-button-wrapper {
+    margin: 1rem 0 !important;
+    float: none !important;
+    text-align: center !important;
+  }
+  .cs-pop-up-view-docs .cs-iframe-wrapper {
+    margin: auto;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    z-index: 100000000000000000000000000000000000000000000000000000000 !important;
+    position: fixed;
+  }
+  .cs-content-wrapper ul {
+    margin-left: 0 !important;
+  }
+  .cs-home-title {
+    padding-left: 0 !important;
+  }
+  .cs-container {
+    padding: 0;
+  }
+  .cs-container .cs-select-file .cs-button-wrapper label {
+    width: 100%;
+  }
+  #seven_RequiredDocs .cs-button-wrapper,
+  #eight_OptionalDocs .cs-button-wrapper,
+  #nine_Proceed .cs-button-wrapper {
+    float: none !important;
+    text-align: center !important;
+    margin-right: 0 !important;
+  }
+  #seven_RequiredDocs .cs-button-wrapper .question-wrapper .cs-qna-radio label:before,
+  #eight_OptionalDocs .cs-button-wrapper .question-wrapper .cs-qna-radio label:before,
+  #nine_Proceed .cs-button-wrapper .question-wrapper .cs-qna-radio label:before {
+    top: 2rem;
+    transform: translateY(0);
+  }
+  #bsContainer .right {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  #container_StartTrip .cs-page-container {
+    width: 100%;
+    padding: 1rem;
+  }
+  .bs-sidebar-container {
+    display: none !important;
+  }
+  #csRadio2Cards .row label {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: auto !important;
+  }
+  #group_OptDocs {
+    border: none !important;
+  }
+  #group_OptDocs .cs-select-file .cs-button-wrapper label {
+    width: 100%;
+    text-align: center;
+    float: none;
+  }
+  .cs-slide-popup {
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 100%;
+    transform: translate(0, 0);
+    border-radius: 0;
+    z-index: 999;
+  }
+  .cs-slide-popup .cs-button-wrapper {
+    margin: 0rem 0 !important;
+    float: none !important;
+    text-align: center !important;
+  }
+  .cs-slide-popup .cs-close-popup {
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .cs-slide-popup .cs-close-popup span {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #046055;
+  }
+  .cs-slide-popup .cs-close-popup span i {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  .cs-slide-popup .cs-popup-body {
+    min-height: 80vh;
+    padding: 0.75rem;
+    background: white;
+  }
+  .cs-slide-popup .cs-popup-body .group-p-upload-selfie {
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 2rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .cs-slide-popup .cs-popup-body .group-p-upload-selfie .cs-image-wrapper {
+    width: 200px;
+    height: 100px;
+    margin: 10px auto;
+  }
+  .cs-slide-popup .cs-popup-body .group-p-upload-selfie p {
+    margin: 10px 0;
+  }
+  .cs-slide-popup .cs-popup-body .group-p-upload-selfie .cs-button-wrapper label {
+    display: inline-block;
+    font-size: 18px !important;
+  }
+  .cs-slide-popup .cs-popup-footer {
+    min-height: 10vh;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+  }
+  .cs-slide-popup .cs-popup-footer .btn-upload-your-selfie .cs-group-pop-up-btn {
+    width: 100%;
+  }
+  .cs-slide-popup .cs-popup-footer .btn-upload-your-selfie .cs-group-pop-up-btn .cs-button-wrapper {
+    padding: 0.5rem 1rem;
+  }
+  .cs-slide-popup .cs-popup-footer .btn-upload-your-selfie .cs-group-pop-up-btn .cs-button-wrapper button {
+    width: 100%;
+  }
+  .cs-slide-popup .cs-popup-footer .btn-retry-upload-selfie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cs-slide-popup .cs-popup-footer .btn-retry-upload-selfie .cs-outlined-button {
+    width: 25%;
+    margin-right: 0.5rem;
+  }
+  .cs-slide-popup .cs-popup-footer .btn-retry-upload-selfie .cs-button-wrapper {
+    width: 50%;
+  }
+  .cs-slide-popup .cs-popup-footer .btn-group-health-declaration,
+  .cs-slide-popup .cs-popup-footer .btn-group-document {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cs-slide-popup .cs-popup-footer .btn-group-health-declaration .cs-outlined-button,
+  .cs-slide-popup .cs-popup-footer .btn-group-document .cs-outlined-button {
+    width: 30%;
+    margin-right: 0.5rem;
+  }
+  .cs-slide-popup .cs-popup-footer .btn-group-health-declaration .cs-button-wrapper,
+  .cs-slide-popup .cs-popup-footer .btn-group-document .cs-button-wrapper {
+    width: 30%;
+  }
+  #nine_Proceed .cs-container #proceed_NotApplicantContact .cs-contact-details input[type=tel] {
+    width: 100%;
+  }
+}
+.cs-data-country-name {
+  border-bottom: 1px solid #dcdcdc;
+  padding-bottom: 10px;
+}
+
+/* Styles for devices with a maximum width of 767 pixels (typical for mobile devices) */
+@media only screen and (max-width: 767px) {
+  .bs-title {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  .cs-home-title {
+    padding: 0;
+  }
+  .bs-title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .cs-button-wrapper {
+    text-align: end !important;
+  }
+  .cs-view-doc-btn {
+    display: none;
+  }
+}
+.bs-container {
+  font-family: "Poppins", Sans-serif;
+}
+.bs-container input {
+  font-family: "Poppins", Sans-serif;
+}
+.bs-container select {
+  font-family: "Poppins", Sans-serif;
+}
+
+#five_HealthDeclaration .cs-container {
+  padding: 0 !important;
+}
+
+#container_PageTwo h1 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+}/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,2634 @@
+// ------------------------> Global Variables <------------------------ //
+
+$primary-color: #046055;
+$bg-light-color: #f4f4f4;
+$border-blue-color: #0085f2;
+$slate-blue-color: #007aff;
+$disable-color: #b9acad;
+$bg-cover-black: rgba(
+  $color: #000000,
+  $alpha: 0.32,
+);
+$z-10k: 10000;
+
+// -------------------------> Key Frames With Classes <------------------------ //
+/* Classes for Keyframes */
+.slide-top {
+  animation: slide-top 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.slide-bottom {
+  animation: slide-bottom 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* KeyFrames */
+@keyframes slide-top {
+  0% {
+    top: 100%;
+  }
+
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes slide-bottom {
+  0% {
+    top: 0;
+  }
+
+  100% {
+    top: 100%;
+  }
+}
+
+// -------------------------> Spinner <------------------------ //
+
+.payment-form {
+  position: relative;
+
+  .cs_ParentForm {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  /* Style for the spinner wrapper */
+  .spinner-wrapper {
+    opacity: 1 !important;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: $z-10k;
+
+    /* Style for the spinner animation */
+    .spinner {
+      border: 4px solid $primary-color;
+      border-top: 4px solid transparent;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 0.5s linear infinite;
+      /* Animation for the spinner */
+
+      /* Spinner animation keyframes */
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Global Styles <------------------------ //
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.cs-container {
+  height: 100%;
+  overflow: auto;
+  padding: 0 1rem 1rem 0.25rem;
+}
+
+#container_PageOne,
+#one_PassportResponse,
+#container_PageTwo,
+#container_PageThree,
+#container_PageFour,
+#container_PageFive {
+  width: 70% !important;
+  min-width: 70% !important;
+}
+
+.cs-srcollable {
+  height: 65%;
+  overflow: auto;
+}
+
+.cs-page-container {
+  padding: 30px 30px 30px 30px;
+}
+
+.form-control {
+  border: 1px solid rgba(black, 0.4) !important;
+}
+
+.country-select-shadow {
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px 0, rgba(0, 0, 0, 0.08) 0 0 0 1px;
+}
+
+.cs-button-wrapper {
+  margin-top: 2rem;
+  float: right;
+
+  button {
+    border-color: $primary-color;
+    color: $primary-color;
+    cursor: pointer;
+
+    &:last-of-type {
+      background-color: $primary-color;
+      color: white;
+    }
+
+    &:hover:not(:last-of-type) {
+      background-color: transparent;
+      color: $primary-color;
+    }
+  }
+}
+
+hr {
+  width: 100%;
+}
+
+.cs-primary-button {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+
+  i {
+    color: white;
+    margin-right: 10px;
+    font-size: 20px;
+  }
+}
+
+.cs-outlined-button {
+  // display: flex !important;
+  // align-items: center !important;
+  // justify-content: center !important;
+
+  button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: 500;
+    border-color: $primary-color;
+
+    &:hover {
+      background-color: $primary-color !important;
+    }
+
+    i {
+      display: inline-block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      height: 42px;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.question-wrapper {
+  .cs-qna-radio {
+    .cs-form-control {
+      width: 150px;
+      font-weight: bold;
+      font-size: 20px;
+      display: inline-block;
+      padding: 12px 20px;
+      margin: 10px;
+      border: 1px solid rgba($color: black, $alpha: 0.6);
+      border-radius: 0.5rem;
+      cursor: pointer;
+      position: relative;
+      text-align: center;
+
+      &:before {
+        content: "";
+        color: white;
+        border: 2px solid rgba($color: black, $alpha: 0.6);
+        padding: 9px;
+        font-size: 16px;
+        font-weight: 800;
+        text-align: center;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    &.qna-active {
+      border-color: $primary-color;
+    }
+
+    input[type="radio"] {
+      width: 0;
+      height: 0;
+      cursor: pointer;
+      margin: auto;
+      display: none; // You can use display: none instead of width: 0; height: 0;
+    }
+
+    input[type="radio"]:checked + .cs-form-control::before {
+      content: "✓";
+      background-color: $primary-color;
+      border: 1px solid $primary-color;
+      transition: 0.3s;
+    }
+
+    input[type="radio"]:checked + .cs-form-control {
+      border: 1px solid $primary-color;
+    }
+  }
+}
+
+.loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 4px solid white;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.cs-form-outline {
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  cursor: text;
+
+  i {
+    margin-right: 1rem;
+  }
+
+  .remove-input-style {
+    border: none;
+    font-size: 1rem;
+    padding: 0;
+    background-color: $bg-light-color;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}
+
+.add-custom-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $primary-color;
+  border-radius: 8px;
+  background-color: #ffffff;
+  opacity: 1;
+  height: 2.5rem;
+  width: 100%;
+  color: $primary-color;
+  /* Text color */
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: bold;
+
+  &:hover {
+    background-color: $primary-color;
+    color: #ffffff;
+  }
+}
+
+.ui-datepicker-unselectable {
+  opacity: 0.3;
+  /* Adjust the opacity as needed */
+  cursor: not-allowed;
+  /* Change the cursor to indicate non-selectable */
+}
+
+.cs-pop-up-view-docs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $bg-cover-black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .cs-iframe-wrapper {
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 9999999999999999999999999999999999999999999 !important;
+
+    iframe {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}
+
+.btn-best-value {
+  background-color: $slate-blue-color;
+  color: white;
+  border: none;
+  padding: 4px 14px;
+  border-radius: 8px;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+
+  i {
+    color: white;
+    margin-right: 10px;
+    font-size: 1rem;
+  }
+}
+
+#group_UseThisSelfie {
+  .group-p-response-show-selfie {
+    .img-wrapper {
+      max-width: 300px;
+      max-height: 400px;
+      margin: auto;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+// -------------------------> Alert Danger <------------------------ //
+
+section.alert_ValidPassport {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  z-index: 999999999999999999999;
+  top: 0;
+  left: 0;
+
+  .cs-container {
+    // max-width: 500px;
+    height: auto;
+    margin: auto;
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem 0;
+    box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2);
+
+    .cs-alert-danger {
+      max-width: 800px;
+      min-width: 300px;
+      width: 50vw;
+      display: inline-block;
+
+      .icon-wrapper {
+        width: 80px;
+        height: 80px;
+        margin: 1rem auto 1rem auto;
+      }
+
+      .content-wrapper {
+        padding: 0 2rem;
+      }
+
+      .cs-button-wrapper {
+        padding: 0 2rem;
+        margin-top: 0;
+
+        span {
+          background-color: $primary-color;
+          color: white;
+          border-radius: 0.5rem;
+          padding: 0.5rem 1.5rem;
+
+          &:hover {
+            background-color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Custom Bootstrap --------------- //
+
+.form-control,
+.form-select {
+  border-color: rgba(black, 0.4);
+}
+
+.form-control {
+  padding: 0.8rem 1rem;
+}
+
+input[type="tel"].form-control {
+  padding-left: 5rem;
+}
+
+.form-select {
+  padding: 0.6rem 1rem;
+}
+
+// -------------------------> Start Trip <------------------------ //
+
+#container_StartTrip {
+  .cs-page-container {
+    padding: 2rem;
+    height: 80%;
+    width: 70%;
+    background: $bg-light-color;
+    border-radius: 0.5rem;
+    margin: auto;
+
+    .content-wrapper {
+      h1 {
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+
+    .cs-card-wrapper {
+      .radio-btn {
+        display: none;
+        /* Hide the radio buttons */
+      }
+
+      .radio-card-wrapper {
+        .radio-label {
+          width: 100%;
+          /* Each radio button takes half the width */
+          display: block;
+          cursor: pointer;
+          user-select: none;
+
+          .cs-card {
+            height: 400px;
+            width: 100%;
+            background: $border-blue-color;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: border 0.3s;
+
+            .cs-icon-wrapper {
+              margin: 1rem auto;
+              width: 55px;
+              height: 55px;
+              border-radius: 50%;
+              overflow: hidden;
+
+              img {
+                width: 100%;
+                height: 100%;
+                transform: scale(1.3);
+              }
+            }
+
+            .cs-content-wrapper {
+              background-color: transparent;
+
+              h2 {
+                color: white;
+                text-align: center;
+              }
+
+              p {
+                color: white;
+                font-size: 18px;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Page 0 <------------------------ //
+
+section.container_PageZero {
+  .complete-your-app {
+    background-color: $bg-light-color;
+    border: 1px solid $disable-color;
+    border-radius: 0.5rem;
+
+    hr {
+      color: $disable-color;
+    }
+
+    .travel-to-seychelles {
+      color: $primary-color;
+      display: flex;
+      align-items: center;
+
+      padding: 1rem 1rem 0 1rem;
+
+      .fa-plane {
+        transform: rotate(-90deg);
+        margin-right: 0.25rem;
+      }
+    }
+
+    .your-info {
+      .img-wrapper {
+        width: 60px;
+        height: 80px;
+        border-radius: 0.25rem;
+        overflow: hidden;
+        float: right;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .cs-your-data-discarded {
+    .row {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+
+      .cs-outlined-button {
+        button {
+          border-color: $primary-color;
+          color: $primary-color;
+
+          &:hover {
+            background-color: transparent !important;
+            color: $primary-color;
+          }
+
+          &:focus {
+            color: $primary-color !important;
+            background-color: transparent !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Page 1 <------------------------ //
+
+#container_PageOne {
+  max-width: 100%;
+  //max-height: 100vh;
+
+  .cs-pop-up {
+    padding: 30px 30px 30px 30px;
+
+    .cs-content-wrapper {
+      height: 65%;
+      overflow: auto;
+
+      ul {
+        margin-left: 30px;
+
+        ul {
+          margin-left: 30px;
+
+          ul {
+            margin-left: 30px;
+          }
+        }
+      }
+
+      a {
+        color: $primary-color;
+      }
+    }
+
+    hr {
+      margin: 0;
+    }
+  }
+}
+
+// -------------------------> Page 2 <------------------------ //
+
+#container_pageTwo {
+  max-width: 100vw;
+  //max-height: 100vh;
+
+  .cs-page-container {
+    .cs-srcollable {
+      height: 65vh;
+    }
+
+    .cs-checkbox-wrapper {
+      label {
+        input[type="checkbox"] {
+          width: 1rem !important;
+          height: 15px !important;
+          margin: 8px !important;
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Page 3 <------------------------ //
+
+#container_PageThree {
+  max-width: 100%;
+  //max-height: 100vh;
+  user-select: none;
+
+  div {
+    &.row {
+      justify-content: center;
+      align-items: center;
+
+      .cs-card-wrapper {
+        background-color: rgba($bg-light-color, $alpha: 0.3);
+        margin: 5px;
+        padding: 30px;
+        text-align: center;
+        max-width: 450px;
+        min-height: 450px;
+        max-height: 450px;
+        border: 3px solid $bg-light-color;
+        border-radius: 7px;
+        cursor: pointer;
+
+        input[type="radio"] {
+          display: none;
+        }
+
+        .cs-card-icon-wrapper {
+          margin: auto;
+          width: 150px;
+
+          svg {
+            fill: $primary-color;
+          }
+        }
+
+        .cs-card-content-wrapper {
+          p {
+            &:first-of-type {
+              margin: 15px 0;
+              font-size: 17px;
+              font-weight: bolder;
+            }
+
+            &:last-of-type {
+              font-weight: 600;
+              color: rgba(0, 0, 0, 0.7);
+            }
+          }
+        }
+
+        &.cs-active {
+          background: $bg-light-color;
+          border-color: $disable-color;
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Page 4 <------------------------ //
+#page_four,
+#five_HealthDeclaration,
+#group_HealthDeclaration {
+  min-width: 100%;
+
+  .cs-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+
+    .cs-country-select {
+      .popup-content {
+        padding: 20px;
+        position: relative;
+
+        .cs-search-bar {
+          padding: 0.5rem 1rem 0.5rem 0.5rem;
+          border-radius: 0;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          background-color: #f4f4f4;
+          margin-bottom: 1rem;
+          cursor: text;
+
+          i {
+            font-size: 1.5rem;
+            margin-right: 5px;
+          }
+
+          .remove-input-style {
+            width: 99%;
+            font-size: 1rem;
+            border: none;
+            background-color: $bg-light-color;
+
+            &:focus-visible {
+              outline: none;
+            }
+          }
+        }
+
+        .scrollable-container {
+          height: 500px;
+          overflow: auto;
+          padding: 0 30px;
+
+          .countries-list div {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            max-height: 50px;
+            cursor: pointer;
+            user-select: none;
+            padding: 1.5rem 0;
+
+            p {
+              width: 100%;
+              font-size: 1rem;
+              margin: 0;
+            }
+
+            img {
+              margin-right: 15px;
+            }
+          }
+        }
+
+        .selected-country {
+          padding: 0 1rem;
+
+          div {
+            width: 100% !important;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            background-color: rgba($color: $primary-color, $alpha: 0.4);
+            display: flex;
+            justify-content: start;
+            align-items: center;
+
+            img {
+              margin-right: 10px;
+            }
+
+            p {
+              margin: 10px 0;
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Home Page Titles <------------------------ //
+
+.cs-home-title {
+  padding: 0 2rem 0 2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  width: 100%;
+
+  p {
+    font-size: 18px;
+    font-weight: 300;
+  }
+}
+
+// -------------------------> Side Bar <------------------------ //
+
+.bs-sidebar-container {
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+  //height: 69vh !important;
+}
+
+#sidebar_ProgressBar {
+  margin: 0 auto;
+
+  .cs-container {
+    width: 100%;
+
+    .cs-side-bar {
+      ul {
+        list-style: none;
+
+        li {
+          margin: 0 0 0.7rem;
+          position: relative;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 0.3;
+          }
+
+          &::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: grey;
+            display: inline-block;
+
+            position: absolute;
+            top: 50%;
+            left: -30px;
+            transform: translateY(-50%);
+
+            border: 2px solid grey;
+
+            color: white;
+            font-size: 14px;
+            text-align: center;
+          }
+
+          &.cs-arrow:before {
+            content: "➔";
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            padding: 10px;
+            background-color: green;
+            //display: inline-block;
+
+            position: absolute;
+            top: 50%;
+            left: -30px;
+            transform: translateY(-50%);
+
+            border: 2px solid green;
+
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            transition: 1s;
+
+            // This is for centering the "content"
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          &.cs-checked:before {
+            content: "✓";
+
+            color: white !important;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: 800;
+            text-align: center;
+
+            //display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: green;
+            border: 2px solid green;
+
+            position: absolute;
+            top: 50%;
+            left: -30px;
+            transform: translateY(-50%);
+            transition: 1s;
+
+            // This is for centering the "content"
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Upload Passport <------------------------ //
+
+#one_UploadPassport,
+#two_SelfiePhoto,
+.group_passport {
+  width: 100%;
+  margin-top: 0 !important;
+  margin-bottom: 40px;
+
+  .cs-dotted-container {
+    height: 60vh;
+    text-align: center;
+
+    border: 2px dashed grey;
+    background-color: #f4f4f4;
+    padding: 2rem;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .cs-image-wrapper {
+      width: 200px;
+      height: 100px;
+      margin: 10px auto;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    .cs-button-wrapper {
+      label {
+        display: inline-block;
+        font-size: 18px !important;
+      }
+    }
+  }
+}
+
+// -------------------------> Selfie Response <------------------------ //
+
+#selfiePhotoResponse {
+  .cs-container {
+    .image-wrapper {
+      margin: auto;
+      max-width: 300px;
+      height: 100%;
+      border-radius: 0.5rem;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .cs-button-wrapper {
+    .cs-btn-outlined {
+      border: 1px solid $primary-color !important;
+      font-size: 1rem;
+      padding: 3px 1rem 0.5rem 1rem;
+      border-radius: 0.25rem;
+      font-weight: 500;
+    }
+  }
+}
+
+// -------------------------> Passport Response <------------------------ //
+
+#one_PassportResponse,
+.group_PRes {
+  width: 100% !important;
+  overflow-x: hidden !important;
+
+  .cs-container {
+    overflow-x: hidden !important;
+
+    background: $bg-light-color;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+
+    .row {
+      padding: 1rem;
+
+      .col-md-6 {
+        .image-wrapper {
+          width: 100%;
+          // max-height: 270px;
+          border-radius: 1rem;
+          overflow: hidden;
+          margin-bottom: 1rem;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+      }
+
+      .col-md-6 {
+        .cs-user-info {
+          .user-bio {
+            p {
+              &:first-of-type {
+                font-size: 1rem;
+              }
+
+              &:last-of-type {
+                font-size: 18px;
+              }
+            }
+          }
+        }
+      }
+
+      .col-md-12 {
+        .form-check {
+          input[type="checkbox"] {
+            width: 1.5rem;
+            height: 1.5rem;
+
+            &:checked {
+              background-color: $primary-color;
+            }
+          }
+
+          label {
+            font-size: 1.2rem !important;
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Contact Information <------------------------ //
+
+#three_ContactInfo {
+  width: 100%;
+
+  .cs-container {
+    .iti--allow-dropdown {
+      width: 100%;
+    }
+
+    #contact_Duplicate {
+      .cs-contact-details {
+        h6 {
+          display: flex;
+          // justify-content: center;
+          align-items: center;
+          justify-content: space-between;
+
+          span {
+            color: red;
+            margin-right: 1rem;
+            cursor: pointer;
+
+            i {
+              margin-right: 7px;
+            }
+          }
+        }
+
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: $bg-light-color;
+        border-radius: 14px;
+      }
+    }
+
+    #btn_AddContact {
+      font-size: 1rem;
+      color: $primary-color;
+      margin-top: 1rem;
+      display: block;
+      cursor: pointer;
+
+      i {
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+
+// -------------------------> Trip Information <------------------------ //
+
+#four_TripInfo {
+  width: 100%;
+
+  .cs-container {
+    // padding: 5px 0.5rem 1rem 1rem;
+
+    .purpose-of-travel {
+      select {
+        optgroup {
+          // Your existing styles for the purpose of travel dropdown
+
+          // Additional styles for the optgroup
+          background-color: $bg-light-color;
+          color: $disable-color !important;
+          font-size: 18px;
+
+          option {
+            color: black;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    // Add the styles for the datepicker here
+    .datepicker,
+    .return-datepicker {
+      width: 100%;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: #fff;
+      cursor: pointer;
+      position: relative;
+      border-color: black;
+      padding: 0.6rem 1rem;
+    }
+
+    .cs-arrival-details {
+      .alert-warning {
+        display: flex;
+
+        i {
+          color: orange;
+          margin-right: 0.5rem;
+          font-size: 1rem;
+        }
+
+        p {
+          color: black;
+          margin: 0;
+        }
+      }
+    }
+
+    // Customize the datepicker icon color
+    .datepicker::after,
+    .return-datepicker::after {
+      color: #30a9ab;
+      /* Icon color */
+    }
+
+    .cs-where-staying {
+      .address-in-seychelles {
+        position: relative;
+
+        .cs-form-outline {
+          margin-bottom: 0;
+        }
+
+        .cs-hotel-autocomplete {
+          background: white;
+          border-radius: 0 0 0.5rem 0.5rem;
+          padding: 0.1rem 1rem;
+          border: 1px solid black;
+          border-top: none;
+          position: absolute;
+          z-index: 9;
+          width: 100%;
+          margin-top: -7px;
+
+          .cs-suggested-hotel {
+            margin: 0;
+            padding: 0.25rem 0;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .tripInfoWrap {
+        background: $bg-light-color;
+        border: 1px solid rgba($disable-color, 0.3);
+        padding: 1rem 1.2rem 0 1.2rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1.2rem;
+
+        h5 {
+          span {
+            float: right;
+            color: red;
+            font-size: 14px;
+            cursor: pointer;
+
+            i {
+              color: red;
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .trip-from-to {
+          // margin-left: 0.1;
+
+          label {
+            border-right: 1px solid rgba($color: #000000, $alpha: 1);
+            cursor: pointer;
+          }
+
+          input[type="text"] {
+            cursor: text;
+            width: 90% !important;
+            padding: 0.6rem 1rem;
+          }
+        }
+      }
+    }
+
+    .btn_add-staying-address {
+      font-size: 1rem;
+      color: $primary-color;
+      display: block;
+      cursor: pointer;
+
+      .fa-plus {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+// -------------------------> Health Declaration <------------------------ //
+
+#five_HealthDeclaration,
+#group_HealthDeclaration {
+  .cs-container {
+    height: 100%;
+    overflow: auto;
+    padding: 0 0.5rem 1rem 1rem;
+
+    .cs-country-select {
+      .popup-content {
+        .cs-search-bar {
+          .remove-input-style {
+            padding: 0.4rem 0.1rem;
+          }
+        }
+
+        .scrollable-container {
+          height: 15rem;
+        }
+
+        // working
+        .selected-country {
+          display: flex;
+          flex-wrap: wrap;
+
+          div {
+            width: auto !important;
+            padding: 0 0.5rem;
+            margin: 0 0.25rem 0.5rem 0;
+            border-radius: 2rem;
+            background-color: rgba(4, 96, 85, 0.4);
+            display: flex;
+            justify-content: start;
+            align-items: center;
+
+            img {
+              width: 30px;
+              height: 20px;
+              border-radius: 12px;
+            }
+
+            p {
+              margin: 10px 0;
+              font-size: 14px;
+            }
+
+            i {
+              padding: 0.5rem;
+              font-size: 1rem;
+              margin-top: 2px;
+              cursor: pointer;
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Health Declaration <------------------------ //
+
+#six_Customs {
+  .cs-container {
+    .question-wrapper {
+      .cs-qna-radio {
+        p {
+          margin-bottom: 1rem;
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.4rem;
+        }
+
+        .cs-form-control {
+          margin: 0 0 2rem 0;
+        }
+      }
+
+      .monetaryInstrument {
+        margin-bottom: 2rem;
+
+        .row {
+          background: $bg-light-color;
+          border: 1px solid rgba($disable-color, 0.3);
+          padding: 1rem 0 0.5rem 0;
+          border-radius: 0.5rem;
+          width: 100%;
+          margin: 0 auto 1rem auto;
+
+          h6 {
+            margin-bottom: 1rem;
+
+            .remove-button {
+              float: right;
+              color: red;
+              cursor: pointer;
+              user-select: none;
+            }
+          }
+
+          input[type="number"] {
+            appearance: textfield;
+          }
+        }
+
+        .add-btn {
+          color: $primary-color;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Required Documents <------------------------ //
+
+#seven_RequiredDocs,
+#eight_OptionalDocs,
+#group_OptDocs {
+  .cs-select-file {
+    padding: 1rem;
+    border: 1px dashed rgba($color: #000000, $alpha: 0.6);
+    border-radius: 0.5rem;
+
+    .cs-view-docs {
+      display: flex;
+      margin-top: 1rem;
+
+      div {
+        border: 1px solid $bg-light-color;
+        border-radius: 0.5rem;
+        margin: 0 3px;
+
+        &:first-of-type {
+          padding: 1rem 1rem 0 1rem;
+        }
+
+        .file-name {
+          padding-left: 15px;
+          line-height: 1.2rem;
+          //max-width: auto;
+          position: relative;
+
+          &::before {
+            content: "✓";
+            color: white;
+            background-color: $primary-color;
+            border: 1px solid $primary-color;
+            padding: 9px;
+            font-size: 16px;
+            font-weight: 800;
+            text-align: center;
+            //display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        .fa {
+          padding: 1rem;
+          cursor: pointer;
+        }
+
+        .fa-eye {
+          font-size: 16px;
+          color: $primary-color;
+          margin-top: 6%;
+        }
+
+        .fa-trash {
+          font-size: 18px;
+          color: red;
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Confirm and Proceed <------------------------ //
+
+#nine_Proceed,
+#processingPeriod,
+#medicalProtection {
+  .cs-container {
+    label {
+      width: 100%;
+      text-align: left;
+      padding-left: 50px;
+      margin: 0 0 0.5rem 0;
+
+      input[type="radio"] {
+        width: 0;
+        height: 0;
+        cursor: pointer;
+        margin: auto;
+        // display: none;
+
+        &:before {
+          top: 12px;
+          left: 2%;
+          transform: translate(0, 0);
+        }
+      }
+
+      //
+      .processing-alert {
+        position: relative;
+        left: -4%;
+        width: 104% !important;
+        display: block;
+        margin: 1rem 0 0 0 !important;
+
+        .alert-danger {
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          margin: 0 !important;
+
+          i {
+            color: red;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+          }
+
+          p {
+            strong {
+              font-weight: 600;
+              font-size: 16px;
+            }
+
+            color: black;
+            margin: 0;
+            font-size: 14px;
+          }
+        }
+
+        .alert-success {
+          display: flex;
+          align-items: center;
+
+          i {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      &:before {
+        top: 1.8rem;
+      }
+    }
+
+    .cs-additional-notes {
+      textarea {
+        width: 100%;
+        border: 1px solid $disable-color;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+      }
+    }
+
+    #proceed_NotApplicantContact {
+      .cs-contact-details {
+        .form-control-input {
+          .iti--allow-dropdown {
+            width: 100% !important;
+          }
+        }
+
+        input[type="tel"] {
+          padding-left: 5rem;
+        }
+
+        input {
+          padding: 0.6rem 1rem;
+
+          border-color: black;
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Payment Options <------------------------ //
+
+#ten_PaymentOptions {
+  .cs-container {
+    overflow-x: hidden;
+    height: max-content;
+
+    .payment-method {
+      user-select: none;
+
+      h4 {
+        margin-top: 1rem;
+      }
+
+      .col-md-2 {
+        width: 170px;
+
+        input[type="radio"] {
+          display: none; // Hide the actual radio input
+        }
+
+        label {
+          cursor: pointer;
+          display: block;
+          // text-align: center;
+          margin-bottom: 10px;
+          min-height: 94px;
+          width: 160px;
+
+          // Define styles for the unchecked state
+          border: 2px solid $bg-light-color;
+          border-radius: 0.5rem;
+          padding: 10px;
+          transition: all 0.3s ease;
+
+          // Define styles for the checked state
+          &.checked {
+            border-color: $primary-color;
+          }
+
+          // Define styles for the hover state
+          &:hover {
+            background-color: $bg-light-color;
+            border-color: rgba($color: $disable-color, $alpha: 0.25);
+          }
+        }
+
+        .img-wrapper {
+          margin-bottom: 5px;
+
+          svg {
+            width: 24px;
+            height: 24px;
+            fill: #0570de;
+          }
+
+          img {
+            max-width: 30px;
+            height: auto;
+          }
+        }
+
+        .content-wrapper {
+          p {
+            font-size: 14px;
+          }
+        }
+
+        // Apply styles to the radio input when it's checked
+        input[type="radio"]:checked + label {
+          border-color: $primary-color;
+          background-color: rgba($color: $primary-color, $alpha: 0.1);
+        }
+      }
+    }
+
+    .payment-by-card {
+      overflow-x: hidden;
+
+      .mb-3 {
+        width: 100%;
+
+        .card-img-wrapper {
+          svg {
+            width: 60px;
+            height: 45px;
+
+            &:nth-of-type(2) {
+              height: 47px;
+              width: 49px;
+            }
+
+            &:nth-of-type(3) {
+              width: 50px;
+            }
+          }
+        }
+      }
+    }
+
+    .payment-by-giropay {
+      p {
+        svg {
+          width: 3rem;
+        }
+
+        opacity: 0.6;
+      }
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      margin-bottom: 10px;
+      transition: all ease 0.5s;
+      cursor: pointer;
+
+      &:focus {
+        border-radius: 10px 0 10px 0;
+        border: 1px solid rgba(black, 0.4);
+      }
+    }
+
+    .payment-by-wechat,
+    .payment-by-alipay {
+      padding: 1rem;
+      border: 1px solid $bg-light-color;
+      border-radius: 0.5rem;
+
+      svg {
+        width: 40px;
+      }
+
+      p:first-of-type {
+        font-size: 18px;
+      }
+
+      .mb-3 {
+        p {
+          svg {
+            width: 3rem;
+          }
+
+          opacity: 0.6;
+        }
+      }
+    }
+
+    // Absolute BG Summary
+
+    .cs-bg-black {
+      position: fixed;
+      background-color: $bg-cover-black;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      z-index: $z-10k;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .cs-application-summary {
+        max-width: 800px;
+        min-width: 350px;
+        width: 50vw;
+        text-align: center;
+        background-color: white;
+        padding: 0.5rem 0 0 0;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        position: relative;
+
+        span {
+          font-size: 1.5rem;
+          font-weight: 700;
+        }
+
+        button {
+          background-color: white !important;
+          border: none !important;
+          outline: none !important;
+          position: absolute;
+          right: 0.5rem;
+          top: 0.5rem;
+
+          &:focus {
+            outline: none;
+          }
+
+          i {
+            color: black;
+            font-size: 1.3rem;
+          }
+        }
+
+        .cs-summary-info {
+          background-color: $bg-light-color;
+          padding: 0.5rem 1rem 1rem 1rem;
+          text-align: start;
+
+          span {
+            font-size: 1.2rem;
+            float: right;
+          }
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Processing Period Choose Plan <------------------------ //
+
+.processingPeriod {
+  .cs-container {
+    .question-wrapper {
+      .mb-2 {
+        label {
+          h4 {
+            span {
+              float: right;
+            }
+          }
+
+          p {
+            font-size: 16px;
+            font-weight: 500;
+            margin: 4px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cs-summary-info h5 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 15px;
+}
+
+.cs_summary_persons p {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 15px;
+}
+
+// -------------------------> Thank You Page <------------------------ //
+.thank-you-page {
+  .cs-container {
+    padding: 1rem 10%;
+
+    .content-wrapper {
+      text-align: left;
+      max-width: 800px;
+      margin: auto;
+
+      p {
+        font-size: 16px;
+      }
+    }
+
+    .btn-wrapper {
+      .btn-success {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        color: white;
+        font-weight: 600;
+        border-radius: 2rem;
+        margin: auto;
+        display: block;
+      }
+    }
+  }
+}
+
+.sy_logo_wray {
+  background-color: #3b73c8;
+  padding: 13px 30px;
+  display: inline-block;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  img {
+    max-width: 150px;
+  }
+}
+
+/**
+*************************************************************************************
+**********************************     For Group   **********************************
+*************************************************************************************
+*/
+
+// -------------------------> Passport Group Response <------------------------ //
+.group_PRes {
+  .cs-container {
+    .row {
+      .image-wrapper {
+        button {
+          background-color: rgb(255, 231, 237);
+          padding: 0.5rem 0.8rem;
+          position: absolute;
+          top: -7px;
+          right: 12px;
+
+          i {
+            color: #c90000;
+          }
+        }
+      }
+
+      .row-for-btn-wrapper {
+        .col-md-6 {
+          button {
+            text-align: left;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background-color: white;
+            border: 1px solid rgba($color: $disable-color, $alpha: 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .cs-svg-wrapper {
+              width: 24px;
+              height: 24px;
+
+              img {
+                fill: $primary-color;
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+
+          &:last-of-type {
+            button {
+              background-color: $bg-light-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> Passport Upload Selfie <------------------------ //
+#group_ResSelfie {
+  .passport-group-selfie {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    border-radius: 0.5rem;
+    justify-content: space-between;
+    background-color: $bg-light-color;
+
+    .img-wrapper {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .content-wrapper {
+      text-transform: uppercase;
+
+      p {
+        margin: 0;
+      }
+
+      .text-secondary {
+        font-size: 12px;
+      }
+    }
+
+    .p-validity {
+      text-align: right;
+    }
+  }
+}
+
+// ------------------------->  <------------------------ //
+.cs-slide-popup {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  //max-height: 90vh;
+  width: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background-color: white;
+
+  .cs-close-popup {
+    padding: 0.5rem;
+    background: $bg-light-color;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    span {
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $primary-color;
+
+      i {
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 0.5rem;
+      }
+    }
+  }
+
+  .cs-popup-body {
+    background-color: white;
+    height: 100%;
+    max-height: 70vh;
+    padding: 0.75rem 1rem;
+    overflow: auto;
+
+    .group-p-upload-selfie {
+      text-align: center;
+
+      background-color: #f4f4f4;
+      padding: 2rem;
+      border-radius: 15px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .cs-image-wrapper {
+        width: 200px;
+        height: 100px;
+        margin: 10px auto;
+      }
+
+      p {
+        margin: 10px 0;
+      }
+
+      .cs-button-wrapper {
+        label {
+          display: inline-block;
+          font-size: 18px !important;
+        }
+      }
+    }
+
+    .cs-group-pop-up-btn {
+      position: absolute;
+      bottom: 1rem;
+    }
+  }
+
+  .cs-popup-footer {
+    // BTN for the Your Selfie
+    .btn-upload-your-selfie {
+      .cs-group-pop-up-btn {
+        width: 100%;
+
+        .cs-button-wrapper {
+          padding: 0.5rem 1rem;
+          float: none;
+          margin: 0;
+
+          button {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    // BTN for the Health Declaration
+    .btn-retry-upload-selfie {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+
+      .cs-outlined-button {
+        width: 45%;
+
+        button {
+          color: black;
+
+          &:hover {
+            color: white;
+          }
+        }
+      }
+
+      .cs-button-wrapper {
+        margin: 0;
+        width: 45%;
+      }
+    }
+
+    // BTN for the Health Declaration
+    .btn-group-health-declaration {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+
+      .cs-outlined-button {
+        width: 45%;
+
+        button {
+          color: black;
+
+          &:hover {
+            color: white;
+          }
+        }
+      }
+
+      .cs-button-wrapper {
+        margin: 0;
+        width: 45%;
+      }
+    }
+
+    // BTN for the DOCUMENT
+    .btn-group-document {
+      display: flex;
+      padding: 1rem;
+      align-items: center;
+      justify-content: space-around;
+
+      .cs-outlined-button {
+        width: 45%;
+
+        button {
+          color: black;
+
+          &:hover {
+            color: white;
+          }
+        }
+      }
+
+      .cs-button-wrapper {
+        margin: 0;
+        width: 45%;
+      }
+    }
+  }
+}
+
+// ------------------------->  <------------------------ //
+#group_OptDocs {
+  .cs-select-file {
+    //border: none;
+    background: $bg-light-color;
+
+    .cs-view-docs {
+      div {
+        border: 1px solid $disable-color;
+      }
+    }
+  }
+}
+
+// ------------------------->  <------------------------ //
+.health_country_search {
+  .popup-content {
+    padding: 20px;
+    position: relative;
+
+    .cs-search-bar {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      background-color: $bg-light-color;
+      margin-bottom: 1rem;
+      cursor: text;
+
+      i {
+        font-size: 1.5rem;
+        margin-right: 5px;
+      }
+
+      .remove-input-style {
+        width: 99%;
+        font-size: 1rem;
+        border: none;
+        background-color: $bg-light-color;
+
+        &:focus-visible {
+          outline: none;
+        }
+      }
+    }
+
+    .scrollable-container {
+      height: 200px;
+      overflow: auto;
+      padding: 0 20px;
+
+      .countries-list div {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        max-height: 40px;
+        cursor: pointer;
+        user-select: none;
+        padding: 0.5rem 0;
+
+        p {
+          width: 100%;
+          font-size: 1rem;
+          margin: 0;
+        }
+
+        img {
+          margin-right: 15px;
+        }
+      }
+    }
+
+    .selected-country div {
+      width: 100% !important;
+      padding-left: 20px;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      background-color: rgba($color: $primary-color, $alpha: 0.4);
+      display: flex;
+      justify-content: start;
+      align-items: center;
+
+      img {
+        margin-right: 10px;
+      }
+
+      p {
+        margin: 10px 0;
+        font-size: 1.4rem;
+      }
+    }
+
+    .selected-country {
+      display: flex;
+      flex-wrap: wrap;
+
+      div {
+        width: auto !important;
+        padding: 0 0.5rem;
+        margin: 0 0.25rem 0.5rem 0;
+        border-radius: 2rem;
+        background-color: rgba(4, 96, 85, 0.4);
+        display: flex;
+        justify-content: start;
+        align-items: center;
+
+        img {
+          width: 30px;
+          height: 20px;
+          border-radius: 12px;
+        }
+
+        p {
+          margin: 10px 0;
+          font-size: 14px;
+        }
+
+        i {
+          padding: 0.5rem;
+          font-size: 1rem;
+          margin-top: 2px;
+          cursor: pointer;
+          color: red;
+        }
+      }
+    }
+  }
+}
+
+// -------------------------> JS Variables <------------------------ //
+
+.hidden {
+  display: none !important;
+}
+
+.cs-filled {
+  border-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+.cs-error {
+  border-color: red !important;
+}
+
+.cs_disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+// -------------------------> Media Queries  <------------------------ //
+
+@media screen and (max-width: 768px) {
+  #page_four {
+    .cs-container {
+      padding: 2px !important;
+    }
+  }
+
+  #container_PageOne,
+  #one_PassportResponse,
+  #container_PageTwo,
+  #container_PageThree,
+  #container_PageFour,
+  #container_PageFive {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  .cs-button-wrapper {
+    margin: 1rem 0 !important;
+    float: none !important;
+    text-align: center !important;
+  }
+
+  .cs-pop-up-view-docs {
+    .cs-iframe-wrapper {
+      margin: auto;
+      width: 100%;
+      height: 50%;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      z-index: 99999999999999999999999999999999999999999999999999999999 !important;
+      position: fixed;
+    }
+  }
+
+  .cs-content-wrapper {
+    ul {
+      margin-left: 0 !important;
+    }
+  }
+
+  .cs-home-title {
+    padding-left: 0 !important;
+  }
+
+  .cs-container {
+    padding: 0;
+
+    .cs-select-file {
+      .cs-button-wrapper {
+        label {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  #seven_RequiredDocs,
+  #eight_OptionalDocs,
+  #nine_Proceed {
+    .cs-button-wrapper {
+      float: none !important;
+      text-align: center !important;
+      margin-right: 0 !important;
+
+      .question-wrapper {
+        .cs-qna-radio {
+          label {
+            &:before {
+              top: 2rem;
+              transform: translateY(0);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #bsContainer {
+    .right {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  #container_StartTrip {
+    .cs-page-container {
+      width: 100%;
+      padding: 1rem;
+    }
+  }
+
+  .bs-sidebar-container {
+    display: none !important;
+  }
+
+  #csRadio2Cards {
+    .row {
+      label {
+        min-width: 100%;
+        max-width: 100%;
+        min-height: auto !important;
+      }
+    }
+  }
+
+  #group_OptDocs {
+    border: none !important;
+
+    .cs-select-file {
+      .cs-button-wrapper {
+        label {
+          width: 100%;
+          text-align: center;
+          float: none;
+        }
+      }
+    }
+  }
+
+  // POP UP Mobile Version
+  .cs-slide-popup {
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 100%;
+    transform: translate(0, 0);
+    border-radius: 0;
+    z-index: 999;
+
+    .cs-button-wrapper {
+      margin: 0rem 0 !important;
+      float: none !important;
+      text-align: center !important;
+    }
+
+    //  POP UP CLOSE
+    .cs-close-popup {
+      padding: 0.5rem;
+      background: rgba(black, $alpha: 0.3);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      span {
+        width: 30px;
+        height: 30px;
+        overflow: hidden;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary-color;
+
+        i {
+          color: white;
+          font-size: 20px;
+          cursor: pointer;
+          padding: 0.5rem;
+        }
+      }
+    }
+
+    //  POPUP BODY
+    .cs-popup-body {
+      min-height: 80vh;
+      padding: 0.75rem;
+      background: white;
+
+      .group-p-upload-selfie {
+        text-align: center;
+
+        background-color: #f4f4f4;
+        padding: 2rem;
+        border-radius: 15px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .cs-image-wrapper {
+          width: 200px;
+          height: 100px;
+          margin: 10px auto;
+        }
+
+        p {
+          margin: 10px 0;
+        }
+
+        .cs-button-wrapper {
+          label {
+            display: inline-block;
+            font-size: 18px !important;
+          }
+        }
+      }
+    }
+
+    .cs-popup-footer {
+      min-height: 10vh;
+      width: 100%;
+      background-color: white;
+      position: absolute;
+      bottom: 0;
+
+      // This is the btn for the UPLOAD YOUR SELFIE
+
+      .btn-upload-your-selfie {
+        .cs-group-pop-up-btn {
+          width: 100%;
+
+          .cs-button-wrapper {
+            padding: 0.5rem 1rem;
+
+            button {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .btn-retry-upload-selfie {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .cs-outlined-button {
+          width: 25%;
+          margin-right: 0.5rem;
+        }
+
+        .cs-button-wrapper {
+          width: 50%;
+        }
+      }
+
+      .btn-group-health-declaration,
+      .btn-group-document {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .cs-outlined-button {
+          width: 30%;
+          margin-right: 0.5rem;
+        }
+
+        .cs-button-wrapper {
+          width: 30%;
+        }
+      }
+    }
+  }
+
+  #nine_Proceed {
+    .cs-container {
+      #proceed_NotApplicantContact {
+        .cs-contact-details {
+          input[type="tel"] {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cs-data-country-name {
+  border-bottom: 1px solid #dcdcdc;
+  padding-bottom: 10px;
+}
+
+// Media Query for Mobile Devices
+
+/* Styles for devices with a maximum width of 767 pixels (typical for mobile devices) */
+@media only screen and (max-width: 767px) {
+  .bs-title {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .cs-home-title {
+    padding: 0;
+  }
+
+  .bs-title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .cs-button-wrapper {
+    text-align: end !important;
+  }
+
+  .cs-view-doc-btn {
+    display: none;
+  }
+}
+
+.bs-container {
+  font-family: "Poppins", Sans-serif;
+
+  input {
+    font-family: "Poppins", Sans-serif;
+  }
+
+  select {
+    font-family: "Poppins", Sans-serif;
+  }
+}
+
+#five_HealthDeclaration {
+  .cs-container {
+    padding: 0 !important;
+  }
+}
+
+#container_PageTwo {
+  h1 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+}
