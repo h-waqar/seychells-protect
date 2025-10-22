@@ -116,12 +116,12 @@
   cursor: pointer;
 }
 .cs-button-wrapper button:last-of-type {
-  background-color: #046055;
+  background-color: var(--bs-primary-color);
   color: white;
 }
 .cs-button-wrapper button:hover:not(:last-of-type) {
   background-color: transparent;
-  color: #046055;
+  color: var(--bs-primary-color);
 }
 
 hr {

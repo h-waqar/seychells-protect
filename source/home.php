@@ -43,7 +43,8 @@
 
 				<?php
 
-				include_once('plugin-pages/p-two.php');
+				// include_once('plugin-pages/p-two.php');
+				include_once('plugin-pages/medical-protection.php');
 
 				// |> Templates
 				include_once('plugin-pages/templates.php');
