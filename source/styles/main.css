@@ -162,7 +162,7 @@ hr {
   height: 42px;
   margin-right: 0.5rem;
 }
-
+/* 
 .question-wrapper .cs-qna-radio .cs-form-control {
   width: 150px;
   font-weight: bold;
@@ -216,7 +216,7 @@ hr {
 }
 .question-wrapper .cs-qna-radio input[type="radio"]:checked + .cs-form-control {
   border: 1px solid #046055;
-}
+} */
 
 .loading-icon {
   position: absolute;
@@ -1623,8 +1623,7 @@ section.container_PageZero
 }
 
 #nine_Proceed .cs-container label,
-#processingPeriod .cs-container label,
-#medicalProtection .cs-container label {
+#processingPeriod .cs-container label {
   width: 100%;
   text-align: left;
   padding-left: 50px;

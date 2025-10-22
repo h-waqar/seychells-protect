@@ -2,10 +2,10 @@
     <!-- medicalProtection -->
     <div class="cs-container">
         <div class="question-wrapper">
-            <div class="cs-qna-radio">
+            <div class="cs-qna-radio row">
 
                 <!-- I am the APPLICANT -->
-                <div class="mb-2">
+                <div class="col-md-6 mb-2">
                     <input type="radio" id="input_BasicProtection" name="radio_medical_protection"
                         value="basic_protection">
                     <label class="cs-form-control" for="input_BasicProtection">
@@ -18,23 +18,11 @@
                         <p>— Services available: serious injury, general illnesses, flu/fever, food poisoning, cuts and
                             scrapes, jellyfish stings, insect bites, Covid-19 tests, refill of medication, heat
                             exhaustion, trauma, epidemic care or any other medical assistance required. </p>
-
-                        <!--           Alert Danger           -->
-                        <!-- <span class="processing-alert hidden" >
-                            <div class="alert alert-danger" id="alert_StandardProcessing" role="alert">
-                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                                <p>
-                                    <strong>Your trip starts very soon!</strong>
-                                    We cannot guarantee your Travel Authorisation will be approved before your trip.
-                                </p>
-                            </div>
-                        </span> -->
-
                     </label>
                 </div>
 
                 <!-- I am NOT the APPLICANT -->
-                <div class="mb-2">
+                <div class="col-md-6 mb-2">
                     <input type="radio" id="input_TotalProtection" name="radio_medical_protection"
                         value="total_protection">
                     <label class="cs-form-control" for="input_TotalProtection">
@@ -71,8 +59,6 @@
 
                     </label>
                 </div>
-
-
 
             </div>
         </div>
