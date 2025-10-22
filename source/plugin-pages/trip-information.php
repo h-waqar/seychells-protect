@@ -1,5 +1,5 @@
 <!-- Trip Information -->
-<section id="four_TripInfo" class="four-trip-info ">
+<section id="four_TripInfo" class="four-trip-info hidden">
 
     <div class="cs-container">
         <!-- Arrival Details -->
