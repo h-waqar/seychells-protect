@@ -1101,53 +1101,53 @@ section.container_PageZero {
 
 // -------------------------> Contact Information <------------------------ //
 
-#three_ContactInfo {
-  width: 100%;
+// #three_ContactInfo {
+//   width: 100%;
 
-  .cs-container {
-    .iti--allow-dropdown {
-      width: 100%;
-    }
+//   .cs-container {
+//     .iti--allow-dropdown {
+//       width: 100%;
+//     }
 
-    #contact_Duplicate {
-      .cs-contact-details {
-        h6 {
-          display: flex;
-          // justify-content: center;
-          align-items: center;
-          justify-content: space-between;
+//     #contact_Duplicate {
+//       .cs-contact-details {
+//         h6 {
+//           display: flex;
+//           // justify-content: center;
+//           align-items: center;
+//           justify-content: space-between;
 
-          span {
-            color: red;
-            margin-right: 1rem;
-            cursor: pointer;
+//           span {
+//             color: red;
+//             margin-right: 1rem;
+//             cursor: pointer;
 
-            i {
-              margin-right: 7px;
-            }
-          }
-        }
+//             i {
+//               margin-right: 7px;
+//             }
+//           }
+//         }
 
-        margin-top: 1rem;
-        padding: 1rem;
-        background-color: $bg-light-color;
-        border-radius: 14px;
-      }
-    }
+//         margin-top: 1rem;
+//         padding: 1rem;
+//         background-color: $bg-light-color;
+//         border-radius: 14px;
+//       }
+//     }
 
-    #btn_AddContact {
-      font-size: 1rem;
-      color: $primary-color;
-      margin-top: 1rem;
-      display: block;
-      cursor: pointer;
+//     #btn_AddContact {
+//       font-size: 1rem;
+//       color: $primary-color;
+//       margin-top: 1rem;
+//       display: block;
+//       cursor: pointer;
 
-      i {
-        margin-right: 1rem;
-      }
-    }
-  }
-}
+//       i {
+//         margin-right: 1rem;
+//       }
+//     }
+//   }
+// }
 
 // -------------------------> Trip Information <------------------------ //
 

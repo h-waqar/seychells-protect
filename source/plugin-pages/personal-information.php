@@ -5,36 +5,42 @@
 
         <div class="cs-container">
 
-            <!-- Phone Number Input -->
-            <div class="mb-3">
-                <label for="input_ContactYourNumber" class="form-label">Phone Number</label>
-                <input type="tel" id="input_ContactYourNumber" class="form-control d-block" placeholder="Phone Number"
-                    name="cs_contact_info_phone_no">
-            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Phone Number Input -->
+                    <div class="mb-3">
+                        <label for="input_ContactYourNumber" class="form-label">Phone Number</label>
+                        <input type="tel" id="input_ContactYourNumber" class="form-control d-block"
+                            placeholder="Phone Number" name="cs_contact_info_phone_no">
+                    </div>
+                </div>
 
-            <!-- Email Input -->
-            <div class="mb-3">
-                <label for="input_ContactYourEmail" class="form-label">Email</label>
-                <input type="email" id="input_ContactYourEmail" class="form-control" placeholder="Email"
-                    name="cs_contact_info_email">
+                <div class="col-md-6">
+                    <!-- Email Input -->
+                    <div class="mb-3">
+                        <label for="input_ContactYourEmail" class="form-label">Email</label>
+                        <input type="email" id="input_ContactYourEmail" class="form-control" placeholder="Email"
+                            name="cs_contact_info_email">
+                    </div>
+                </div>
             </div>
 
             <!-- Confirm Email -->
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="input_ContactConfirmEmail" class="form-label">Confirm Email</label>
                 <input type="email" id="input_ContactConfirmEmail" class="form-control" placeholder="Confirm Email"
                     name="cs_contact_info_confirm_email">
-            </div>
+            </div> -->
 
             <!-- Home Address Input -->
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="input_ContactHomeAddress" class="form-label">Home Address</label>
                 <input type="text" id="input_ContactHomeAddress" class="form-control" placeholder="Home Address"
                     name="cs_contact_info_email">
-            </div>
+            </div> -->
 
             <!-- Select Occupation Dropdown -->
-            <div class="mb-3 hidden">
+            <!-- <div class="mb-3 hidden">
                 <label for="cs_contact_info_occupation" class="form-label">Select Occupation</label>
                 <select name="cs_contact_info_occupation" id="cs_ContactInfoOccupation" class="form-select"
                     aria-label="Default select example">
@@ -47,11 +53,11 @@
                     <option value="Student">Student</option>
                     <option value="Other">Other</option>
                 </select>
-            </div>
+            </div> -->
 
             <!-- Emergency Contact Section -->
-            <h5 class="m-0 pt-2 text-dark">Emergency Contacts (optional)</h5>
-            <p class="m-0">Please specify at least one emergency contact.</p>
+            <!-- <h5 class="m-0 pt-2 text-dark">Emergency Contacts (optional)</h5>
+            <p class="m-0">Please specify at least one emergency contact.</p> -->
 
 
             <!-- Duplicate Emergency Contact Details -->
@@ -59,24 +65,24 @@
 
 
                 <div class="cs-contact-details cs-emergency-contact-numbers" id="customs_select_form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Emergency Contact Name Input -->
+                            <div class="mb-3">
+                                <label for="emg_contact_name">Full Name</label>
+                                <input type="text" class="form-control" onchange="_swiftFV.handle_emgContact(this)"
+                                    name="emg_contact_name" placeholder="Full Name">
+                            </div>
+                        </div>
 
-                    <!--  -->
-
-                    <h6 class="text-dark">
-                        <strong>Contact Details</strong>
-                        <!-- <span class="remove-button" onclick="_swiftFV.removeContact(this)"><i class="fa fa-trash"></i>remove</span> -->
-                    </h6>
-
-                    <!-- Emergency Contact Name Input -->
-                    <div class="mb-3">
-                        <input type="text" class="form-control" onchange="_swiftFV.handle_emgContact(this)"
-                            name="emg_contact_name" placeholder="Full Name of Emergency Contact">
-                    </div>
-
-                    <!-- Emergency Contact Phone Number Input -->
-                    <div class="mb-3">
-                        <input type="tel" onchange="_swiftFV.handle_emgTelephone(this)" class="form-control d-block"
-                            placeholder="Phone Number" name="cs_contact_info_emergency_no">
+                        <div class="col-md-6">
+                            <!-- Emergency Contact Phone Number Input -->
+                            <div class="mb-3">
+                                <label>Date of birth</label>
+                                <input type="date" onchange="_swiftFV.handle_emgTelephone(this)"
+                                    class="form-control d-block" placeholder="Date Of Birth" name="">
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -84,15 +90,16 @@
             </div>
 
             <!-- Button to Add Emergency Contact -->
-            <span id="btn_AddContact"><i class="fa fa-plus"></i>Add Contact</span>
+            <span id="btn_AddContact" class="fw-bold">
+                <a class="link-underline-primary" href="#">+ Add More
+                    Applicants</a></span>
 
         </div>
 
         <!-- Prev/Next (<_>) Button -->
 
         <div class="cs-button-wrapper">
-            <button type="button" class="border-0 bg-transparent pr-3" id="btn_ContactInfoPrev">
-                <span class="dashicons dashicons-arrow-left-alt2"></span>
+            <button type="button" class="prev pr-3" id="btn_ContactInfoPrev">
                 Previous
             </button>
             <button type="button" class="btn btn-info" id="btn_ContactInfoContinue">Continue</button>

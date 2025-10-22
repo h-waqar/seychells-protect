@@ -1,0 +1,8 @@
+#three_ContactInfo .iti--allow-dropdown {
+  width: 100%;
+}
+
+#three_ContactInfo input {
+  border-radius: none !important;
+  border-color: black !important;
+}

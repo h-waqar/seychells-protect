@@ -667,7 +667,6 @@ class SwiftFormValidation {
   //   return valid;
   // }
 
-
   tripInfo() {
     // This is the init
     let valid = true;
@@ -675,31 +674,38 @@ class SwiftFormValidation {
     valid = this.tripInfo_SeychellesCitizen();
 
     if (!_visaSwift._seychellesCitizen) {
-        valid = this.tripInfo_NonSeychellesCitizen();
+      valid = this.tripInfo_NonSeychellesCitizen();
     }
 
     // Validation: Number of Persons
     const inputPersons = document.getElementById("input_NumberOfPersons");
-    if (inputPersons.value === '' || isNaN(inputPersons.value) || parseInt(inputPersons.value) <= 0) {
-        inputPersons.parentElement.classList.add('cs-error');
-        valid = false;
+    if (
+      inputPersons.value === "" ||
+      isNaN(inputPersons.value) ||
+      parseInt(inputPersons.value) <= 0
+    ) {
+      inputPersons.parentElement.classList.add("cs-error");
+      valid = false;
     } else {
-        inputPersons.parentElement.classList.remove('cs-error');
+      inputPersons.parentElement.classList.remove("cs-error");
     }
 
     // Validation: Number of Children
     const inputChildren = document.getElementById("input_NumberOfChildren");
-    if (inputChildren.value === '' || isNaN(inputChildren.value) || parseInt(inputChildren.value) < 0) {
-        inputChildren.parentElement.classList.add('cs-error');
-        valid = false;
+    if (
+      inputChildren.value === "" ||
+      isNaN(inputChildren.value) ||
+      parseInt(inputChildren.value) < 0
+    ) {
+      inputChildren.parentElement.classList.add("cs-error");
+      valid = false;
     } else {
-        inputChildren.parentElement.classList.remove('cs-error');
+      inputChildren.parentElement.classList.remove("cs-error");
     }
 
     // Final Validation Result
     return valid;
-}
-
+  }
 
   // Define a function to check and style date fields
   checkDateFields() {
@@ -981,24 +987,47 @@ class SwiftFormValidation {
 
   handle_btnAddContact(event) {
     let html = `
-		<div class="cs-contact-details cs-emergency-contact-numbers">
-                    <h6 class="text-dark">
-                        <strong>Contact Details</strong>
-						<span class="remove-button" onclick="_swiftFV.removeContact(this)" ><i class="fa fa-trash"></i>Remove</span>
+		<div class="cs-contact-details cs-emergency-contact-numbers" id="customs_select_form">
+                    <div class="row">
+                    <span>Applicant</span>
+                    <span class="text-end" style="color: red" onclick="_swiftFV.removeContact(this)" ><i class="fa fa-trash"></i>Remove</span>
+                        <div class="col-md-6">
+                            <!-- Emergency Contact Name Input -->
+                            <div class="mb-3">
+                                <label for="emg_contact_name">Full Name</label>
+                                <input type="text" class="form-control" onchange="_swiftFV.handle_emgContact(this)"
+                                    name="emg_contact_name" placeholder="Full Name">
+                            </div>
+                        </div>
 
-                    </h6>
-
-                   
-                    <div class="mb-3">
-                        <input type="text" class="form-control" name="emg_contact_name" placeholder="Full Name of Emergency Contact">
-                    </div>
-
-                   
-                    <div class="mb-3">
-                        <input type="tel" class="form-control d-block" placeholder="Phone Number" name="cs_contact_info_emergency_no">
+                        <div class="col-md-6">
+                            <!-- Emergency Contact Phone Number Input -->
+                            <div class="mb-3">
+                                <label>Date of birth</label>
+                                <input type="date" onchange="_swiftFV.handle_emgTelephone(this)"
+                                    class="form-control d-block" placeholder="Date Of Birth" name="">
+                            </div>
+                        </div>
                     </div>
 
                 </div>`;
+    // let html = `
+    // <div class="cs-contact-details cs-emergency-contact-numbers">
+    //                 <h6 class="text-dark">
+    //                     <strong>Contact Details</strong>
+    // 				<span class="remove-button" onclick="_swiftFV.removeContact(this)" ><i class="fa fa-trash"></i>Remove</span>
+
+    //                 </h6>
+
+    //                 <div class="mb-3">
+    //                     <input type="text" class="form-control" name="emg_contact_name" placeholder="Full Name of">
+    //                 </div>
+
+    //                 <div class="mb-3">
+    //                     <input type="tel" class="form-control d-block" placeholder="Phone Number" name="cs_contact_info_emergency_no">
+    //                 </div>
+
+    //             </div>`;
 
     this.$("#contact_Duplicate").append(html);
 

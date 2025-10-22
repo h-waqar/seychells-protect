@@ -98,7 +98,7 @@
 }
 
 .form-control {
-  border: 1px solid rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid black !important;
 }
 
 .country-select-shadow {
@@ -108,7 +108,16 @@
 
 .cs-button-wrapper {
   margin-top: 2rem;
-  float: right;
+  /* float: right; */
+}
+.cs-button-wrapper .prev {
+  background: var(--bs-bg-light) !important ;
+  border-radius: 12px !important;
+  padding: 0.75rem 2rem !important;
+  color: var(--bs-text-muted) !important;
+  font-weight: bold !important;
+  border: 0 !important;
+  margin-right: 0.5rem;
 }
 .cs-button-wrapper button {
   border-color: #046055;
@@ -117,6 +126,13 @@
 }
 .cs-button-wrapper button:last-of-type {
   background-color: var(--bs-primary-color);
+  border-radius: 12px;
+  padding: 0.75rem 2rem;
+  color: white;
+  font-weight: bold;
+  border: 0;
+}
+.cs-button-wrapper button:last-of-type:hover {
   color: white;
 }
 .cs-button-wrapper button:hover:not(:last-of-type) {
@@ -405,6 +421,7 @@ section.alert_ValidPassport
 
 .form-control {
   padding: 0.8rem 1rem;
+  border-radius: 0 !important;
 }
 
 input[type="tel"].form-control {
@@ -1209,7 +1226,7 @@ section.container_PageZero
 #three_ContactInfo {
   width: 100%;
 }
-#three_ContactInfo .cs-container .iti--allow-dropdown {
+/* #three_ContactInfo .cs-container .iti--allow-dropdown {
   width: 100%;
 }
 #three_ContactInfo .cs-container #contact_Duplicate .cs-contact-details {
@@ -1251,7 +1268,7 @@ section.container_PageZero
 }
 #three_ContactInfo .cs-container #btn_AddContact i {
   margin-right: 1rem;
-}
+} */
 
 #four_TripInfo {
   width: 100%;
@@ -2706,3 +2723,7 @@ section.container_PageZero
   font-weight: bold;
   margin-bottom: 15px;
 } /*# sourceMappingURL=main.css.map */
+
+.form-label {
+  color: var(--bs-text-secondary) !important;
+}
