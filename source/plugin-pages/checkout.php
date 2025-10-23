@@ -1,61 +1,63 @@
 <div id="clinicalQuestionTwo">
 
-    <section id="ten_PaymentOptions" class="hidden">
+    <section id="ten_PaymentOptions" class="">
         <div class="cs-container">
 
             <!-- Pay using Card -->
             <div class="row payment-by-card" id="div_PayByCard">
 
-                <!-- First Name-->
-                <div class="col-6">
-                    <div class="mb-3">
-                        <label for="firstName">First Name</label>
-                        <input type="text" class="form-control" name="proceed_first_name" id="firstName"
-                            placeholder="First Name">
+                <div class="row px-0 mx-0">
+                    <!-- First Name-->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="firstName">First Name</label>
+                            <input type="text" class="form-control" name="proceed_first_name" id="firstName"
+                                placeholder="First Name">
+                        </div>
                     </div>
-                </div>
 
-                <!-- Last Name -->
-                <div class="col-6">
-                    <div class="mb-3">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" class="form-control" name="proceed_last_name" id="lastName"
-                            placeholder="Last Name">
+                    <!-- Last Name -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="lastName">Last Name</label>
+                            <input type="text" class="form-control" name="proceed_last_name" id="lastName"
+                                placeholder="Last Name">
+                        </div>
                     </div>
                 </div>
 
                 <!--        City        -->
-                <div class="col-md-6">
+                <div class="col-12">
                     <div class="mb-3">
-                        <label for="csCity">City</label>
+                        <label class="form-label" for="csCity">City</label>
                         <input type="text" class="form-control" name="proceed_your_city" id="csCity" placeholder="City">
                     </div>
                 </div>
 
-                <!-- State -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="mb-3">
-                        <label for="csState">State</label>
-                        <input type="text" class="form-control" name="proceed_your_state" id="csState"
-                            placeholder="State">
+                <div class="row px-0 mx-0">
+                    <!-- State -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="csState">State</label>
+                            <input type="text" class="form-control" name="proceed_your_state" id="csState"
+                                placeholder="State">
+                        </div>
+                    </div>
+
+                    <!-- Postal Code -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="postalCode">Postal Code</label>
+                            <input type="text" class="form-control" name="proceed_postal_code" id="postalCode"
+                                placeholder="Postal Code">
+                        </div>
                     </div>
                 </div>
-
-                <!-- Postal Code -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="mb-3">
-                        <label for="postalCode">Postal Code</label>
-                        <input type="text" class="form-control" name="proceed_postal_code" id="postalCode"
-                            placeholder="Postal Code">
-                    </div>
-                </div>
-
-                <h4>Card Information</h4>
 
                 <!-- Card NUmber -->
-                <div class="col-md-6">
+                <div class="col-12">
                     <div class="mb-3">
-                        <label for="proceed_CardNumber">Card number</label>
+                        <label class="form-label" for="proceed_CardNumber">Card number</label>
                         <input type="text" class="form-control" name="proceed_card_number" id="proceed_CardNumber"
                             placeholder="Card Number">
 
@@ -172,77 +174,81 @@
                     </div>
                 </div>
 
-                <!-- cardholder Name -->
-                <div class="col-md-3">
-                    <div class="mb-3">
-                        <label for="proceed_CardHolderName">Card Holder Name</label>
-                        <input type="text" class="form-control" name="proceed_card_holder_name"
-                            id="proceed_CardHolderName" placeholder="Card Holder Name">
+                <div class="row px-0 mx-0">
+                    <!-- cardholder Name -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="proceed_CardHolderName">Card Holder Name</label>
+                            <input type="text" class="form-control" name="proceed_card_holder_name"
+                                id="proceed_CardHolderName" placeholder="Card Holder Name">
+                        </div>
                     </div>
-                </div>
 
 
-                <!-- CVV -->
-                <div class="col-md-3">
-                    <div class="mb-3">
-                        <label for="proceed_CardCvv">Card CVV No</label>
-                        <input type="text" class="form-control" name="proceed_card_cvv" id="proceed_CardCvv"
-                            placeholder="Card CVV No">
+                    <!-- CVV -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="proceed_CardCvv">Card CVV No</label>
+                            <input type="text" class="form-control" name="proceed_card_cvv" id="proceed_CardCvv"
+                                placeholder="Card CVV No">
+                        </div>
                     </div>
                 </div>
 
                 <!-- Expiration Date -->
+                <div class="row px-0 mx-0">
 
-                <!--        Choose Expiration Month        -->
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <select id="month" name="proceed_exp_month" class="col-50" required>
-                            <option value="" class="d-none">Choose Expiration Month</option>
-                            <option value="01">January</option>
-                            <option value="02">February</option>
-                            <option value="03">March</option>
-                            <option value="04">April</option>
-                            <option value="05">May</option>
-                            <option value="06">June</option>
-                            <option value="07">July</option>
-                            <option value="08">August</option>
-                            <option value="09">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
+                    <!--        Choose Expiration Month        -->
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <select id="month" name="proceed_exp_month" class="col-50" required>
+                                <option value="" class="d-none">Choose Expiration Month</option>
+                                <option value="01">January</option>
+                                <option value="02">February</option>
+                                <option value="03">March</option>
+                                <option value="04">April</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                <option value="07">July</option>
+                                <option value="08">August</option>
+                                <option value="09">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <!--        Choose Expiration Year        -->
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <select id="year" name="proceed_exp_year" class="col-50" required>
-                            <option value="" class="d-none">Choose Expiration Year</option>
-                            <?php
-                            $start_year = date("Y");
-                            for ($x = $start_year; $x <= $start_year + 10; $x++) {
-                                ?>
-                                <option value="<?php echo $x; ?>">
-                                    <?php echo $x; ?>
-                                </option>
+                    <!--        Choose Expiration Year        -->
+                    <div class="col-md-4 px-0">
+                        <div class="mb-3">
+                            <select id="year" name="proceed_exp_year" class="col-50" required>
+                                <option value="" class="d-none">Choose Expiration Year</option>
                                 <?php
-                            }
-                            ?>
-                        </select>
+                                $start_year = date("Y");
+                                for ($x = $start_year; $x <= $start_year + 10; $x++) {
+                                    ?>
+                                    <option value="<?php echo $x; ?>">
+                                        <?php echo $x; ?>
+                                    </option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <!--        Choose Card Type        -->
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <select id="cardType" name="proceed_choose_type" required>
-                            <option value="" class="d-none">Choose Card Type</option>
-                            <option value="MasterCard">MasterCard</option>
-                            <option value="AmericanExpress">American Express</option>
-                            <option value="Visa">Visa</option>
-                            <option value="Discover">Discover</option>
-                        </select>
+                    <!--        Choose Card Type        -->
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <select id="cardType" name="proceed_choose_type" required>
+                                <option value="" class="d-none">Choose Card Type</option>
+                                <option value="MasterCard">MasterCard</option>
+                                <option value="AmericanExpress">American Express</option>
+                                <option value="Visa">Visa</option>
+                                <option value="Discover">Discover</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -251,7 +257,7 @@
             <!-- Pay by Giro -->
             <div class="payment-by-giropay hidden" id="div_PayByGiro">
                 <div class="mb-4">
-                    <label for="input_ProceedGiroPayName">Full name</label>
+                    <label class="form-label" for="input_ProceedGiroPayName">Full name</label>
                     <input type="text" class="form-control" name="proceed_giropay_name" id="input_ProceedGiroPayName">
                 </div>
 
@@ -406,7 +412,7 @@
 
         <div class="d-flex justify-content-between flex-wrap">
 
-            <div class="cs-view-summary">
+            <!-- <div class="cs-view-summary">
                 <p class="m-0">
                     Total
                     <span id="price_Total">
@@ -414,14 +420,14 @@
                     </span>
                 </p>
                 <a href="#" id="btn_ViewSummary">View Summary</a>
-            </div>
+            </div> -->
 
-            <div type="button" class="cs-button-wrapper align-items-end ms-5">
+            <div type="button" class="cs-button-wrapper ">
                 <!-- <button type="button" class="border-0 bg-transparent pr-3" id="btn_PaymentOptionPrev">
                     <span class="dashicons dashicons-arrow-left-alt2"></span>
                     Previous
                 </button> -->
-                <button type="button" class="btn btn-info px-5" id="btn_PaymentOptionContinue">Pay</button>
+                <button type="button" class="btn btn-info px-5" id="btn_PaymentOptionContinue">Pay Now</button>
             </div>
 
         </div>

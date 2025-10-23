@@ -1853,7 +1853,15 @@ section.container_PageZero
   overflow-x: hidden;
 }
 #ten_PaymentOptions .cs-container .payment-by-card .mb-3 {
+  position: relative;
   width: 100%;
+}
+#ten_PaymentOptions .cs-container .payment-by-card .mb-3 .card-img-wrapper {
+  width: fit-content;
+  position: absolute;
+  top: 35px;
+  right: -16px;
+  scale: 0.8;
 }
 #ten_PaymentOptions .cs-container .payment-by-card .mb-3 .card-img-wrapper svg {
   width: 60px;
@@ -1884,18 +1892,19 @@ section.container_PageZero
 }
 #ten_PaymentOptions .cs-container select {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 1rem;
+  border: 1px solid black;
+  /* border-radius: 4px; */
   resize: vertical;
   margin-bottom: 10px;
   transition: all ease 0.5s;
   cursor: pointer;
+  background: transparent !important;
 }
-#ten_PaymentOptions .cs-container select:focus {
+/* #ten_PaymentOptions .cs-container select:focus {
   border-radius: 10px 0 10px 0;
   border: 1px solid rgba(0, 0, 0, 0.4);
-}
+} */
 #ten_PaymentOptions .cs-container .payment-by-wechat,
 #ten_PaymentOptions .cs-container .payment-by-alipay {
   padding: 1rem;
