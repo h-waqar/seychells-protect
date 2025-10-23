@@ -142,6 +142,7 @@ class VisaSwift {
   btn_ProceedPrev = null;
   btn_OptionalDocsPrev = null;
   btn_ContactInfoPrev = null;
+  btn_ContactInfoContinue = null;
   btn_CustomsInfoPrev = null;
   btn_RequiredDocsPrev = null;
   btn_SelfieResponsePrev = null;
@@ -249,6 +250,7 @@ class VisaSwift {
     this.btn_RequiredDocsPrev = this.$("#btn_RequiredDocsPrev").get(0);
     this.btn_HealthInfoPrev = this.$("#btn_HealthInfoPrev").get(0);
     this.btn_ContactInfoPrev = this.$("#btn_ContactInfoPrev").get(0);
+    this.btn_ContactInfoContinue = this.$("#btn_ContactInfoContinue").get(0);
     this.btn_SelfieResponsePrev = this.$("#btn_SelfieResponsePrev").get(0);
     this.input_ContactHomeAddress = this.$("#input_ContactHomeAddress").get(0);
     this.input_UploadAccomodationDocs = this.$(
@@ -1706,9 +1708,8 @@ class VisaSwift {
     if (this._applicationSingle) {
       _swiftNavigation.handle_sbTripInformation();
       _swiftNavigation.contactInfo();
-    
 
-      _visaSwift.sb_ContactInformation.classList.remove('cs_disabled');
+      _visaSwift.sb_ContactInformation.classList.remove("cs_disabled");
 
       _visaSwift.handle_createCustomPostType();
 

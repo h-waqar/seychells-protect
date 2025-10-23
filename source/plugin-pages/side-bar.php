@@ -14,9 +14,6 @@
                     <a href="#" id="bsNavYourGp">Trip Information</a>
                 </li>
                 <li>
-                    <a href="#" id="bsNavClinicalQuestion">Trip Information</a>
-                </li>
-                <li>
                     <a href="#" id="bsNavReviewSubmit">Summary</a>
                 </li>
                 <li>
