@@ -251,6 +251,9 @@ class VisaSwift {
     this.btn_HealthInfoPrev = this.$("#btn_HealthInfoPrev").get(0);
     this.btn_ContactInfoPrev = this.$("#btn_ContactInfoPrev").get(0);
     this.btn_ContactInfoContinue = this.$("#btn_ContactInfoContinue").get(0);
+    this.btn_TripInfoContinue = this.$("#btn_TripInfoContinue").get(0);
+    this.btn_SummaryPrev = this.$("#btn_SummaryPrev").get(0);
+    this.btn_SummaryContinue = this.$("#btn_SummaryContinue").get(0);
     this.btn_SelfieResponsePrev = this.$("#btn_SelfieResponsePrev").get(0);
     this.input_ContactHomeAddress = this.$("#input_ContactHomeAddress").get(0);
     this.input_UploadAccomodationDocs = this.$(
@@ -286,6 +289,7 @@ class VisaSwift {
     this.btn_SelfiePhotoPrev = this.$("#btn_SelfiePhotoPrev").get(0);
 
     this.sec_TripInfo = this.$("#four_TripInfo").get(0);
+    this.four_summary = this.$("#four_summary").get(0);
     this.btn_TripInfoPrev = this.$("#btn_TripInfoPrev").get(0);
     this.btn_TripInfoContinue = this.$("#btn_TripInfoContinue").get(0);
     this.nine_Proceed = this.$("#nine_Proceed").get(0);

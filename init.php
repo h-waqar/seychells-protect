@@ -184,6 +184,8 @@ class Seychelles_Protect
 
             wp_enqueue_style('cs_personal_information', plugins_url('/source/styles/personal-information.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
 
+            wp_enqueue_style('cs_summary', plugins_url('/source/styles/summary.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
+
             wp_enqueue_style('cs_pure_main', plugins_url('/source/styles/main-style.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
 
             wp_enqueue_style('niceCountryInput', plugins_url('/source/styles/niceCountryInput.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');

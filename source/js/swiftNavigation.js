@@ -129,6 +129,27 @@ class SwiftNavigation {
       );
     }
 
+    if (_visaSwift.btn_TripInfoContinue) {
+      _visaSwift.btn_TripInfoContinue.addEventListener(
+        "click",
+        this.handle_btnTripInfoContinue.bind(this)
+      );
+    }
+
+    if (_visaSwift.btn_SummaryPrev) {
+      _visaSwift.btn_SummaryPrev.addEventListener(
+        "click",
+        this.handle_btnSummaryPrev.bind(this)
+      );
+    }
+
+    if (_visaSwift.btn_SummaryContinue) {
+      _visaSwift.btn_SummaryContinue.addEventListener(
+        "click",
+        this.handle_btnSummaryContinue.bind(this)
+      );
+    }
+
     if (_visaSwift.btn_ContactInfoPrev) {
       _visaSwift.btn_ContactInfoPrev.addEventListener(
         "click",
@@ -632,6 +653,7 @@ class SwiftNavigation {
     this.$(_visaSwift.selfiePhotoResponse).addClass("hidden");
     this.$(_visaSwift.one_PassportResponse).addClass("hidden");
     this.$(_visaSwift.container_GroupPassportUpload).addClass("hidden");
+    this.$(_visaSwift.four_summary).addClass("hidden");
 
     this.$("#processingPeriod").addClass("hidden");
     this.$("#medicalProtection").addClass("hidden");
@@ -660,6 +682,45 @@ class SwiftNavigation {
     this.prepareNavigation();
     this.$("#three_ContactInfo").removeClass("hidden");
     this.$("#bsNavYourGp").removeClass("bs-active");
+
+    //   _visaSwift.sb_ContactInformation.classList.add("cs-arrow");
+
+    _visaSwift.showTitle(
+      "Contact Information",
+      "We require this information to process your application and get in contact with you if we have any question or need more information."
+    );
+  }
+
+  handle_btnTripInfoContinue(e) {
+    this.prepareNavigation();
+    this.$("#four_summary").removeClass("hidden");
+    this.$("#bsNavReviewSubmit").addClass("bs-active");
+
+    //   _visaSwift.sb_ContactInformation.classList.add("cs-arrow");
+
+    _visaSwift.showTitle(
+      "Contact Information",
+      "We require this information to process your application and get in contact with you if we have any question or need more information."
+    );
+  }
+
+  handle_btnSummaryPrev(e) {
+    this.prepareNavigation();
+    this.$("#four_TripInfo").removeClass("hidden");
+    this.$("#bsNavReviewSubmit").removeClass("bs-active");
+
+    //   _visaSwift.sb_ContactInformation.classList.add("cs-arrow");
+
+    _visaSwift.showTitle(
+      "Contact Information",
+      "We require this information to process your application and get in contact with you if we have any question or need more information."
+    );
+  }
+
+  handle_btnSummaryContinue(e) {
+    this.prepareNavigation();
+    this.$("#ten_PaymentOptions").removeClass("hidden");
+    this.$("#bsNavCheckout").addClass("bs-active");
 
     //   _visaSwift.sb_ContactInformation.classList.add("cs-arrow");
 

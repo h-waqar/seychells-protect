@@ -1,0 +1,103 @@
+/* Summary Section Styles */
+
+/* #four_summary {
+  padding: 40px 0;
+} */
+
+.cs-summary-card {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  background: var(--bs-white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header with Total */
+.cs-summary-header {
+  background: var(--bs-primary-color);
+  color: var(--bs-white);
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cs-summary-header h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* Body Content */
+.cs-summary-body {
+  padding: 32px;
+  background: var(--bs-bg-light);
+}
+
+.cs-summary-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--bs-text-primary);
+  margin: 0 0 24px 0;
+}
+
+/* Summary Rows */
+.cs-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(60, 114, 200, 0.15);
+}
+
+.cs-summary-row:last-child {
+  border-bottom: none;
+}
+
+.cs-summary-label {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--bs-text-primary);
+}
+
+.cs-summary-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--bs-primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cs-summary-header {
+    padding: 20px 24px;
+  }
+
+  .cs-summary-header h2 {
+    font-size: 24px;
+  }
+
+  .cs-summary-body {
+    padding: 24px 20px;
+  }
+
+  .cs-summary-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .cs-summary-label {
+    /* font-size: 16px; */
+
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .cs-summary-value {
+    font-size: 18px;
+  }
+
+  .cs-btn {
+    width: 100%;
+  }
+}
