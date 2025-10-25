@@ -33,41 +33,6 @@
                 </div>
             </div>
 
-            <!-- Confirm Email -->
-            <!-- <div class="mb-3">
-                <label for="input_ContactConfirmEmail" class="form-label">Confirm Email</label>
-                <input type="email" id="input_ContactConfirmEmail" class="form-control" placeholder="Confirm Email"
-                    name="cs_contact_info_confirm_email">
-            </div> -->
-
-            <!-- Home Address Input -->
-            <!-- <div class="mb-3">
-                <label for="input_ContactHomeAddress" class="form-label">Home Address</label>
-                <input type="text" id="input_ContactHomeAddress" class="form-control" placeholder="Home Address"
-                    name="cs_contact_info_email">
-            </div> -->
-
-            <!-- Select Occupation Dropdown -->
-            <!-- <div class="mb-3 hidden">
-                <label for="cs_contact_info_occupation" class="form-label">Select Occupation</label>
-                <select name="cs_contact_info_occupation" id="cs_ContactInfoOccupation" class="form-select"
-                    aria-label="Default select example">
-                    <option value="" class="d-none">Select Occupation</option>
-                    <option value="Employee (government entities)">Employee (government entities)</option>
-                    <option value="Employee (private company)">Employee (private company)</option>
-                    <option value="Self-employed">Self-employed</option>
-                    <option value="Not working by choice">Not working by choice</option>
-                    <option value="Retired">Retired</option>
-                    <option value="Student">Student</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div> -->
-
-            <!-- Emergency Contact Section -->
-            <!-- <h5 class="m-0 pt-2 text-dark">Emergency Contacts (optional)</h5>
-            <p class="m-0">Please specify at least one emergency contact.</p> -->
-
-
             <!-- Duplicate Emergency Contact Details -->
             <div id="contact_Duplicate">
 

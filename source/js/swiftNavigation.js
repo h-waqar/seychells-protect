@@ -267,6 +267,7 @@ class SwiftNavigation {
 
   // }
 
+  // !: TODO
   handle_btnMedicalProtectionContinue(event) {
     // validation form medical protection
     let valid = _swiftFV.medicalProtection();
@@ -282,11 +283,6 @@ class SwiftNavigation {
     this.$("#three_ContactInfo").removeClass("hidden");
     this.$("#bsNavBasicInfo").addClass("bs-active");
 
-    // this.$("#sb_CompleteYourApplication").addClass("cs-arrow");
-    // this.$("#sb_CompleteYourApplication").removeClass("cs_disabled");
-
-    // this.$("#sb_MedicalProtection").addClass("cs-checked");
-
     _swiftUiManager.prepareSummary();
 
     _visaSwift.showTitle(
@@ -295,6 +291,46 @@ class SwiftNavigation {
     );
 
     // set the per day price in protection
+  }
+
+  handle_btnContactInfoContinue(event) {
+    let valid = _swiftFV.personalInformation();
+    if (!valid) {
+      _visaSwift.alertDanger(
+        "All Fields Required",
+        "Please fill in all the highlighted  fields"
+      );
+      return;
+    }
+
+    this.prepareNavigation();
+    this.$("#four_TripInfo").removeClass("hidden");
+    this.$("#bsNavYourGp").addClass("bs-active");
+
+    _visaSwift.showTitle(
+      "Selfie or Photo",
+      "Please upload a selfie or passport-type photo."
+    );
+  }
+
+  handle_btnTripInfoContinue(e) {
+    let valid = _swiftFV.tripInformation();
+    if (!valid) {
+      _visaSwift.alertDanger(
+        "All Fields Required",
+        "Please fill in all the highlighted fields"
+      );
+      return;
+    }
+
+    this.prepareNavigation();
+    this.$("#four_summary").removeClass("hidden");
+    this.$("#bsNavReviewSubmit").addClass("bs-active");
+
+    _visaSwift.showTitle(
+      "Contact Information",
+      "We require this information to process your application and get in contact with you if we have any question or need more information."
+    );
   }
 
   handle_btnProcessingPeriodContinue(event) {
@@ -382,20 +418,6 @@ class SwiftNavigation {
     this.prepareNavigation();
     this.$("#medicalProtection").removeClass("hidden");
     this.$("#bsNavBasicInfo").removeClass("bs-active");
-
-    // this.$(_visaSwift.selfiePhotoResponse).removeClass("hidden");
-    // _visaSwift.sb_SelfiePhoto.classList.add("cs-arrow");
-
-    _visaSwift.showTitle(
-      "Selfie or Photo",
-      "Please upload a selfie or passport-type photo."
-    );
-  }
-
-  handle_btnContactInfoContinue(event) {
-    this.prepareNavigation();
-    this.$("#four_TripInfo").removeClass("hidden");
-    this.$("#bsNavYourGp").addClass("bs-active");
 
     // this.$(_visaSwift.selfiePhotoResponse).removeClass("hidden");
     // _visaSwift.sb_SelfiePhoto.classList.add("cs-arrow");
@@ -682,19 +704,6 @@ class SwiftNavigation {
     this.prepareNavigation();
     this.$("#three_ContactInfo").removeClass("hidden");
     this.$("#bsNavYourGp").removeClass("bs-active");
-
-    //   _visaSwift.sb_ContactInformation.classList.add("cs-arrow");
-
-    _visaSwift.showTitle(
-      "Contact Information",
-      "We require this information to process your application and get in contact with you if we have any question or need more information."
-    );
-  }
-
-  handle_btnTripInfoContinue(e) {
-    this.prepareNavigation();
-    this.$("#four_summary").removeClass("hidden");
-    this.$("#bsNavReviewSubmit").addClass("bs-active");
 
     //   _visaSwift.sb_ContactInformation.classList.add("cs-arrow");
 

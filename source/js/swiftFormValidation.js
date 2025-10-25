@@ -344,6 +344,8 @@ class SwiftFormValidation {
    * Class Functions Start
    */
 
+  // !: TODO
+
   medicalProtection() {
     var selectedRadio = this.$(
       "input[name='radio_medical_protection']:checked"
@@ -358,6 +360,140 @@ class SwiftFormValidation {
       this.$("#medicalProtection label").addClass("cs-error");
       return false;
     }
+  }
+
+  personalInformation() {
+    let isValid = true;
+    const $ = this.$;
+
+    // ✅ Helper to enforce !important red border
+    const setError = (el, hasError) => {
+      if (hasError) {
+        $(el).attr(
+          "style",
+          ($(el).attr("style") || "") + "border-color: red !important;"
+        );
+      } else {
+        const currentStyle = $(el).attr("style") || "";
+        const cleaned = currentStyle.replace(
+          /border-color:\s*red\s*!important;?/gi,
+          ""
+        );
+        $(el).attr("style", cleaned.trim());
+      }
+    };
+
+    // 1️⃣ Validate main fields
+    const phone = $("#input_ContactYourNumber");
+    const email = $("#input_ContactYourEmail");
+
+    const phoneVal = phone.val()?.trim() || "";
+    const emailVal = email.val()?.trim() || "";
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9()+\-.\s]+$/;
+
+    if (!phoneVal || !phoneRegex.test(phoneVal)) {
+      setError(phone, true);
+      isValid = false;
+    } else setError(phone, false);
+
+    if (!emailVal || !emailRegex.test(emailVal)) {
+      setError(email, true);
+      isValid = false;
+    } else setError(email, false);
+
+    // 2️⃣ Validate applicants
+    $(".cs-contact-details").each(function () {
+      if (!document.body.contains(this)) return;
+      if (!$(this).is(":visible")) return;
+
+      const nameInput = $(this).find('input[name="emg_contact_name"]');
+      const dobInput = $(this).find('input[type="date"]');
+
+      if (nameInput.length === 0 && dobInput.length === 0) return;
+
+      const nameVal = nameInput.val()?.trim() || "";
+      const dobVal = dobInput.val()?.trim() || "";
+
+      // Name required
+      if (!nameVal) {
+        setError(nameInput, true);
+        isValid = false;
+      } else setError(nameInput, false);
+
+      // DOB required and cannot be future
+      if (!dobVal) {
+        setError(dobInput, true);
+        isValid = false;
+      } else {
+        const dobDate = new Date(dobVal);
+        const today = new Date();
+        if (dobDate > today) {
+          setError(dobInput, true);
+          isValid = false;
+        } else setError(dobInput, false);
+      }
+    });
+
+    return isValid;
+  }
+  tripInformation() {
+    let isValid = true;
+    const $ = this.$;
+
+    // ✅ Same helper for consistent styling
+    const setError = (el, hasError) => {
+      if (hasError) {
+        $(el).attr(
+          "style",
+          ($(el).attr("style") || "") + "border-color: red !important;"
+        );
+      } else {
+        const currentStyle = $(el).attr("style") || "";
+        const cleaned = currentStyle.replace(
+          /border-color:\s*red\s*!important;?/gi,
+          ""
+        );
+        $(el).attr("style", cleaned.trim());
+      }
+    };
+
+    // 🔹 Fields
+    const arrival = $("#input_TripArrivalDate");
+    const departure = $("#date_TripReturn");
+    const address = $("#address_in_seychelles");
+
+    const arrivalVal = arrival.val()?.trim() || "";
+    const departureVal = departure.val()?.trim() || "";
+    const addressVal = address.val()?.trim() || "";
+
+    // 1️⃣ Required: Arrival Date
+    if (!arrivalVal) {
+      setError(arrival, true);
+      isValid = false;
+    } else setError(arrival, false);
+
+    // 2️⃣ Required: Departure Date and must be after arrival
+    if (!departureVal) {
+      setError(departure, true);
+      isValid = false;
+    } else {
+      const arrDate = new Date(arrivalVal);
+      const depDate = new Date(departureVal);
+      if (depDate <= arrDate) {
+        setError(departure, true);
+        isValid = false;
+      } else setError(departure, false);
+    }
+
+    // 3️⃣ Required: Address in Seychelles
+    if (!addressVal) {
+      setError(address, true);
+      isValid = false;
+    } else setError(address, false);
+
+    return isValid;
   }
 
   payment() {
@@ -1011,31 +1147,14 @@ class SwiftFormValidation {
                     </div>
 
                 </div>`;
-    // let html = `
-    // <div class="cs-contact-details cs-emergency-contact-numbers">
-    //                 <h6 class="text-dark">
-    //                     <strong>Contact Details</strong>
-    // 				<span class="remove-button" onclick="_swiftFV.removeContact(this)" ><i class="fa fa-trash"></i>Remove</span>
-
-    //                 </h6>
-
-    //                 <div class="mb-3">
-    //                     <input type="text" class="form-control" name="emg_contact_name" placeholder="Full Name of">
-    //                 </div>
-
-    //                 <div class="mb-3">
-    //                     <input type="tel" class="form-control d-block" placeholder="Phone Number" name="cs_contact_info_emergency_no">
-    //                 </div>
-
-    //             </div>`;
 
     this.$("#contact_Duplicate").append(html);
 
     // set Countries Flat drop down
-    let input = this.$(
-      '#contact_Duplicate input[name="cs_contact_info_emergency_no"]:last'
-    ).get(0);
-    window.intlTelInput(input, {});
+    // let input = this.$(
+    //   '#contact_Duplicate input[name="cs_contact_info_emergency_no"]:last'
+    // ).get(0);
+    // window.intlTelInput(input, {});
   }
 
   handle_inputContactYourEmail(event) {

@@ -1,6 +1,6 @@
 <div id="clinicalQuestionTwo">
 
-    <section id="ten_PaymentOptions" class="">
+    <section id="ten_PaymentOptions" class="hidden">
         <div class="cs-container">
 
             <!-- Pay using Card -->
