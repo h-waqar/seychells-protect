@@ -1,7 +1,13 @@
 <div id="clinicalQuestionTwo">
 
-    <section id="ten_PaymentOptions" class="hidden">
+    <section id="ten_PaymentOptions" class="">
         <div class="cs-container">
+            <div class="bs-heading mb-4">
+                <h1>Complete your Application</h1>
+                <p>
+                    Enter your credit card details below to securely complete your Seychelles Medical Protection application.
+                </p>
+            </div>
 
             <!-- Pay using Card -->
             <div class="row payment-by-card" id="div_PayByCard">
@@ -227,11 +233,11 @@
                                 <?php
                                 $start_year = date("Y");
                                 for ($x = $start_year; $x <= $start_year + 10; $x++) {
-                                    ?>
+                                ?>
                                     <option value="<?php echo $x; ?>">
                                         <?php echo $x; ?>
                                     </option>
-                                    <?php
+                                <?php
                                 }
                                 ?>
                             </select>
