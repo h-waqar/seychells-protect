@@ -777,7 +777,19 @@ class SwiftUiManager {
   }
 }
 
-jQuery(document).ready(() => {
+jQuery(document).ready(($) => {
   window._swiftUiManager = new SwiftUiManager(jQuery);
   _swiftUiManager.ShowSummaryData();
+
+  $("#basic_protection_price").text(_swiftUiData.basic_protection_price);
+  $("#total_protection_price").text(_swiftUiData.total_protection_price);
+
+  console.log(
+    "_swiftUiData.basic_protection_price",
+    _swiftUiData.basic_protection_price
+  );
+  console.log(
+    "_swiftUiData.total_protection_price",
+    _swiftUiData.total_protection_price
+  );
 });

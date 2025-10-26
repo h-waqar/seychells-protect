@@ -22,7 +22,7 @@
                         value="basic_protection">
                     <label class="cs-form-control" for="input_BasicProtection">
                         <h4>ESSENTIAL PROTECTION</h4>
-                        <span>€3.95 / day / Adult</span>
+                        <span>€<var class="d-inline" id="basic_protection_price"></var> / day / Adult</span>
                         <div>
                             <p>
                                 All pre-existing conditions are covered and children under 10 are covered free of charge
@@ -50,7 +50,7 @@
                         value="total_protection">
                     <label class="cs-form-control" for="input_TotalProtection">
                         <h4>TOTAL PROTECTION</h4>
-                        <span>€6.95 / day / Adult</span>
+                        <span>€<var class="d-inline" id="total_protection_price"></var> / day / Adult</span>
                         <div>
                             <p>
                                 All pre-existing conditions are covered and children under 10 are covered free of charge
