@@ -32,6 +32,7 @@
   font-weight: 500;
   width: 200px;
   display: block;
+  cursor: context-menu;
 }
 .bs-navmenu ul li a:before {
   content: "";

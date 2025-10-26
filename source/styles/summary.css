@@ -86,10 +86,9 @@
   }
 
   .cs-summary-label {
-    /* font-size: 16px; */
-
-    font-size: 20px;
+    font-size: 1rem;
     margin-bottom: 20px;
+    font-weight: bold;
   }
 
   .cs-summary-value {

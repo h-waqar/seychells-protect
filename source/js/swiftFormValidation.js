@@ -1146,7 +1146,7 @@ class SwiftFormValidation {
 		<div class="cs-contact-details cs-emergency-contact-numbers" id="customs_select_form">
                     <div class="row">
                     <span>Applicant</span>
-                    <span class="text-end" style="color: red" onclick="_swiftFV.removeContact(this)" ><i class="fa fa-trash"></i>Remove</span>
+                    <span class="text-end" style="color: red" onclick="_swiftFV.removeContact(this)" >Remove</span>
                         <div class="col-md-6">
                             <!-- Emergency Contact Name Input -->
                             <div class="mb-3">

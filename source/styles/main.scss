@@ -1,6 +1,6 @@
 // ------------------------> Global Variables <------------------------ //
 
-$primary-color: #046055;
+$primary-color: #3c72c8;
 $bg-light-color: #f4f4f4;
 $border-blue-color: #0085f2;
 $slate-blue-color: #007aff;
@@ -2304,10 +2304,17 @@ section.container_PageZero {
 // -------------------------> Media Queries  <------------------------ //
 
 @media screen and (max-width: 768px) {
+  #bsContainer{
+    margin: auto;
+    padding: 10px;
+  }
   #page_four {
     .cs-container {
       padding: 2px !important;
     }
+  }
+  #medicalProtection .cs-container label{
+  padding-left: 10px !important;
   }
 
   #container_PageOne,
@@ -2604,6 +2611,16 @@ section.container_PageZero {
 
   .cs-view-doc-btn {
     display: none;
+  }
+  .question-wrapper label::before{
+    display: none !important;
+  }
+  .cs-button-wrapper .btn-info{
+    background-color: $primary-color;
+  }
+  .cs-arrival-details{
+    width: 100%;
+    overflow: hidden;
   }
 }
 

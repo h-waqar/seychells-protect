@@ -8,8 +8,7 @@
             <div class="bs-heading mb-4">
                 <h1>Personal Information</h1>
                 <p>
-                    Please provide a photo or scan of the biographic data page of our passport.
-                    This is the page featuring your photo, name, etc.
+                    Please provide your details below so we can process your Seychelles Medical Protection application accurately and securely.
                 </p>
             </div>
 
@@ -19,15 +18,15 @@
                     <div class="mb-3">
                         <label for="input_ContactYourNumber" class="form-label">Phone Number</label>
                         <input type="tel" id="input_ContactYourNumber" class="form-control d-block"
-                            placeholder="Phone Number" name="cs_contact_info_phone_no">
+                            placeholder="Enter phone number" name="cs_contact_info_phone_no">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <!-- Email Input -->
                     <div class="mb-3">
-                        <label for="input_ContactYourEmail" class="form-label">Email</label>
-                        <input type="email" id="input_ContactYourEmail" class="form-control" placeholder="Email"
+                        <label for="input_ContactYourEmail" class="form-label">Your personal email address</label>
+                        <input type="email" id="input_ContactYourEmail" class="form-control" placeholder="Enter Email"
                             name="cs_contact_info_email">
                     </div>
                 </div>
@@ -44,7 +43,7 @@
                             <div class="mb-3">
                                 <label for="emg_contact_name">Full Name</label>
                                 <input type="text" class="form-control" onchange="_swiftFV.handle_emgContact(this)"
-                                    name="emg_contact_name" placeholder="Full Name">
+                                    name="emg_contact_name" placeholder="Enter full name">
                             </div>
                         </div>
 

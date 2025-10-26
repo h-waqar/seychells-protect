@@ -5,7 +5,7 @@
         <nav class="bs-navmenu">
             <ul>
                 <li>
-                    <a href="#" id="bsNavIntroduction" class="bs-active">Select MedicalProtection</a>
+                    <a href="#" id="bsNavIntroduction" class="bs-active">Select Medical Protection</a>
                 </li>
                 <li>
                     <a href="#" id="bsNavBasicInfo">Personal Information</a>

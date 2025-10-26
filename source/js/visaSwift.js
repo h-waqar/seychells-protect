@@ -740,7 +740,7 @@ class VisaSwift {
 
                         <h6 class="text-dark">
                             <strong>Select Form</strong>
-                            <span class="remove-button" onclick="_swiftFV.removeContact(this)"><i class="fa fa-trash"></i>remove</span>
+                            <span class="remove-button" onclick="_swiftFV.removeContact(this)">Remove</span>
                         </h6>
 
                         <div class="col-md-6">

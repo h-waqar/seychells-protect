@@ -272,10 +272,10 @@ class SwiftNavigation {
     // validation form medical protection
     let valid = _swiftFV.medicalProtection();
     if (!valid) {
-      _visaSwift.alertDanger(
-        "Selection Required",
-        "Please choose one of the provided options to advance further."
-      );
+      // _visaSwift.alertDanger(
+      //   "Selection Required",
+      //   "Please choose one of the provided options to advance further."
+      // );
       return;
     }
 
@@ -294,10 +294,10 @@ class SwiftNavigation {
   handle_btnContactInfoContinue(event) {
     let valid = _swiftFV.personalInformation();
     if (!valid) {
-      _visaSwift.alertDanger(
-        "All Fields Required",
-        "Please fill in all the highlighted  fields"
-      );
+      // _visaSwift.alertDanger(
+      //   "All Fields Required",
+      //   "Please fill in all the highlighted  fields"
+      // );
       return;
     }
 
@@ -314,10 +314,10 @@ class SwiftNavigation {
   handle_btnTripInfoContinue(e) {
     let valid = _swiftFV.tripInformation();
     if (!valid) {
-      _visaSwift.alertDanger(
-        "All Fields Required",
-        "Please fill in all the highlighted fields"
-      );
+      // _visaSwift.alertDanger(
+      //   "All Fields Required",
+      //   "Please fill in all the highlighted fields"
+      // );
       return;
     }
 
