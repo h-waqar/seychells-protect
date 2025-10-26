@@ -11,8 +11,10 @@ function cs_save_booking_sy()
 
     $data = $_POST['data'] ?? [];
 
+    $email = sanitize_email($data['email']);
+
     $post_id = wp_insert_post([
-        "post_title"   => "New Booking",
+        "post_title"   => "New Booking - " . $email,
         "post_content" => "",
         "post_type"    => "protection",
         "post_status"  => "private",
@@ -25,7 +27,7 @@ function cs_save_booking_sy()
 
     // Personal Information
     update_field("phone_number", sanitize_text_field($data['phone_number']), $post_id);
-    update_field("email", sanitize_email($data['email']), $post_id);
+    update_field("email", $email, $post_id);
 
     if (isset($data['applicants']) && is_array($data['applicants'])) {
         $applicants_data = [];
