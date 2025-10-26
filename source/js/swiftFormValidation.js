@@ -362,6 +362,29 @@ class SwiftFormValidation {
     }
   }
 
+  mountJqueryDatepickers() {
+    this.$(".datepicker")
+      .datepicker({
+        // Set the minimum date to the current date (0)
+        format: "yyyy-mm-dd", // Specify the date format as needed
+        autoclose: true, // Close the datepicker when a date is selected
+        keyboardNavigation: true, // Allow keyboard navigation
+        minDate: 0,
+        startDate: new Date(),
+      })
+      .on("change", function (e) {
+        if (e.target.id === "input_TripArrivalDate") {
+          // Assuming endDatePicker is the variable referencing your endDate datepicker
+          var endDatePicker = _visaSwift.$("#date_TripReturn"); // Change the class accordingly
+
+          // Update minDate for endDatePicker to be the selected startDate
+          endDatePicker.datepicker("option", "minDate", e.target.value);
+
+          window._swiftFV.handle_inputTripArrivalDate(e.target);
+        }
+      });
+  }
+
   personalInformation() {
     let isValid = true;
     const $ = this.$;
@@ -1143,8 +1166,8 @@ class SwiftFormValidation {
                             <!-- Emergency Contact Phone Number Input -->
                             <div class="mb-3">
                                 <label>Date of birth</label>
-                                <input type="date" onchange="_swiftFV.handle_emgTelephone(this)"
-                                    class="form-control d-block" placeholder="Date Of Birth" name="">
+                                <input type="text" onchange="_swiftFV.handle_emgTelephone(this)"
+                                    class="form-control datepicker d-block" placeholder="Date Of Birth" name="">
                             </div>
                         </div>
                     </div>
@@ -1152,6 +1175,8 @@ class SwiftFormValidation {
                 </div>`;
 
     this.$("#contact_Duplicate").append(html);
+
+    this.mountJqueryDatepickers();
 
     // set Countries Flat drop down
     // let input = this.$(
