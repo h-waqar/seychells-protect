@@ -269,6 +269,8 @@ class SwiftFormValidation {
         }
       });
 
+    this.mountJqueryDatepickers();
+
     // Add a click event listener to all radio buttons with the same name attribute
     this.$("[name^='cs_customs_']").on("click", function () {
       let nameAttr = _swiftFV.$(this).attr("name");
@@ -363,26 +365,18 @@ class SwiftFormValidation {
   }
 
   mountJqueryDatepickers() {
-    this.$(".datepicker")
-      .datepicker({
-        // Set the minimum date to the current date (0)
-        format: "yyyy-mm-dd", // Specify the date format as needed
-        autoclose: true, // Close the datepicker when a date is selected
-        keyboardNavigation: true, // Allow keyboard navigation
-        minDate: 0,
-        startDate: new Date(),
-      })
-      .on("change", function (e) {
-        if (e.target.id === "input_TripArrivalDate") {
-          // Assuming endDatePicker is the variable referencing your endDate datepicker
-          var endDatePicker = _visaSwift.$("#date_TripReturn"); // Change the class accordingly
+    const $ = this.$;
+    const today = new Date();
+    const minDate = new Date(today);
+    minDate.setFullYear(today.getFullYear() - 120);
 
-          // Update minDate for endDatePicker to be the selected startDate
-          endDatePicker.datepicker("option", "minDate", e.target.value);
-
-          window._swiftFV.handle_inputTripArrivalDate(e.target);
-        }
-      });
+    $(".datepicker-dob").datepicker("destroy").datepicker({
+      format: "yyyy-mm-dd",
+      autoclose: true,
+      keyboardNavigation: true,
+      startDate: minDate,
+      endDate: today,
+    });
   }
 
   personalInformation() {
@@ -1166,8 +1160,8 @@ class SwiftFormValidation {
                             <!-- Emergency Contact Phone Number Input -->
                             <div class="mb-3">
                                 <label>Date of birth</label>
-                                <input type="text" onchange="_swiftFV.handle_emgTelephone(this)"
-                                    class="form-control datepicker d-block" placeholder="Date Of Birth" name="">
+                                <input type="date" onchange="_swiftFV.handle_emgTelephone(this)"
+                                    class="form-control d-block" placeholder="Date Of Birth" name="">
                             </div>
                         </div>
                     </div>
@@ -1176,7 +1170,7 @@ class SwiftFormValidation {
 
     this.$("#contact_Duplicate").append(html);
 
-    this.mountJqueryDatepickers();
+    // this.mountJqueryDatepickers();
 
     // set Countries Flat drop down
     // let input = this.$(

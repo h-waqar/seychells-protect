@@ -1,7 +1,7 @@
 <div id="introStepThreeContainer">
 
     <!-- Section for Contact Information -->
-    <section id="three_ContactInfo" class="hidden">
+    <section id="three_ContactInfo" class="">
 
         <div class="cs-container">
 
@@ -52,10 +52,10 @@
                             <!-- Emergency Contact Phone Number Input -->
                             <div class="mb-3">
                                 <label>Date of birth</label>
-                                <input type="text" onchange="_swiftFV.handle_emgTelephone(this)"
-                                    class="form-control datepicker d-block" placeholder="Date Of Birth" name="">
-                                <!-- <input type="date" onchange="_swiftFV.handle_emgTelephone(this)"
-                                    class="form-control d-block" placeholder="Date Of Birth" name=""> -->
+                                <!-- <input type="text" onchange="_swiftFV.handle_emgTelephone(this)"
+                                    class="form-control datepicker-dob d-block" placeholder="Date Of Birth" name=""> -->
+                                <input type="date" onchange="_swiftFV.handle_emgTelephone(this)"
+                                    class="form-control d-block" placeholder="Date Of Birth" name="">
                             </div>
                         </div>
                     </div>
