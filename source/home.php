@@ -53,64 +53,64 @@
 
 				// ---------------------------------------------------
 				
-				// |> Templates
-				include_once('plugin-pages/templates.php');
+				// // |> Templates
+				// include_once('plugin-pages/templates.php');
 
-				// |> Passport Information File
-				include_once('plugin-pages/passport-information.php');
+				// // |> Passport Information File
+				// include_once('plugin-pages/passport-information.php');
 
-				// |> Passport Response File
-				include_once('plugin-pages/passport-response.php');
+				// // |> Passport Response File
+				// include_once('plugin-pages/passport-response.php');
 
-				// |> Selfie Photo File
-				include_once('plugin-pages/selfie-photo.php');
+				// // |> Selfie Photo File
+				// include_once('plugin-pages/selfie-photo.php');
 
-				// |> Selfie Photo File Response
-				include_once('plugin-pages/selfie-photo-response.php');
+				// // |> Selfie Photo File Response
+				// include_once('plugin-pages/selfie-photo-response.php');
 
-				// |> Contact Information File
-				// include_once('plugin-pages/contact-information.php');
+				// // |> Contact Information File
+				// // include_once('plugin-pages/contact-information.php');
 				
-				// |> Trip Information
-				// include_once('plugin-pages/trip-information.php');
+				// // |> Trip Information
+				// // include_once('plugin-pages/trip-information.php');
 				
-				// |> Health Declaration
-				include_once('plugin-pages/health-declaration.php');
+				// // |> Health Declaration
+				// include_once('plugin-pages/health-declaration.php');
 
-				// |> Custom Declaration
-				include_once('plugin-pages/custom-declaration.php');
+				// // |> Custom Declaration
+				// include_once('plugin-pages/custom-declaration.php');
 
-				// |> Required Documents
-				include_once('plugin-pages/required-docs.php');
+				// // |> Required Documents
+				// include_once('plugin-pages/required-docs.php');
 
-				// |> Optional Documents
-				include_once('plugin-pages/optional-docs.php');
+				// // |> Optional Documents
+				// include_once('plugin-pages/optional-docs.php');
 
-				// |> Confirm and Proceed
-				include_once('plugin-pages/confirm-and-proceed.php');
+				// // |> Confirm and Proceed
+				// include_once('plugin-pages/confirm-and-proceed.php');
 
-				// |> Processing Period
-				include_once('plugin-pages/processing-period.php');
+				// // |> Processing Period
+				// include_once('plugin-pages/processing-period.php');
 
-				// |> Medical Protection
-				// include_once('plugin-pages/medical-protection.php');
+				// // |> Medical Protection
+				// // include_once('plugin-pages/medical-protection.php');
 				
-				// |> Payment Options
-				include_once('plugin-pages/payment-options.php');
+				// // |> Payment Options
+				// include_once('plugin-pages/payment-options.php');
 
-				// |> Payment Options
+				// // |> Payment Options
 				
-				/**
-				 * Group Passport Files
-				 */
+				// /**
+				//  * Group Passport Files
+				//  */
 
-				include_once('plugin-pages/group-passport.php');
-				// |> Passport Group Response
-				include_once('plugin-pages/group-p-response.php');
+				// include_once('plugin-pages/group-passport.php');
+				// // |> Passport Group Response
+				// include_once('plugin-pages/group-p-response.php');
 
-				include_once('plugin-pages/passport-resp-next.php');
+				// include_once('plugin-pages/passport-resp-next.php');
 
-				include_once('plugin-pages/popup-view-document.php');
+				// include_once('plugin-pages/popup-view-document.php');
 
 				?>
 

@@ -35,7 +35,7 @@
             <div class="mb-2 return-details">
                 <label for="address_in_seychelles" class="form-label">Address in Seychelles</label>
                 <input type="text" class="form-control" placeholder="Address in Seychelles" name="address_in_seychelles"
-                    id="address_in_seychelles" style="background: transparent !important;" readonly>
+                    id="address_in_seychelles" style="background: transparent !important;">
             </div>
 
             <!-- Prev/Next (<_>) Button Wrapper -->

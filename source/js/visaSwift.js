@@ -251,7 +251,7 @@ class VisaSwift {
     this.btn_HealthInfoPrev = this.$("#btn_HealthInfoPrev").get(0);
     this.btn_ContactInfoPrev = this.$("#btn_ContactInfoPrev").get(0);
     this.btn_ContactInfoContinue = this.$("#btn_ContactInfoContinue").get(0);
-    this.btn_TripInfoContinue = this.$("#btn_TripInfoContinue").get(0);
+    // this.btn_TripInfoContinue = this.$("#btn_TripInfoContinue").get(0);
     this.btn_SummaryPrev = this.$("#btn_SummaryPrev").get(0);
     this.btn_SummaryContinue = this.$("#btn_SummaryContinue").get(0);
     this.btn_SelfieResponsePrev = this.$("#btn_SelfieResponsePrev").get(0);
@@ -489,12 +489,12 @@ class VisaSwift {
       );
     }
 
-    if (this.btn_TripInfoContinue) {
-      this.btn_TripInfoContinue.addEventListener(
-        "click",
-        this.handle_btnTripInfoContinue.bind(this)
-      );
-    }
+    // if (this.btn_TripInfoContinue) {
+    //   this.btn_TripInfoContinue.addEventListener(
+    //     "click",
+    //     this.handle_btnTripInfoContinue.bind(this)
+    //   );
+    // }
 
     /**
      * This is for Continue OnClick
@@ -514,12 +514,12 @@ class VisaSwift {
       );
     }
 
-    if (this.btn_ContactInfoContinue) {
-      this.btn_ContactInfoContinue.addEventListener(
-        "click",
-        this.handle_btnContactInfoContinue.bind(this)
-      );
-    }
+    // if (this.btn_ContactInfoContinue) {
+    //   this.btn_ContactInfoContinue.addEventListener(
+    //     "click",
+    //     this.handle_btnContactInfoContinue.bind(this)
+    //   );
+    // }
 
     if (this.btn_HealthInfoContinue) {
       this.btn_HealthInfoContinue.addEventListener(
@@ -1296,69 +1296,69 @@ class VisaSwift {
     return null;
   }
 
-  handle_btnTripInfoContinue(event) {
-    if (_visaSwift._applicationSingle) {
-      if (!this._applicantId || this._applicantId == 0) {
-        alert("Applicant Id is empty");
-        return;
-      }
-    }
+  // handle_btnTripInfoContinue(event) {
+  //   if (_visaSwift._applicationSingle) {
+  //     if (!this._applicantId || this._applicantId == 0) {
+  //       alert("Applicant Id is empty");
+  //       return;
+  //     }
+  //   }
 
-    if (!_swiftFV.tripInfo()) return;
+  //   if (!_swiftFV.tripInfo()) return;
 
-    let _pageData = _swiftStorage.tripInfoData();
+  //   let _pageData = _swiftStorage.tripInfoData();
 
-    let _data = {
-      action: "trip_info_sy",
-      page_data: _pageData,
-      applicantId: this._applicantId,
-      applicationSingle: this._applicationSingle,
-      selectedCountry: this._selectedCountry,
-    };
+  //   let _data = {
+  //     action: "trip_info_sy",
+  //     page_data: _pageData,
+  //     applicantId: this._applicantId,
+  //     applicationSingle: this._applicationSingle,
+  //     selectedCountry: this._selectedCountry,
+  //   };
 
-    this.runSpinner(true);
+  //   this.runSpinner(true);
 
-    _ajaxRequest
-      .call(_data, "json", "post")
-      .error((error) => {
-        console.log(error);
-      })
-      .then((response) => {
-        this.runSpinner(false);
+  //   _ajaxRequest
+  //     .call(_data, "json", "post")
+  //     .error((error) => {
+  //       console.log(error);
+  //     })
+  //     .then((response) => {
+  //       this.runSpinner(false);
 
-        if (response.success) {
-          _swiftUiManager.ShowSummaryData();
+  //       if (response.success) {
+  //         _swiftUiManager.ShowSummaryData();
 
-          if (this._applicationSingle) {
-            this.$("#sb_HealthDeclaration").removeClass("cs_disabled");
-            // _swiftNavigation.healthDeclaration();
+  //         if (this._applicationSingle) {
+  //           this.$("#sb_HealthDeclaration").removeClass("cs_disabled");
+  //           // _swiftNavigation.healthDeclaration();
 
-            // Write the quotation
-            this.$("#sb_ConfirmProceed").removeClass("cs_disabled");
-            // this.$("#sb_PaymentOptions").removeClass('cs_disabled');
+  //           // Write the quotation
+  //           this.$("#sb_ConfirmProceed").removeClass("cs_disabled");
+  //           // this.$("#sb_PaymentOptions").removeClass('cs_disabled');
 
-            _swiftNavigation.hide_SinglePassportNavigationOne();
-            _swiftNavigation.display_SinglePassportNavigationTwo();
-            // _swiftNavigation.moveToProcessingPeriod();
+  //           _swiftNavigation.hide_SinglePassportNavigationOne();
+  //           _swiftNavigation.display_SinglePassportNavigationTwo();
+  //           // _swiftNavigation.moveToProcessingPeriod();
 
-            this.$("#sb_groupPassportInfo").addClass("hidden");
-            this.$("#sb_GroupContactInformation").addClass("hidden");
+  //           this.$("#sb_groupPassportInfo").addClass("hidden");
+  //           this.$("#sb_GroupContactInformation").addClass("hidden");
 
-            _swiftNavigation.handle_btnProcessingPeriodContinue();
-            this.$("#sb_ProcessingPeriod").addClass("hidden");
-          } else {
-            this._applicantId = response.applicantId;
-            _swiftNavigation.groupPassport();
+  //           _swiftNavigation.handle_btnProcessingPeriodContinue();
+  //           this.$("#sb_ProcessingPeriod").addClass("hidden");
+  //         } else {
+  //           this._applicantId = response.applicantId;
+  //           _swiftNavigation.groupPassport();
 
-            this.$("#sb_TripInformation").addClass("cs-checked");
-            this.$("#sb_groupPassportInfo").removeClass("cs_disabled");
-            this.$("#sb_groupPassportInfo").addClass("cs-arrow");
-          }
-        } else {
-          alert("Operation Failed");
-        }
-      });
-  }
+  //           this.$("#sb_TripInformation").addClass("cs-checked");
+  //           this.$("#sb_groupPassportInfo").removeClass("cs_disabled");
+  //           this.$("#sb_groupPassportInfo").addClass("cs-arrow");
+  //         }
+  //       } else {
+  //         alert("Operation Failed");
+  //       }
+  //     });
+  // }
 
   handle_btnContactInfoContinue(event) {
     if (!_swiftFV.contactInfo()) return;

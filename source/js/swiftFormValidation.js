@@ -664,13 +664,13 @@ class SwiftFormValidation {
 
     let valid = true;
 
-    //--------------> Travel Purpose
-    if (select_InfoTravelPurpose.value === "") {
-      select_InfoTravelPurpose.classList.add("cs-error");
-      valid = false; // Prevent form submission
-    } else {
-      select_InfoTravelPurpose.classList.remove("cs-error");
-    }
+    // //--------------> Travel Purpose
+    // if (select_InfoTravelPurpose.value === "") {
+    //   select_InfoTravelPurpose.classList.add("cs-error");
+    //   valid = false; // Prevent form submission
+    // } else {
+    //   select_InfoTravelPurpose.classList.remove("cs-error");
+    // }
 
     //=======================================> Departure Date
     if (date_TripReturn.value === "") {
@@ -696,13 +696,13 @@ class SwiftFormValidation {
     // 	select_ReturnFlight.classList.remove('cs-error');
     // }
 
-    //--------------> Final Destination Country
-    if (select_TripEndCountry.value === "") {
-      select_TripEndCountry.classList.add("cs-error");
-      valid = false; // Prevent form submission
-    } else {
-      select_TripEndCountry.classList.remove("cs-error");
-    }
+    // //--------------> Final Destination Country
+    // if (select_TripEndCountry.value === "") {
+    //   select_TripEndCountry.classList.add("cs-error");
+    //   valid = false; // Prevent form submission
+    // } else {
+    //   select_TripEndCountry.classList.remove("cs-error");
+    // }
 
     valid = this.validateAddressFields() && this.checkDateFields();
 
@@ -742,12 +742,12 @@ class SwiftFormValidation {
     // }
 
     //--------------> Trip Start Country
-    if (select_TripStartCountry.value === "") {
-      select_TripStartCountry.classList.add("cs-error");
-      valid = false; // Prevent form submission
-    } else {
-      select_TripStartCountry.classList.remove("cs-error");
-    }
+    // if (select_TripStartCountry.value === "") {
+    //   select_TripStartCountry.classList.add("cs-error");
+    //   valid = false; // Prevent form submission
+    // } else {
+    //   select_TripStartCountry.classList.remove("cs-error");
+    // }
 
     return valid;
   }
@@ -803,41 +803,44 @@ class SwiftFormValidation {
   //   return valid;
   // }
 
+  // !: TODO
+
   tripInfo() {
     // This is the init
     let valid = true;
 
-    valid = this.tripInfo_SeychellesCitizen();
+    // valid = this.tripInfo_SeychellesCitizen();
+    valid = true;
 
     if (!_visaSwift._seychellesCitizen) {
       valid = this.tripInfo_NonSeychellesCitizen();
     }
 
     // Validation: Number of Persons
-    const inputPersons = document.getElementById("input_NumberOfPersons");
-    if (
-      inputPersons.value === "" ||
-      isNaN(inputPersons.value) ||
-      parseInt(inputPersons.value) <= 0
-    ) {
-      inputPersons.parentElement.classList.add("cs-error");
-      valid = false;
-    } else {
-      inputPersons.parentElement.classList.remove("cs-error");
-    }
+    // const inputPersons = document.getElementById("input_NumberOfPersons");
+    // if (
+    //   inputPersons.value === "" ||
+    //   isNaN(inputPersons.value) ||
+    //   parseInt(inputPersons.value) <= 0
+    // ) {
+    //   inputPersons.parentElement.classList.add("cs-error");
+    //   valid = false;
+    // } else {
+    //   inputPersons.parentElement.classList.remove("cs-error");
+    // }
 
     // Validation: Number of Children
-    const inputChildren = document.getElementById("input_NumberOfChildren");
-    if (
-      inputChildren.value === "" ||
-      isNaN(inputChildren.value) ||
-      parseInt(inputChildren.value) < 0
-    ) {
-      inputChildren.parentElement.classList.add("cs-error");
-      valid = false;
-    } else {
-      inputChildren.parentElement.classList.remove("cs-error");
-    }
+    // const inputChildren = document.getElementById("input_NumberOfChildren");
+    // if (
+    //   inputChildren.value === "" ||
+    //   isNaN(inputChildren.value) ||
+    //   parseInt(inputChildren.value) < 0
+    // ) {
+    //   inputChildren.parentElement.classList.add("cs-error");
+    //   valid = false;
+    // } else {
+    //   inputChildren.parentElement.classList.remove("cs-error");
+    // }
 
     // Final Validation Result
     return valid;
@@ -1376,14 +1379,14 @@ class SwiftFormValidation {
     }
 
     // Home Address Input Validation
-    let homeAddress = this.$("#input_ContactHomeAddress").val();
-    if (homeAddress.trim() === "" || homeAddress.length < 5) {
-      this.$("#input_ContactHomeAddress").addClass("cs-error");
+    // let homeAddress = this.$("#input_ContactHomeAddress").val();
+    // if (homeAddress.trim() === "" || homeAddress.length < 5) {
+    //   this.$("#input_ContactHomeAddress").addClass("cs-error");
 
-      valid = false;
-    } else {
-      this.$("#input_ContactHomeAddress").removeClass("cs-error");
-    }
+    //   valid = false;
+    // } else {
+    //   this.$("#input_ContactHomeAddress").removeClass("cs-error");
+    // }
 
     // Select Occupation Dropdown Validation
     // let selectedOccupation = this.$('#cs_ContactInfoOccupation option:selected').val();

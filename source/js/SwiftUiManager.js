@@ -14,6 +14,7 @@ class SwiftUiManager {
   constructor($) {
     // Constructor code here
     this.$ = $;
+
     this.init();
 
     this.summaryTotal = this.$("#summaryTotal").get(0);
@@ -46,7 +47,7 @@ class SwiftUiManager {
       this.handle_hotelClick.bind(this)
     );
 
-    this.addListnerDragAndDrop();
+    // this.addListnerDragAndDrop();
   }
 
   handle_hotelClick(e) {
@@ -165,56 +166,39 @@ class SwiftUiManager {
     }
   }
 
-  processingFee() {
-    let total = 0;
-    var processing = this.$('input[name="cs_processing_period"]:checked').val();
+  prepareSummary() {
+    const $ = this.$;
 
-    // Display a message based on the selected value
-    if (processing === "standard") {
-      total += _swiftStorage.standardProcessingFee;
-      _swiftStorage._processingFeeToBeCharged =
-        _swiftStorage.standardProcessingFee;
-    } else if (processing === "premium") {
-      total += _swiftStorage.premiumProcessingFee;
-      _swiftStorage._processingFeeToBeCharged =
-        _swiftStorage.premiumProcessingFee;
-    } else if (processing === "urgent") {
-      total += _swiftStorage.urgentProcessingFee;
-      _swiftStorage._processingFeeToBeCharged =
-        _swiftStorage.urgentProcessingFee;
+    console.log("Preparing summary...");
+
+    // 1. Get data from storage and form
+    const protectionType = this.$(
+      "input[name='radio_medical_protection']:checked"
+    ).val();
+    const arrivalDateStr = this.$("#input_TripArrivalDate").val();
+    const departureDateStr = this.$("#date_TripReturn").val();
+
+    const applicants = [];
+    this.$(".cs-emergency-contact-numbers").each(function () {
+      const dob = $(this).find('input[type="date"]').val();
+      applicants.push({ dob: dob });
+    });
+
+    // 2. Calculate number of days
+    let totalDays = 0;
+    if (arrivalDateStr && departureDateStr) {
+      const arrivalDate = new Date(arrivalDateStr);
+      const departureDate = new Date(departureDateStr);
+      totalDays = Math.ceil(
+        (departureDate - arrivalDate) / (1000 * 60 * 60 * 24)
+      );
+      if (totalDays < 0) totalDays = 0;
     }
 
-    return total * Object.keys(_swiftStorage.passports).length;
-  }
-
-  displayPassportsSummary() {
-    this.$("#csSummaryPersons").empty();
-
-    // Loop through document numbers
-    for (var documentNumber in _swiftStorage.passports) {
-      // Access the full name for each passport
-      var fullName = _swiftStorage.passports[documentNumber].fullName;
-
-      var html = `
-                <p>${fullName}
-                    <span>
-                         ${
-                           _swiftStorage.currency +
-                           "" +
-                           _swiftStorage._processingFeeToBeCharged
-                         }
-                    </span>
-                </p>`;
-      this.$("#csSummaryPersons").append(html);
-    }
-  }
-
-  calculateMedicalProtection() {
-    console.log("Applicants data:", _swiftStorage.applicants);
-    let totalPassports = _swiftStorage.applicants.length;
+    // 3. Calculate number of chargeable persons
     let chargeablePersons = 0;
-
-    _swiftStorage.applicants.forEach((applicant) => {
+    let totalPersons = applicants.length;
+    applicants.forEach((applicant) => {
       if (applicant.dob) {
         const dob = new Date(applicant.dob);
         const today = new Date();
@@ -223,114 +207,50 @@ class SwiftUiManager {
         if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
           age--;
         }
-        console.log("Applicant DOB:", applicant.dob, "Calculated Age:", age);
         if (age >= 10) {
           chargeablePersons++;
         }
+      } else {
+        chargeablePersons++;
       }
     });
-    console.log("Chargeable persons:", chargeablePersons);
 
-    document.getElementById(
-      "totalNumberOfPersons"
-    ).textContent = `${chargeablePersons} of ${totalPassports}`;
-
-    if (_visaSwift._applicationSingle == false) {
-      // Group passport is active
-      _visaSwift.$("#divTotalPassports").removeClass("hidden");
-      _visaSwift.$("#summaryTotalPassports").text(totalPassports); // This will set the text inside the span to "5"
+    // 4. Get per day fee
+    let perDayFee = 0;
+    if (protectionType === "basic_protection") {
+      perDayFee = parseFloat(_swiftUiData.basic_protection_price) || 0;
+    } else if (protectionType === "total_protection") {
+      perDayFee = parseFloat(_swiftUiData.total_protection_price) || 0;
     }
 
-    var arrivalDateStr = this.$("#input_TripArrivalDate").val();
-    var returnDateStr = this.$("#date_TripReturn").val();
-    var protectionType = this.$(
-      "input[name='radio_medical_protection']:checked"
-    ).val();
-    var protectionCost = 0;
+    // 5. Calculate medical protection fee
+    const medicalProtectionFee = perDayFee * totalDays * chargeablePersons;
 
-    if (arrivalDateStr && returnDateStr && protectionType) {
-      var arrivalDate = new Date(arrivalDateStr);
-      var returnDate = new Date(returnDateStr);
+    // 6. Calculate bank fee (assuming 4% as in old code, from _swiftStorage)
+    const bankFeePercentage = _swiftStorage._bankFeeInPercentage || 4;
+    const bankFee = (bankFeePercentage / 100) * medicalProtectionFee;
 
-      var daysDifference = Math.ceil(
-        (returnDate - arrivalDate) / (1000 * 60 * 60 * 24)
-      );
+    // 7. Calculate grand total
+    const grandTotal = medicalProtectionFee + bankFee;
 
-      if (protectionType === "basic_protection") {
-        protectionCost =
-          daysDifference * _swiftStorage._basicProtectionPerDayPrice;
-
-        this.$("#protectionPerDayPrice").text(
-          _swiftStorage.currency +
-            "" +
-            _swiftStorage._basicProtectionPerDayPrice
-        );
-        document.getElementById("smp_protection").innerText =
-          "Basic Protection";
-      } else if (protectionType === "total_protection") {
-        document.getElementById("smp_protection").innerText =
-          "Total Protection";
-
-        protectionCost =
-          daysDifference * _swiftStorage._totalProtectionPerDayPrice;
-
-        this.$("#protectionPerDayPrice").text(
-          _swiftStorage.currency +
-            "" +
-            _swiftStorage._totalProtectionPerDayPrice
-        );
-      }
-    }
-
-    let tc = protectionCost * chargeablePersons;
-
+    // 8. Update summary UI
+    const currencySymbol = _swiftStorage.currency || "€";
+    this.$("#summaryTotal").text(`${currencySymbol}${grandTotal.toFixed(2)}`);
+    this.$("#protectionPerDayPrice").text(
+      `${currencySymbol}${perDayFee.toFixed(2)}`
+    );
+    this.$("#summaryTotalDays").text(totalDays);
+    this.$("#bankFee").text(`${currencySymbol}${bankFee.toFixed(2)}`);
+    this.$("#totalNumberOfPersons").text(
+      `${chargeablePersons} of ${totalPersons}`
+    );
     this.$("#MedicalProtectionFee").text(
-      _swiftStorage.currency + "" + tc.toFixed(2)
+      `${currencySymbol}${medicalProtectionFee.toFixed(2)}`
     );
 
-    return tc;
-  }
-
-  setBankFee() {
-    // Calculate the total amount with a 4% bank fee
-    _swiftStorage._swiftBankFee =
-      (_swiftStorage._bankFeeInPercentage / 100) *
-      _swiftStorage._swiftGrandTotal;
-  }
-
-  prepareSummary() {
-    console.log("Preparing summary...");
-    let total = 0;
-
-    // total = this.processingFee();
-    // this.displayPassportsSummary();
-
-    let protectionCost = 0;
-
-    protectionCost = this.calculateMedicalProtection();
-    // Object.keys(_swiftStorage.passports).length
-    _swiftStorage._swiftGrandTotal = protectionCost;
-    total += protectionCost;
-    // Add bank fee in total
-
-    // calculate bank fee
-    this.setBankFee();
-
-    total += _swiftStorage._swiftBankFee;
-
-    this.$("#bankFee").text(
-      _swiftStorage.currency + "" + _swiftStorage._swiftBankFee.toFixed(2)
-    );
-
-    // _swiftGrandTotal Variable will be used by payment Gateway
-    _swiftStorage._swiftGrandTotal = total;
-
-    this.$(this.summaryTotal).text(
-      _swiftStorage.currency + "" + _swiftStorage._swiftGrandTotal.toFixed(2)
-    );
-    this.$(this.viewSummaryTotal).text(
-      _swiftStorage.currency + "" + _swiftStorage._swiftGrandTotal.toFixed(2)
-    );
+    // Store values for later use (e.g., payment)
+    _swiftStorage._swiftGrandTotal = grandTotal;
+    _swiftStorage._swiftBankFee = bankFee;
   }
 
   // handle_dragover(e) {
@@ -842,7 +762,7 @@ class SwiftUiManager {
 
     // Check if the input is valid
     if (isNaN(arrivalDate) || isNaN(returnDate)) {
-      alert("Please enter valid dates.");
+      // alert("Please enter valid dates.");
       return;
     }
 

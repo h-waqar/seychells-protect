@@ -216,7 +216,7 @@ class Seychelles_Protect
 
 
 
-            wp_enqueue_script('swiftNavigation', plugins_url('/source/js/swiftNavigation.js', __FILE__), array('jquery'), SP_PLUGIN_VERSION, true);
+            wp_enqueue_script('swiftNavigation', plugins_url('/source/js/swiftNavigation.js', __FILE__), array('jquery', 'visaSwift', 'swiftFormValidation', 'SwiftUiManager'), SP_PLUGIN_VERSION, true);
 
 
 
