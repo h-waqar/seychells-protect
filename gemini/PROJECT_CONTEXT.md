@@ -130,3 +130,30 @@ The task was to modify the plugin to save all the form data to the ACF fields of
 4.  An AJAX request is sent to the `save_booking_sy` action with the collected data.
 5.  The `cs_save_booking_sy` function in `save_booking.php` creates a new "protection" post and saves the form data to the corresponding ACF fields.
 6.  A success message is displayed to the user.
+
+### 6.5. Bug Fixes and Improvements (Follow-up)
+
+*   **Problem:** The post title for new bookings was a generic "New Booking".
+*   **Fix:** The `save_booking.php` script was updated to create a more descriptive title: "New Booking - [Applicant's Email]".
+
+*   **Problem:** The "Emergency Contacts" repeater was saving the phone number instead of the Date of Birth.
+*   **Fix:** The `name` attribute of the date of birth input field in `personal-information.php` was corrected. The `save_booking.php` script was also updated to save the date of birth to the correct ACF sub-field (`emergency_contact_dob`).
+
+*   **Problem:** The ACF field group contained many unused fields, and some labels were incorrect.
+*   **Fix:** The `acf/acf-export.json` file was modified to:
+    *   Remove the following unused fields: `applicant_country`, `acf_passport_info`, `purpose_of_travel`, `origin_trip`, `final_destination_country`, `customer_staying_information`.
+    *   Change the label for the `emergency_contact_dob` field to "Date of Birth".
+
+*   **Problem:** The "Amount" and "Medical Protection" fields were not being saved.
+*   **Fix:** The `getAllFormData()` function in `visaSwift.js` was updated to collect the total amount and the selected medical protection plan. The `save_booking.php` script was updated to save this information.
+
+*   **Problem:** The Date of Birth for the second (and subsequent) applicants in the repeater was not being saved.
+*   **Fix:** The `handle_btnAddContact` function in `swiftFormValidation.js` was updated to include the correct `name` attribute (`emg_contact_dob`) for the date of birth input field in the dynamically generated HTML.
+
+### 6.6. Manual Steps for ACF Configuration
+
+To apply the changes to the Advanced Custom Fields, you need to import the updated configuration file:
+
+1.  In the WordPress admin, go to **Custom Fields > Tools**.
+2.  In the "Import Field Groups" section, select the `acf-export.json` file from the plugin's `acf` directory.
+3.  Click "Import File". This will update the field group with the correct fields and labels.

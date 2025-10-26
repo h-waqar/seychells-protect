@@ -1161,7 +1161,7 @@ class SwiftFormValidation {
                             <div class="mb-3">
                                 <label>Date of birth</label>
                                 <input type="date" onchange="_swiftFV.handle_emgTelephone(this)"
-                                    class="form-control d-block" placeholder="Date Of Birth" name="">
+                                    class="form-control d-block" placeholder="Date Of Birth" name="emg_contact_dob">
                             </div>
                         </div>
                     </div>
