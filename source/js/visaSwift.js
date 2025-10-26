@@ -619,7 +619,7 @@ class VisaSwift {
     this.$('#contact_Duplicate .cs-contact-details').each(function () {
       let applicant = {};
       applicant.name = _visaSwift.$(this).find('input[name="emg_contact_name"]').val();
-      applicant.dob = _visaSwift.$(this).find('input[type="date"]').val();
+      applicant.dob = _visaSwift.$(this).find('input[name="emg_contact_dob"]').val();
       data.applicants.push(applicant);
     });
 
@@ -627,6 +627,12 @@ class VisaSwift {
     data.arrival_date = this.$('#input_TripArrivalDate').val();
     data.departure_date = this.$('#date_TripReturn').val();
     data.address_in_seychelles = this.$('#address_in_seychelles').val();
+
+    // Medical Protection
+    data.medical_protection = this.$('input[name="radio_medical_protection"]:checked').val();
+
+    // Amount
+    data.amount = this.$('#summaryTotal').text();
 
     return data;
   }
