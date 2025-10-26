@@ -283,8 +283,6 @@ class SwiftNavigation {
     this.$("#three_ContactInfo").removeClass("hidden");
     this.$("#bsNavBasicInfo").addClass("bs-active");
 
-    _swiftUiManager.prepareSummary();
-
     _visaSwift.showTitle(
       "Complete your Application",
       "Pay safely and securely using one of the payment methods below. All application fees and donations are non-refundable and non-transferrable. Third party providers' terms & conditions and refund policies apply"
@@ -323,6 +321,8 @@ class SwiftNavigation {
       return;
     }
 
+    _swiftUiManager.prepareSummary();
+
     this.prepareNavigation();
     this.$("#four_summary").removeClass("hidden");
     this.$("#bsNavReviewSubmit").addClass("bs-active");
@@ -349,8 +349,6 @@ class SwiftNavigation {
     );
 
     // Prepare Summary For User
-
-    _swiftUiManager.prepareSummary();
 
     // save the processing period  in storage class
     _swiftStorage.processingPeriod = this.$(

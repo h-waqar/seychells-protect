@@ -210,12 +210,30 @@ class SwiftUiManager {
   }
 
   calculateMedicalProtection() {
-    // let totalPassports = Object.keys(_swiftStorage.passports).length;
-    // let totalPassports = Object.keys(_swiftStorage.passports).length;
-    let totalPassports =
-      parseInt(document.getElementById("input_NumberOfPersons").value) || 0;
-    document.getElementById("totalNumberOfPersons").textContent =
-      totalPassports;
+    console.log("Applicants data:", _swiftStorage.applicants);
+    let totalPassports = _swiftStorage.applicants.length;
+    let chargeablePersons = 0;
+
+    _swiftStorage.applicants.forEach((applicant) => {
+      if (applicant.dob) {
+        const dob = new Date(applicant.dob);
+        const today = new Date();
+        let age = today.getFullYear() - dob.getFullYear();
+        const m = today.getMonth() - dob.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+          age--;
+        }
+        console.log("Applicant DOB:", applicant.dob, "Calculated Age:", age);
+        if (age >= 10) {
+          chargeablePersons++;
+        }
+      }
+    });
+    console.log("Chargeable persons:", chargeablePersons);
+
+    document.getElementById(
+      "totalNumberOfPersons"
+    ).textContent = `${chargeablePersons} of ${totalPassports}`;
 
     if (_visaSwift._applicationSingle == false) {
       // Group passport is active
@@ -264,7 +282,7 @@ class SwiftUiManager {
       }
     }
 
-    let tc = protectionCost * totalPassports;
+    let tc = protectionCost * chargeablePersons;
 
     this.$("#MedicalProtectionFee").text(
       _swiftStorage.currency + "" + tc.toFixed(2)
@@ -281,6 +299,7 @@ class SwiftUiManager {
   }
 
   prepareSummary() {
+    console.log("Preparing summary...");
     let total = 0;
 
     // total = this.processingFee();
@@ -314,154 +333,154 @@ class SwiftUiManager {
     );
   }
 
-  handle_dragover(e) {
-    e.preventDefault();
-    e.stopPropagation(); // Ens
+  // handle_dragover(e) {
+  //   e.preventDefault();
+  //   e.stopPropagation(); // Ens
 
-    e.target.classList.add("cs-dragover"); // Add a visual indicator when dragging over the area
-  }
+  //   e.target.classList.add("cs-dragover"); // Add a visual indicator when dragging over the area
+  // }
 
-  handle_dragleave(e) {
-    e.preventDefault();
-    e.stopPropagation(); // Ens
+  // handle_dragleave(e) {
+  //   e.preventDefault();
+  //   e.stopPropagation(); // Ens
 
-    e.target.classList.remove("cs-dragover");
-  }
+  //   e.target.classList.remove("cs-dragover");
+  // }
 
-  handle_selfieDrop(e) {
-    e.preventDefault();
-    e.stopPropagation(); // Ens
-    e.target.classList.remove("cs-dragover"); // Remove the visual indicator when dropping
+  // handle_selfieDrop(e) {
+  //   e.preventDefault();
+  //   e.stopPropagation(); // Ens
+  //   e.target.classList.remove("cs-dragover"); // Remove the visual indicator when dropping
 
-    // Update the corresponding input field with the dropped file
-    var inputSelfieInfo = this.$(e.target).find(".input_selfie_photo");
+  //   // Update the corresponding input field with the dropped file
+  //   var inputSelfieInfo = this.$(e.target).find(".input_selfie_photo");
 
-    inputSelfieInfo.files = e.dataTransfer.files;
+  //   inputSelfieInfo.files = e.dataTransfer.files;
 
-    var customEvent = {};
-    customEvent.target = inputSelfieInfo;
+  //   var customEvent = {};
+  //   customEvent.target = inputSelfieInfo;
 
-    _visaSwift.handle_inputSelfiePhoto(customEvent);
-  }
+  //   _visaSwift.handle_inputSelfiePhoto(customEvent);
+  // }
 
-  handle_drop(e) {
-    e.preventDefault();
-    e.stopPropagation(); // Ens
-    e.target.classList.remove("cs-dragover"); // Remove the visual indicator when dropping
+  // handle_drop(e) {
+  //   e.preventDefault();
+  //   e.stopPropagation(); // Ens
+  //   e.target.classList.remove("cs-dragover"); // Remove the visual indicator when dropping
 
-    console.log(e);
-    // Get the dropped file
-    var file = e.dataTransfer.files[0];
+  //   console.log(e);
+  //   // Get the dropped file
+  //   var file = e.dataTransfer.files[0];
 
-    // Update the corresponding input field with the dropped file
-    var inputPassportInfo = this.$(e.target).find(".input-passport-info");
-    console.log(inputPassportInfo);
-    inputPassportInfo.files = e.dataTransfer.files;
+  //   // Update the corresponding input field with the dropped file
+  //   var inputPassportInfo = this.$(e.target).find(".input-passport-info");
+  //   console.log(inputPassportInfo);
+  //   inputPassportInfo.files = e.dataTransfer.files;
 
-    var customEvent = {};
-    customEvent.target = inputPassportInfo;
+  //   var customEvent = {};
+  //   customEvent.target = inputPassportInfo;
 
-    _visaSwift.handle_passportUpload(customEvent);
-  }
+  //   _visaSwift.handle_passportUpload(customEvent);
+  // }
 
-  deleteDocumentWithId(documentId, docName) {
-    var elementToDelete = null;
+  // deleteDocumentWithId(documentId, docName) {
+  //   var elementToDelete = null;
 
-    // Find the element with the specified data-id
+  //   // Find the element with the specified data-id
 
-    if (docName == "accomodation" || docName == "airline") {
-      elementToDelete = this.$(`.cs_docs [data-id="${documentId}"]`);
-    } else {
-      if (_visaSwift._applicationSingle)
-        elementToDelete = this.$(`.cs_docs [data-id="${documentId}"]`);
-      else elementToDelete = this.$(`.cs_group_docs [data-id="${documentId}"]`);
-    }
+  //   if (docName == "accomodation" || docName == "airline") {
+  //     elementToDelete = this.$(`.cs_docs [data-id="${documentId}"]`);
+  //   } else {
+  //     if (_visaSwift._applicationSingle)
+  //       elementToDelete = this.$(`.cs_docs [data-id="${documentId}"]`);
+  //     else elementToDelete = this.$(`.cs_group_docs [data-id="${documentId}"]`);
+  //   }
 
-    // Find the nearest ancestor with class cs-view-docs and remove it
-    const nearestCsViewDocs = elementToDelete.closest(".cs-view-docs");
+  //   // Find the nearest ancestor with class cs-view-docs and remove it
+  //   const nearestCsViewDocs = elementToDelete.closest(".cs-view-docs");
 
-    if (nearestCsViewDocs.length > 0) {
-      nearestCsViewDocs.remove();
-    } else {
-      console.log('No parent with class "cs-view-docs" found.');
-    }
-  }
+  //   if (nearestCsViewDocs.length > 0) {
+  //     nearestCsViewDocs.remove();
+  //   } else {
+  //     console.log('No parent with class "cs-view-docs" found.');
+  //   }
+  // }
 
-  addListnerDragAndDrop() {
-    /**
-     * Drag over and leave
-     */
-    // this.$("#wrap_MultiplPassports").on("dragover", ".cs-dotted-container", this.handle_dragover.bind(this));
-    // this.$("#wrap_MultiplPassports").on("dragleave", ".cs-dotted-container", this.handle_dragleave.bind(this));
-    // this.$("#wrap_MultiplPassports").on("drop", ".cs-dotted-container", _swiftUiManager.handle_drop(e));
-    //  Drag Leave Listner
-    // // Get references to the drop area and the file input
-    // var dropArea = document.getElementById("dropArea");
-    // var inputPassportInfo = document.getElementById("input_PassportInfo");
-    // // Add event listeners to handle drag and drop functionality
-    // dropArea.addEventListener("dragover", );
-    // dropArea.addEventListener("dragleave", function () {
-    //     dropArea.classList.remove("cs-dragover"); // Remove the visual indicator when leaving the area
-    // });
-    // dropArea.addEventListener("drop", function (e) {
-    //
-    // });
-  }
+  // addListnerDragAndDrop() {
+  /**
+   * Drag over and leave
+   */
+  // this.$("#wrap_MultiplPassports").on("dragover", ".cs-dotted-container", this.handle_dragover.bind(this));
+  // this.$("#wrap_MultiplPassports").on("dragleave", ".cs-dotted-container", this.handle_dragleave.bind(this));
+  // this.$("#wrap_MultiplPassports").on("drop", ".cs-dotted-container", _swiftUiManager.handle_drop(e));
+  //  Drag Leave Listner
+  // // Get references to the drop area and the file input
+  // var dropArea = document.getElementById("dropArea");
+  // var inputPassportInfo = document.getElementById("input_PassportInfo");
+  // // Add event listeners to handle drag and drop functionality
+  // dropArea.addEventListener("dragover", );
+  // dropArea.addEventListener("dragleave", function () {
+  //     dropArea.classList.remove("cs-dragover"); // Remove the visual indicator when leaving the area
+  // });
+  // dropArea.addEventListener("drop", function (e) {
+  //
+  // });
+  // }
 
   // Class methods go here
   init() {
-    this.img_GroupSelfie = this.$("#img_GroupSelfie").get(0);
-    this.res_PImg = this.$("#res_PImg").get(0);
-    this._groupUseThisSelfie = this.$("#group_UseThisSelfie").get(0);
+    // this.img_GroupSelfie = this.$("#img_GroupSelfie").get(0);
+    // this.res_PImg = this.$("#res_PImg").get(0);
+    // this._groupUseThisSelfie = this.$("#group_UseThisSelfie").get(0);
 
     // 1
-    this._btnGroupUseThisPic = this.$("#btn_GroupUseThisPhoto").get(0);
+    // this._btnGroupUseThisPic = this.$("#btn_GroupUseThisPhoto").get(0);
 
     // 2
-    this._btnGroupRetryPhoto = this.$("#btn_GroupRetryPhoto").get(0);
-    this._btnGroupUseThisPicConfirm = this.$(
-      "#btn_GroupUseThisPhotoConfirm"
-    ).get(0);
+    // this._btnGroupRetryPhoto = this.$("#btn_GroupRetryPhoto").get(0);
+    // this._btnGroupUseThisPicConfirm = this.$(
+    //   "#btn_GroupUseThisPhotoConfirm"
+    // ).get(0);
 
     // 3
-    this._btnGroupHealthSaveExit = this.$("#btn_GroupHealthSaveExit").get(0);
-    this._btnGroupHealthContinue = this.$("#btn_GroupHealthContinue").get(0);
+    // this._btnGroupHealthSaveExit = this.$("#btn_GroupHealthSaveExit").get(0);
+    // this._btnGroupHealthContinue = this.$("#btn_GroupHealthContinue").get(0);
 
     // 4
-    this._btnGroupDocsSaveExit = this.$("#btn_GroupDocsSaveExit").get(0);
-    this._btnGroupDocsContinue = this.$("#btn_GroupDocsContinue").get(0);
+    // this._btnGroupDocsSaveExit = this.$("#btn_GroupDocsSaveExit").get(0);
+    // this._btnGroupDocsContinue = this.$("#btn_GroupDocsContinue").get(0);
 
     // Btn wrapper <-_->
-    this._groupFUploadSelfie = this.$("#groupF_UploadSelfie").get(0);
-    this._groupFRetryUploadSelfie = this.$("#groupF_RetryUploadSelfie").get(0);
-    this._groupFHealthDeclaration = this.$("#groupF_HealthDeclaration").get(0);
-    this._groupFDocument = this.$("#groupF_Document").get(0);
+    // this._groupFUploadSelfie = this.$("#groupF_UploadSelfie").get(0);
+    // this._groupFRetryUploadSelfie = this.$("#groupF_RetryUploadSelfie").get(0);
+    // this._groupFHealthDeclaration = this.$("#groupF_HealthDeclaration").get(0);
+    // this._groupFDocument = this.$("#groupF_Document").get(0);
 
     /*
             Handlers Starts here
          */
 
     // 1
-    if (this._btnGroupUseThisPic) {
-      this._btnGroupUseThisPic.addEventListener(
-        "click",
-        this.handle_btnGroupUseThisPic.bind(this)
-      );
-    }
+    // if (this._btnGroupUseThisPic) {
+    //   this._btnGroupUseThisPic.addEventListener(
+    //     "click",
+    //     this.handle_btnGroupUseThisPic.bind(this)
+    //   );
+    // }
 
-    // 2
-    if (this._btnGroupRetryPhoto) {
-      this._btnGroupRetryPhoto.addEventListener(
-        "click",
-        this.handle_btnGroupRetryPhoto.bind(this)
-      );
-    }
-    if (this._btnGroupUseThisPicConfirm) {
-      this._btnGroupUseThisPicConfirm.addEventListener(
-        "click",
-        this.handle_btnGroupUseThisPicConfirm.bind(this)
-      );
-    }
+    // // 2
+    // if (this._btnGroupRetryPhoto) {
+    //   this._btnGroupRetryPhoto.addEventListener(
+    //     "click",
+    //     this.handle_btnGroupRetryPhoto.bind(this)
+    //   );
+    // }
+    // if (this._btnGroupUseThisPicConfirm) {
+    //   this._btnGroupUseThisPicConfirm.addEventListener(
+    //     "click",
+    //     this.handle_btnGroupUseThisPicConfirm.bind(this)
+    //   );
+    // }
 
     // 3
     if (this._btnGroupHealthSaveExit) {
@@ -644,150 +663,150 @@ class SwiftUiManager {
   }
 
   // 3
-  handle_btnGroupHealthSaveExit() {
-    _visaSwift.handle_closePopup();
-    this._groupFUploadSelfie.classList.remove("hidden");
-    this._groupFRetryUploadSelfie.classList.add("hidden");
-    this._groupFHealthDeclaration.classList.add("hidden");
-    this._groupFDocument.classList.add("hidden");
+  // handle_btnGroupHealthSaveExit() {
+  //   _visaSwift.handle_closePopup();
+  //   this._groupFUploadSelfie.classList.remove("hidden");
+  //   this._groupFRetryUploadSelfie.classList.add("hidden");
+  //   this._groupFHealthDeclaration.classList.add("hidden");
+  //   this._groupFDocument.classList.add("hidden");
 
-    // PENDING SAVE DATA HERE
+  //   // PENDING SAVE DATA HERE
 
-    _visaSwift._groupHealthDeclaration.classList.add("hidden");
-    this._groupUseThisSelfie.classList.add("hidden");
-    _visaSwift._groupUploadSelfie.classList.add("hidden");
-    _visaSwift._groupOptDocs.classList.add("hidden");
+  //   _visaSwift._groupHealthDeclaration.classList.add("hidden");
+  //   this._groupUseThisSelfie.classList.add("hidden");
+  //   _visaSwift._groupUploadSelfie.classList.add("hidden");
+  //   _visaSwift._groupOptDocs.classList.add("hidden");
 
-    // Test Validation For
-    _swiftMP.validate();
-  }
+  //   // Test Validation For
+  //   _swiftMP.validate();
+  // }
 
-  handle_btnGroupHealthContinue() {
-    // _visaSwift._groupOptDocs.classList.remove('hidden');
-    // this._groupFUploadSelfie.classList.add('hidden');
-    // this._groupFRetryUploadSelfie.classList.add('hidden');
-    // this._groupFHealthDeclaration.classList.add('hidden');
-    // this._groupFDocument.classList.remove('hidden');
-    // this._groupUseThisSelfie.classList.add('hidden');
-    // _visaSwift._groupHealthDeclaration.classList.add('hidden');
-    // _visaSwift._groupUploadSelfie.classList.add('hidden');
-  }
+  // handle_btnGroupHealthContinue() {
+  // _visaSwift._groupOptDocs.classList.remove('hidden');
+  // this._groupFUploadSelfie.classList.add('hidden');
+  // this._groupFRetryUploadSelfie.classList.add('hidden');
+  // this._groupFHealthDeclaration.classList.add('hidden');
+  // this._groupFDocument.classList.remove('hidden');
+  // this._groupUseThisSelfie.classList.add('hidden');
+  // _visaSwift._groupHealthDeclaration.classList.add('hidden');
+  // _visaSwift._groupUploadSelfie.classList.add('hidden');
+  // }
 
   // 4
-  handle_btnGroupDocsSaveExit() {
-    _visaSwift.handle_closePopup();
-    this._groupFUploadSelfie.classList.remove("hidden");
-    this._groupFRetryUploadSelfie.classList.add("hidden");
-    this._groupFHealthDeclaration.classList.add("hidden");
-    this._groupFDocument.classList.add("hidden");
+  // handle_btnGroupDocsSaveExit() {
+  //   _visaSwift.handle_closePopup();
+  //   this._groupFUploadSelfie.classList.remove("hidden");
+  //   this._groupFRetryUploadSelfie.classList.add("hidden");
+  //   this._groupFHealthDeclaration.classList.add("hidden");
+  //   this._groupFDocument.classList.add("hidden");
 
-    // PENDING SAVE DATA HERE
+  //   // PENDING SAVE DATA HERE
 
-    // save the DOCUMENT HERE
+  //   // save the DOCUMENT HERE
 
-    _visaSwift._groupHealthDeclaration.classList.add("hidden");
-    this._groupUseThisSelfie.classList.add("hidden");
-    _visaSwift._groupUploadSelfie.classList.add("hidden");
-    _visaSwift._groupOptDocs.classList.add("hidden");
+  //   _visaSwift._groupHealthDeclaration.classList.add("hidden");
+  //   this._groupUseThisSelfie.classList.add("hidden");
+  //   _visaSwift._groupUploadSelfie.classList.add("hidden");
+  //   _visaSwift._groupOptDocs.classList.add("hidden");
 
-    // validate multipassport
-    _swiftMP.validate();
-  }
+  //   // validate multipassport
+  //   _swiftMP.validate();
+  // }
 
-  handle_btnGroupDocsContinue() {
-    _visaSwift.handle_closePopup();
-    this._groupFUploadSelfie.classList.remove("hidden");
-    this._groupFRetryUploadSelfie.classList.add("hidden");
-    this._groupFHealthDeclaration.classList.add("hidden");
-    this._groupFDocument.classList.add("hidden");
+  // handle_btnGroupDocsContinue() {
+  //   _visaSwift.handle_closePopup();
+  //   this._groupFUploadSelfie.classList.remove("hidden");
+  //   this._groupFRetryUploadSelfie.classList.add("hidden");
+  //   this._groupFHealthDeclaration.classList.add("hidden");
+  //   this._groupFDocument.classList.add("hidden");
 
-    // PENDING SAVE DATA HERE
+  //   // PENDING SAVE DATA HERE
 
-    // save the DOCUMENT HERE
+  //   // save the DOCUMENT HERE
 
-    _visaSwift._groupHealthDeclaration.classList.add("hidden");
-    this._groupUseThisSelfie.classList.add("hidden");
-    _visaSwift._groupUploadSelfie.classList.remove("hidden");
-    _visaSwift._groupOptDocs.classList.add("hidden");
+  //   _visaSwift._groupHealthDeclaration.classList.add("hidden");
+  //   this._groupUseThisSelfie.classList.add("hidden");
+  //   _visaSwift._groupUploadSelfie.classList.remove("hidden");
+  //   _visaSwift._groupOptDocs.classList.add("hidden");
 
-    this.$("#sb_GroupContactInformation").removeClass("cs_disabled");
-    this.$("#sb_GroupContactInformation").addClass("cs-arrow");
+  //   this.$("#sb_GroupContactInformation").removeClass("cs_disabled");
+  //   this.$("#sb_GroupContactInformation").addClass("cs-arrow");
 
-    // validate multipassport
-    _swiftMP.validate();
-  }
+  //   // validate multipassport
+  //   _swiftMP.validate();
+  // }
 
-  removePassUpload() {
-    this.$("#wrap_MultiplPassports .group_passport").remove();
-  }
+  // removePassUpload() {
+  //   this.$("#wrap_MultiplPassports .group_passport").remove();
+  // }
 
-  addGroupPassportResponseSection(response) {
-    // passport already exists
-    if (response.record_exists) return;
+  // addGroupPassportResponseSection(response) {
+  //   // passport already exists
+  //   if (response.record_exists) return;
 
-    var sectionToMove = this.$("#group_PassportResHtml").get(0);
-    var targetDiv = this.$(this.wrap_MultiplPassports);
-    targetDiv.append(sectionToMove.innerHTML);
-  }
+  //   var sectionToMove = this.$("#group_PassportResHtml").get(0);
+  //   var targetDiv = this.$(this.wrap_MultiplPassports);
+  //   targetDiv.append(sectionToMove.innerHTML);
+  // }
 
-  delPassportContent() {
-    const documentNumber = _swiftStorage._documentNumber;
-    // Find all <section> elements within the specified container by ID
-    var sections = this.$("#wrap_MultiplPassports").find(
-      "section[data-document-number]"
-    );
+  // delPassportContent() {
+  //   const documentNumber = _swiftStorage._documentNumber;
+  //   // Find all <section> elements within the specified container by ID
+  //   var sections = this.$("#wrap_MultiplPassports").find(
+  //     "section[data-document-number]"
+  //   );
 
-    sections.each(function () {
-      // Get the data-document-number attribute value of the current section
-      var sectionDocumentNumber = _swiftUiManager
-        .$(this)
-        .data("document-number");
+  //   sections.each(function () {
+  //     // Get the data-document-number attribute value of the current section
+  //     var sectionDocumentNumber = _swiftUiManager
+  //       .$(this)
+  //       .data("document-number");
 
-      // Check if the current section's data-document-number matches the parameter
-      if (sectionDocumentNumber === documentNumber) {
-        // Remove the section if there's a match
-        _swiftUiManager.$(this).remove();
-      }
-    });
-  }
+  //     // Check if the current section's data-document-number matches the parameter
+  //     if (sectionDocumentNumber === documentNumber) {
+  //       // Remove the section if there's a match
+  //       _swiftUiManager.$(this).remove();
+  //     }
+  //   });
+  // }
 
-  showGroupPassportInfo(response) {
-    // passport is already uploaded so we dont need to create new UI
-    if (response.record_exists) return;
+  // showGroupPassportInfo(response) {
+  //   // passport is already uploaded so we dont need to create new UI
+  //   if (response.record_exists) return;
 
-    var documentNumber = response.data.fields.documentNumber;
-    var fullName = response.data.fields.fullName;
-    var dateOfBirth = response.data.fields.dateOfBirth;
-    var dateOfExpiry = response.data.fields.dateOfExpiry;
+  //   var documentNumber = response.data.fields.documentNumber;
+  //   var fullName = response.data.fields.fullName;
+  //   var dateOfBirth = response.data.fields.dateOfBirth;
+  //   var dateOfExpiry = response.data.fields.dateOfExpiry;
 
-    // Get the first element with the class "group_p_response"
-    this.$(".group_p_response")
-      .first()
-      .attr("data-document-number", documentNumber);
+  //   // Get the first element with the class "group_p_response"
+  //   this.$(".group_p_response")
+  //     .first()
+  //     .attr("data-document-number", documentNumber);
 
-    // Find the first <section> with the specified data-document-number
+  //   // Find the first <section> with the specified data-document-number
 
-    var targetSection = this.$(
-      "section[data-document-number='" + documentNumber + "']:first"
-    );
+  //   var targetSection = this.$(
+  //     "section[data-document-number='" + documentNumber + "']:first"
+  //   );
 
-    targetSection.find(".group_ResFullName").text(fullName);
-    targetSection.find(".group_ResDocNo").text(documentNumber);
-    targetSection.find(".group_ResDoB").text(dateOfBirth);
-    targetSection.find(".group_ResValid").text(dateOfExpiry);
+  //   targetSection.find(".group_ResFullName").text(fullName);
+  //   targetSection.find(".group_ResDocNo").text(documentNumber);
+  //   targetSection.find(".group_ResDoB").text(dateOfBirth);
+  //   targetSection.find(".group_ResValid").text(dateOfExpiry);
 
-    targetSection.find(".res_PImg").attr("src", response.passportUrl);
-  }
+  //   targetSection.find(".res_PImg").attr("src", response.passportUrl);
+  // }
 
-  handle_contentForCitizen() {
-    _visaSwift.setCitizenType();
+  // handle_contentForCitizen() {
+  //   _visaSwift.setCitizenType();
 
-    if (_visaSwift._seychellesCitizen == true) {
-      this.hideElementsByClass("citizen-view");
-    } else {
-      this.showElementsByClass("citizen-view");
-    }
-  }
+  //   if (_visaSwift._seychellesCitizen == true) {
+  //     this.hideElementsByClass("citizen-view");
+  //   } else {
+  //     this.showElementsByClass("citizen-view");
+  //   }
+  // }
 
   hideElementsByClass(className) {
     const elements = document.getElementsByClassName(className);
@@ -840,4 +859,5 @@ class SwiftUiManager {
 
 jQuery(document).ready(() => {
   window._swiftUiManager = new SwiftUiManager(jQuery);
+  _swiftUiManager.ShowSummaryData();
 });

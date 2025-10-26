@@ -163,6 +163,9 @@ class Seychelles_Protect
             wp_enqueue_script('swiftFormValidation', plugins_url('/source/js/swiftFormValidation.js', __FILE__), array('jquery'), SP_PLUGIN_VERSION, true);
             wp_enqueue_script('niceCountryInput', plugins_url('/source/js/niceCountryInput.js', __FILE__), array('jquery'), SP_PLUGIN_VERSION, true);
             wp_enqueue_script('SwiftUiManager', plugins_url('/source/js/SwiftUiManager.js', __FILE__), array('jquery'), SP_PLUGIN_VERSION, true);
+
+            wp_localize_script('SwiftUiManager', '_swiftUiData' , );
+
             wp_enqueue_script('swiftMultiPassport', plugins_url('/source/js/swiftMultiPassport.js', __FILE__), array('jquery'), SP_PLUGIN_VERSION, true);
             wp_enqueue_script('swiftCountrySelect', plugins_url('/source/js/swiftCountrySelect.js', __FILE__), array('jquery'), SP_PLUGIN_VERSION, true);
 
