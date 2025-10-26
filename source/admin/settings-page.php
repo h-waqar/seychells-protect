@@ -9,22 +9,26 @@
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">Basic Protection Price</th>
-                <td><input type="text" name="sp_basic_protection_price" value="<?php echo esc_attr(get_option('sp_basic_protection_price')); ?>" /></td>
+                <td><input type="text" name="sp_basic_protection_price"
+                        value="<?php echo esc_attr(get_option('sp_basic_protection_price', 5)); ?>" /></td>
             </tr>
             <tr valign="top">
                 <th scope="row">Total Protection Price</th>
-                <td><input type="text" name="sp_total_protection_price" value="<?php echo esc_attr(get_option('sp_total_protection_price')); ?>" /></td>
+                <td><input type="text" name="sp_total_protection_price"
+                        value="<?php echo esc_attr(get_option('sp_total_protection_price', 10)); ?>" /></td>
             </tr>
             <tr valign="top">
                 <th scope="row">Bank Fee Percentage (%)</th>
-                <td><input type="number" name="sp_bank_fee_percentage" value="<?php echo esc_attr(get_option('sp_bank_fee_percentage', 4)); ?>" /></td>
+                <td><input type="number" name="sp_bank_fee_percentage"
+                        value="<?php echo esc_attr(get_option('sp_bank_fee_percentage', 4)); ?>" /></td>
             </tr>
         </table>
         <h2>Mail Settings</h2>
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">Hostname</th>
-                <td><input type="text" name="sp_hostname" value="<?php echo esc_attr(get_option('sp_hostname')); ?>" /></td>
+                <td><input type="text" name="sp_hostname" value="<?php echo esc_attr(get_option('sp_hostname')); ?>" />
+                </td>
             </tr>
             <tr valign="top">
                 <th scope="row">Domain</th>
@@ -35,15 +39,18 @@
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">Merchant ID</th>
-                <td><input type="text" name="sp_cybersource_merchant_id" value="<?php echo esc_attr(get_option('sp_cybersource_merchant_id')); ?>" /></td>
+                <td><input type="text" name="sp_cybersource_merchant_id"
+                        value="<?php echo esc_attr(get_option('sp_cybersource_merchant_id')); ?>" /></td>
             </tr>
             <tr valign="top">
                 <th scope="row">Merchant Key ID</th>
-                <td><input type="text" name="sp_cybersource_merchant_key_id" value="<?php echo esc_attr(get_option('sp_cybersource_merchant_key_id')); ?>" /></td>
+                <td><input type="text" name="sp_cybersource_merchant_key_id"
+                        value="<?php echo esc_attr(get_option('sp_cybersource_merchant_key_id')); ?>" /></td>
             </tr>
             <tr valign="top">
                 <th scope="row">Merchant Secret Key</th>
-                <td><input type="password" name="sp_cybersource_merchant_secret_key" value="<?php echo esc_attr(get_option('sp_cybersource_merchant_secret_key')); ?>" /></td>
+                <td><input type="password" name="sp_cybersource_merchant_secret_key"
+                        value="<?php echo esc_attr(get_option('sp_cybersource_merchant_secret_key')); ?>" /></td>
             </tr>
         </table>
         <?php submit_button(); ?>
