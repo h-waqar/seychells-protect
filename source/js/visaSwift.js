@@ -608,20 +608,35 @@ class VisaSwift {
     }
   }
 
-  handle_btnPaymentOptionContinue(e) {
-    /**
-     * Handle Payment
-     */
+  getAllFormData() {
+    let data = {};
 
-    if (!_swiftFV.payment()) return;
-    let _pageData = _swiftStorage.paymentInfo();
+    // Personal Information
+    data.phone_number = this.$('#input_ContactYourNumber').val();
+    data.email = this.$('#input_ContactYourEmail').val();
+
+    data.applicants = [];
+    this.$('#contact_Duplicate .cs-contact-details').each(function () {
+      let applicant = {};
+      applicant.name = _visaSwift.$(this).find('input[name="emg_contact_name"]').val();
+      applicant.dob = _visaSwift.$(this).find('input[type="date"]').val();
+      data.applicants.push(applicant);
+    });
+
+    // Trip Information
+    data.arrival_date = this.$('#input_TripArrivalDate').val();
+    data.departure_date = this.$('#date_TripReturn').val();
+    data.address_in_seychelles = this.$('#address_in_seychelles').val();
+
+    return data;
+  }
+
+  handle_btnPaymentOptionContinue(e) {
+    let allData = this.getAllFormData();
 
     let _data = {
-      action: "cybersource_sy",
-      data: _pageData,
-      applicantId: this._applicantId,
-      amount: _swiftStorage._swiftGrandTotal,
-      processing_period: this._processingPlan,
+      action: "save_booking_sy",
+      data: allData,
     };
 
     this.runSpinner(true);
@@ -629,6 +644,8 @@ class VisaSwift {
       .call(_data, "json", "post")
       .error((error) => {
         console.log(error);
+        this.runSpinner(false);
+        _visaSwift.alertDanger("Sorry! Operation Failed", "Unknown error");
       })
       .then((response) => {
         this.runSpinner(false);

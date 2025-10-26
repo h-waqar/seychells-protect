@@ -92,3 +92,41 @@ The form's interactivity is managed by a set of JavaScript files:
 ### 5.5. Required ACF Field
 
 -   **Action Required:** For the date of birth of additional applicants to be saved, a new field must be added to the `emergency_contacts` repeater field in ACF. The new field should be named `emergency_contact_dob` and its type should be set to "Date Picker".
+
+## 6. Save Booking on Pay Button Click (No Payment)
+
+### 6.1. Task
+
+The task was to modify the plugin to save all the form data to the ACF fields of a new "protection" custom post type when the "Pay Now" button is clicked, bypassing the CyberSource payment gateway.
+
+### 6.2. Plan
+
+1.  **Create a New AJAX Handler:**
+    *   Create a new file named `save_booking.php` in the `source/ajax/` directory.
+    *   This file will handle a new AJAX action, `save_booking_sy`.
+    *   It will receive all the form data and create a new post of the `protection` post type, saving the data to the corresponding ACF fields.
+
+2.  **Modify the JavaScript:**
+    *   Modify the `handle_btnPaymentOptionContinue` function in `source/js/visaSwift.js`.
+    *   Create a new `getAllFormData()` function to gather all the data from the form fields.
+    *   Send this consolidated data to the new `save_booking_sy` AJAX action.
+
+3.  **Skip Payment:**
+    *   Upon successful data submission, the user will be shown a success message, and the payment process will be bypassed.
+
+### 6.3. Implementation
+
+*   **`source/ajax/save_booking.php`:** A new file was created to handle the `save_booking_sy` AJAX action. It receives the form data and saves it to a new `protection` post using the `update_field()` function.
+*   **`init.php`:** The `save_booking.php` file was included to register the new AJAX handler.
+*   **`source/js/visaSwift.js`:**
+    *   A new function `getAllFormData()` was added to collect data from the `personal-information.php` and `trip-information.php` forms.
+    *   The `handle_btnPaymentOptionContinue()` function was modified to call `getAllFormData()` and send the data to the `save_booking_sy` action.
+
+### 6.4. How it Works
+
+1.  The user fills out the "Personal Information" and "Trip Information" sections of the form.
+2.  When the user clicks the "Pay Now" button on the checkout page, the `handle_btnPaymentOptionContinue` function in `visaSwift.js` is triggered.
+3.  The `getAllFormData()` function is called, which gathers all the data from the form fields.
+4.  An AJAX request is sent to the `save_booking_sy` action with the collected data.
+5.  The `cs_save_booking_sy` function in `save_booking.php` creates a new "protection" post and saves the form data to the corresponding ACF fields.
+6.  A success message is displayed to the user.

@@ -65,6 +65,7 @@ include_once('source/ajax/delete_document.php');
 include_once('source/ajax/cybersource.php');
 include_once('source/ajax/get_establishment.php');
 include_once('source/ajax/create_custom_post.php');
+include_once('source/ajax/save_booking.php');
 
 
 /**

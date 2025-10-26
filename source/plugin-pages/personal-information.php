@@ -1,7 +1,7 @@
 <div id="introStepThreeContainer">
 
     <!-- Section for Contact Information -->
-    <section id="three_ContactInfo" class="">
+    <section id="three_ContactInfo" class="hidden">
 
         <div class="cs-container">
 
