@@ -15,6 +15,10 @@
                 <th scope="row">Total Protection Price</th>
                 <td><input type="text" name="sp_total_protection_price" value="<?php echo esc_attr(get_option('sp_total_protection_price')); ?>" /></td>
             </tr>
+            <tr valign="top">
+                <th scope="row">Bank Fee Percentage (%)</th>
+                <td><input type="number" name="sp_bank_fee_percentage" value="<?php echo esc_attr(get_option('sp_bank_fee_percentage', 4)); ?>" /></td>
+            </tr>
         </table>
         <h2>Mail Settings</h2>
         <table class="form-table">

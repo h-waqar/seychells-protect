@@ -128,6 +128,7 @@ class Seychelles_Protect
         register_setting('seychelles_protect_settings_group', 'sp_cybersource_merchant_id');
         register_setting('seychelles_protect_settings_group', 'sp_cybersource_merchant_key_id');
         register_setting('seychelles_protect_settings_group', 'sp_cybersource_merchant_secret_key');
+        register_setting('seychelles_protect_settings_group', 'sp_bank_fee_percentage');
     }
 
 
@@ -208,6 +209,7 @@ class Seychelles_Protect
                 'domain' => get_option('sp_domain'),
                 'cybersource_merchant_id' => get_option('sp_cybersource_merchant_id'),
                 'cybersource_merchant_key_id' => get_option('sp_cybersource_merchant_key_id'),
+                'bank_fee_percentage' => get_option('sp_bank_fee_percentage', 4),
             ];
             wp_localize_script('SwiftUiManager', '_swiftUiData', $swift_ui_data);
 

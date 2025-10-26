@@ -227,7 +227,7 @@ class SwiftUiManager {
     const medicalProtectionFee = perDayFee * totalDays * chargeablePersons;
 
     // 6. Calculate bank fee (assuming 4% as in old code, from _swiftStorage)
-    const bankFeePercentage = _swiftStorage._bankFeeInPercentage || 4;
+    const bankFeePercentage = parseFloat(_swiftUiData.bank_fee_percentage) || 4;
     const bankFee = (bankFeePercentage / 100) * medicalProtectionFee;
 
     // 7. Calculate grand total
