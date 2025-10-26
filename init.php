@@ -90,7 +90,44 @@ class Seychelles_Protect
     {
         // Actions and filters can be added here for initialization.
         add_action('init', array($this, 'init'));
+        add_action('admin_menu', array($this, 'add_admin_menu'));
+        add_action('admin_init', array($this, 'register_settings'));
         // Add more hooks and actions as needed.
+    }
+
+
+
+
+    public function add_admin_menu()
+    {
+        add_options_page(
+            'Seychelles Protect Settings',
+            'Seychelles Protect',
+            'manage_options',
+            'seychelles-protect-settings',
+            array($this, 'settings_page_html')
+        );
+    }
+
+    public function settings_page_html()
+    {
+        // Check user capabilities
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+        include(SP_PLUGIN_BASEPATH . 'source/admin/settings-page.php');
+    }
+
+
+    public function register_settings()
+    {
+        register_setting('seychelles_protect_settings_group', 'sp_basic_protection_price');
+        register_setting('seychelles_protect_settings_group', 'sp_total_protection_price');
+        register_setting('seychelles_protect_settings_group', 'sp_hostname');
+        register_setting('seychelles_protect_settings_group', 'sp_domain');
+        register_setting('seychelles_protect_settings_group', 'sp_cybersource_merchant_id');
+        register_setting('seychelles_protect_settings_group', 'sp_cybersource_merchant_key_id');
+        register_setting('seychelles_protect_settings_group', 'sp_cybersource_merchant_secret_key');
     }
 
 
@@ -164,7 +201,15 @@ class Seychelles_Protect
             wp_enqueue_script('niceCountryInput', plugins_url('/source/js/niceCountryInput.js', __FILE__), array('jquery'), SP_PLUGIN_VERSION, true);
             wp_enqueue_script('SwiftUiManager', plugins_url('/source/js/SwiftUiManager.js', __FILE__), array('jquery'), SP_PLUGIN_VERSION, true);
 
-            wp_localize_script('SwiftUiManager', '_swiftUiData' , );
+            $swift_ui_data = [
+                'basic_protection_price' => get_option('sp_basic_protection_price'),
+                'total_protection_price' => get_option('sp_total_protection_price'),
+                'hostname' => get_option('sp_hostname'),
+                'domain' => get_option('sp_domain'),
+                'cybersource_merchant_id' => get_option('sp_cybersource_merchant_id'),
+                'cybersource_merchant_key_id' => get_option('sp_cybersource_merchant_key_id'),
+            ];
+            wp_localize_script('SwiftUiManager', '_swiftUiData', $swift_ui_data);
 
             wp_enqueue_script('swiftMultiPassport', plugins_url('/source/js/swiftMultiPassport.js', __FILE__), array('jquery'), SP_PLUGIN_VERSION, true);
             wp_enqueue_script('swiftCountrySelect', plugins_url('/source/js/swiftCountrySelect.js', __FILE__), array('jquery'), SP_PLUGIN_VERSION, true);

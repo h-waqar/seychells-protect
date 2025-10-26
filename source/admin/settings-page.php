@@ -1,70 +1,47 @@
-<?php
-
-function sp_add_settings_page() {
-    add_options_page(
-        'Seychelles Protect Settings',
-        'Seychelles Protect',
-        'manage_options',
-        'seychelles-protect',
-        'sp_render_settings_page'
-    );
-}
-add_action('admin_menu', 'sp_add_settings_page');
-
-function sp_render_settings_page() {
-    ?>
-    <div class="wrap">
-        <h1>Seychelles Protect Settings</h1>
-        <form action="options.php" method="post">
-            <?php
-            settings_fields('sp_settings_group');
-            do_settings_sections('seychelles-protect');
-            submit_button('Save Settings');
-            ?>
-        </form>
-    </div>
-    <?php
-}
-
-function sp_register_settings() {
-    register_setting('sp_settings_group', 'sp_basic_protection_price', ['type' => 'number', 'default' => 3.95]);
-    register_setting('sp_settings_group', 'sp_total_protection_price', ['type' => 'number', 'default' => 6.95]);
-
-    add_settings_section(
-        'sp_prices_section',
-        'Protection Plan Prices',
-        'sp_prices_section_callback',
-        'seychelles-protect'
-    );
-
-    add_settings_field(
-        'sp_basic_protection_price_field',
-        'Essential Protection Price (€)',
-        'sp_basic_price_field_callback',
-        'seychelles-protect',
-        'sp_prices_section'
-    );
-
-    add_settings_field(
-        'sp_total_protection_price_field',
-        'Total Protection Price (€)',
-        'sp_total_price_field_callback',
-        'seychelles-protect',
-        'sp_prices_section'
-    );
-}
-add_action('admin_init', 'sp_register_settings');
-
-function sp_prices_section_callback() {
-    echo '<p>Set the prices for the medical protection plans.</p>';
-}
-
-function sp_basic_price_field_callback() {
-    $price = get_option('sp_basic_protection_price', 3.95);
-    echo "<input type='number' step='0.01' name='sp_basic_protection_price' value='" . esc_attr($price) . "' />";
-}
-
-function sp_total_price_field_callback() {
-    $price = get_option('sp_total_protection_price', 6.95);
-    echo "<input type='number' step='0.01' name='sp_total_protection_price' value='" . esc_attr($price) . "' />";
-}
+<div class="wrap">
+    <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+    <form action="options.php" method="post">
+        <?php
+        settings_fields('seychelles_protect_settings_group');
+        do_settings_sections('seychelles_protect_settings_group');
+        ?>
+        <h2>General Settings</h2>
+        <table class="form-table">
+            <tr valign="top">
+                <th scope="row">Basic Protection Price</th>
+                <td><input type="text" name="sp_basic_protection_price" value="<?php echo esc_attr(get_option('sp_basic_protection_price')); ?>" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Total Protection Price</th>
+                <td><input type="text" name="sp_total_protection_price" value="<?php echo esc_attr(get_option('sp_total_protection_price')); ?>" /></td>
+            </tr>
+        </table>
+        <h2>Mail Settings</h2>
+        <table class="form-table">
+            <tr valign="top">
+                <th scope="row">Hostname</th>
+                <td><input type="text" name="sp_hostname" value="<?php echo esc_attr(get_option('sp_hostname')); ?>" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Domain</th>
+                <td><input type="text" name="sp_domain" value="<?php echo esc_attr(get_option('sp_domain')); ?>" /></td>
+            </tr>
+        </table>
+        <h2>CyberSource Credentials</h2>
+        <table class="form-table">
+            <tr valign="top">
+                <th scope="row">Merchant ID</th>
+                <td><input type="text" name="sp_cybersource_merchant_id" value="<?php echo esc_attr(get_option('sp_cybersource_merchant_id')); ?>" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Merchant Key ID</th>
+                <td><input type="text" name="sp_cybersource_merchant_key_id" value="<?php echo esc_attr(get_option('sp_cybersource_merchant_key_id')); ?>" /></td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Merchant Secret Key</th>
+                <td><input type="password" name="sp_cybersource_merchant_secret_key" value="<?php echo esc_attr(get_option('sp_cybersource_merchant_secret_key')); ?>" /></td>
+            </tr>
+        </table>
+        <?php submit_button(); ?>
+    </form>
+</div>
