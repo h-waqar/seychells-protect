@@ -1,15 +1,17 @@
 <div id="clinicalQuestionTwo">
 
-    <section id="ten_PaymentOptions" class="hidden">
+    <section id="ten_PaymentOptions" class="">
         <div class="cs-container">
             <div class="bs-heading mb-4">
                 <h1>Complete your Application</h1>
                 <p>
-                    Enter your credit card details below to securely complete your Seychelles Medical Protection application.
+                    Enter your credit card details below to securely complete your Seychelles Medical Protection
+                    application.
                 </p>
             </div>
 
             <!-- Pay using Card -->
+            <form id="cybersource-payment-form" method="post">
             <div class="row payment-by-card" id="div_PayByCard">
 
                 <div class="row px-0 mx-0">
@@ -64,8 +66,7 @@
                 <div class="col-12">
                     <div class="mb-3">
                         <label class="form-label" for="proceed_CardNumber">Card number</label>
-                        <input type="text" class="form-control" name="proceed_card_number" id="proceed_CardNumber"
-                            placeholder="Card Number">
+                        <div id="cybs-card-number-container" class="form-control"></div>
 
                         <!-- Card Images Start -->
                         <div class="card-img-wrapper">
@@ -195,8 +196,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="proceed_CardCvv">Card CVV No</label>
-                            <input type="text" class="form-control" name="proceed_card_cvv" id="proceed_CardCvv"
-                                placeholder="Card CVV No">
+                            <div id="cybs-security-code-container" class="form-control"></div>
                         </div>
                     </div>
                 </div>
@@ -207,7 +207,7 @@
                     <!--        Choose Expiration Month        -->
                     <div class="col-md-4">
                         <div class="mb-3">
-                            <select id="month" name="proceed_exp_month" class="col-50" required>
+                            <select id="cybs-expiration-month" name="proceed_exp_month" class="col-50" required>
                                 <option value="" class="d-none">Choose Expiration Month</option>
                                 <option value="01">January</option>
                                 <option value="02">February</option>
@@ -228,16 +228,16 @@
                     <!--        Choose Expiration Year        -->
                     <div class="col-md-4 px-0">
                         <div class="mb-3">
-                            <select id="year" name="proceed_exp_year" class="col-50" required>
+                            <select id="cybs-expiration-year" name="proceed_exp_year" class="col-50" required>
                                 <option value="" class="d-none">Choose Expiration Year</option>
                                 <?php
                                 $start_year = date("Y");
                                 for ($x = $start_year; $x <= $start_year + 10; $x++) {
-                                ?>
+                                    ?>
                                     <option value="<?php echo $x; ?>">
                                         <?php echo $x; ?>
                                     </option>
-                                <?php
+                                    <?php
                                 }
                                 ?>
                             </select>
@@ -433,10 +433,11 @@
                     <span class="dashicons dashicons-arrow-left-alt2"></span>
                     Previous
                 </button> -->
-                <button type="button" class="btn btn-info px-5" id="btn_PaymentOptionContinue">Pay Now</button>
+                <button type="submit" class="btn btn-info px-5" id="btn_PaymentOptionContinue">Pay Now</button>
             </div>
-
         </div>
+        <input type="hidden" id="cybs_token" name="cybs_token">
+        </form>
 
     </section>
 
@@ -493,7 +494,10 @@
             });
         });
 
-        // Close Summary Total
-    </script>
+                        // Close Summary Total
 
-</div>
+                    </script>
+
+                
+
+                </div>

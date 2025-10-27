@@ -589,12 +589,12 @@ class VisaSwift {
       );
     }
 
-    if (this.btn_PaymentOptionContinue) {
-      this.btn_PaymentOptionContinue.addEventListener(
-        "click",
-        this.handle_btnPaymentOptionContinue.bind(this)
-      );
-    }
+    // if (this.btn_PaymentOptionContinue) {
+    //   this.btn_PaymentOptionContinue.addEventListener(
+    //     "click",
+    //     this.handle_btnPaymentOptionContinue.bind(this)
+    //   );
+    // }
 
     // if (this._radioTripCitizen) {
     //     this._radioTripCitizen.addEventListener('click', this.handle_radioTripType.bind(this));
@@ -606,6 +606,9 @@ class VisaSwift {
         this.handle_radioTripType.bind(this)
       );
     }
+
+    // Call setupPaymentOptions during VisaSwift initialization
+    this.setupPaymentOptions();
   }
 
   getAllFormData() {
@@ -638,30 +641,49 @@ class VisaSwift {
   }
 
   handle_btnPaymentOptionContinue(e) {
+    e.preventDefault();
+
+    const paymentForm = document.getElementById("cybersource-payment-form");
+
+    if (!paymentForm) {
+      console.error("Error: Payment form with ID 'cybersource-payment-form' not found.");
+      _visaSwift.alertDanger("Payment Error", "Payment form not found. Please refresh the page.");
+      return;
+    }
+
     let allData = this.getAllFormData();
 
-    let _data = {
-      action: "save_booking_sy",
-      data: allData,
-    };
+    // Clear previous dynamic fields
+    const existingDynamicFields = paymentForm.querySelectorAll('[name^="dynamic_"]');
+    existingDynamicFields.forEach(field => field.remove());
 
-    this.runSpinner(true);
-    _ajaxRequest
-      .call(_data, "json", "post")
-      .error((error) => {
-        console.log(error);
-        this.runSpinner(false);
-        _visaSwift.alertDanger("Sorry! Operation Failed", "Unknown error");
-      })
-      .then((response) => {
-        this.runSpinner(false);
-
-        if (response.success) {
-          _swiftUiManager.handle_PaymentSuccessful();
+    // Add all form data as hidden fields to the cybersource-payment-form
+    for (const key in allData) {
+      if (allData.hasOwnProperty(key)) {
+        if (Array.isArray(allData[key])) {
+          allData[key].forEach((item, index) => {
+            for (const subKey in item) {
+              if (item.hasOwnProperty(subKey)) {
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = `dynamic_${key}[${index}][${subKey}]`;
+                input.value = item[subKey];
+                paymentForm.appendChild(input);
+              }
+            }
+          });
         } else {
-          _visaSwift.alertDanger("Sorry! Operation Failed", response.message);
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = `dynamic_${key}`;
+          input.value = allData[key];
+          paymentForm.appendChild(input);
         }
-      });
+      }
+    }
+
+    // Trigger the form submission, which CyberSourceHandler will intercept
+    paymentForm.submit();
   }
 
   handle_btnAddStayingAddress(event) {
@@ -2002,6 +2024,31 @@ class VisaSwift {
     this._bsContainer.classList.add("hidden");
 
     this._PageStart.classList.remove("hidden");
+  }
+
+  setupPaymentOptions() {
+    const paymentOptionsSection = document.getElementById("ten_PaymentOptions");
+    if (paymentOptionsSection && !paymentOptionsSection.classList.contains("hidden")) {
+      // Ensure CyberSourceHandler is instantiated and initialized only once
+      if (typeof window.cybs === 'undefined') {
+        window.cybs = new CyberSourceHandler({
+          restUrl: cybs_object.restUrl,
+          ajaxUrl: cybs_object.ajaxUrl,
+          cardContainer: "#cybs-card-number-container",
+          cvvContainer: "#cybs-security-code-container",
+        });
+        window.cybs.initCyberSource();
+      }
+
+      // Attach event listener for the Pay Now button
+      if (this.btn_PaymentOptionContinue && !this.btn_PaymentOptionContinue._hasClickListener) {
+        this.btn_PaymentOptionContinue.addEventListener(
+          "click",
+          this.handle_btnPaymentOptionContinue.bind(this)
+        );
+        this.btn_PaymentOptionContinue._hasClickListener = true; // Prevent duplicate listeners
+      }
+    }
   }
 
   // hideAlertDanger(){

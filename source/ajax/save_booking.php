@@ -57,5 +57,4 @@ function cs_save_booking_sy()
     die(json_encode($response));
 }
 
-add_action("wp_ajax_nopriv_" . $php_file_name, "cs_" . $php_file_name);
-add_action("wp_ajax_" . $php_file_name, "cs_" . $php_file_name);
+

@@ -136,123 +136,165 @@ function cs_cybersource_sy()
 
 	$response = [
 
-		"success" => true,
+		"success" => false,
+
+		"message" => "Payment processing failed."
 
 	];
 
-	$applicantId = htmlspecialchars($_POST['applicantId'], ENT_QUOTES, 'UTF-8');
-
-	require_once(SP_PLUGIN_BASEPATH . "source/lib/cybersource/cybersource.php");
 
 
+	$applicantId = htmlspecialchars($_POST['dynamic_applicantId'], ENT_QUOTES, 'UTF-8'); // Get applicantId from dynamic field
 
+	$transientTokenJwt = sanitize_text_field($_POST['cybs_token']);
 
+	$amount = floatval($_POST["dynamic_amount"]); // Get amount from dynamic field
 
-	if (SP_TESTING_ENV) {
-
-		$request = new CyberSource("caliphsoft_web_test", "Q1zcCMzFHm0QjOSDQmfsECLQpP9V7AqfFcEkb761HZiruMA+PmiotFHSIEKl1om0JqYNJsa0MbvBuy9Pxoua6fFT1YKPlZ/xiLTjTj1Aie1nskvTlSudxD5eIA3MuenEVlhmuQ9+PKoBvQCRHSZZ4187cAPmI8qk5we5WaHnUm9nhI6xsDHBLgUvy57R8DAg1tvdeaEyORMC5pYpiHKrPOA/E+FQovRapllEgZiuEeI3BnxsscSrHVmdsmDHHXYDuG77JGIU4Zb8VRDnu3hq4kBLlkoNO+st9+zZx0cyM7P0P57lc4DMkvY07+wjFK7clG9qxl4K2r6SbrM4xl+trA==", "Test");
-
-		// 5555555555554444
-
-		// mastercard
-
-	} else {
+	$currency = SP_BOOKING_CURRENCY_CODE; // Assuming this constant is defined
 
 
 
+	// Prepare billing details from POST data
+
+	$billingDetails = [
+
+		"firstName" => sanitize_text_field($_POST['dynamic_firstName']),
+
+		"lastName" => sanitize_text_field($_POST['dynamic_lastName']),
+
+		"address1" => sanitize_text_field($_POST['dynamic_address_in_seychelles']),
+
+		"locality" => sanitize_text_field($_POST['dynamic_your_city']),
+
+		"administrativeArea" => sanitize_text_field($_POST['dynamic_your_state']),
+
+		"postalCode" => sanitize_text_field($_POST['dynamic_postal_code']),
+
+		"country" => sanitize_text_field($_POST['dynamic_country']),
+
+		"email" => sanitize_email($_POST['dynamic_email']),
+
+	];
 
 
-		// sms own
 
-		// $request = new CyberSource("absa_seytravel_eur_0981357", "RfeC/KdTJd0dIrfC9X792iF5k6yd7NiV3c57vfFdqZHQiOm4CDO6gvQJENyeD4kwJVVKUMyvBOBL56n0AUc/JUF1xKfD0b1DI/d2EZ/wZxbJQ6QsI0M8rTiUPXazI6ZPSEmWyRNh61UkJJQc8aw6Mh9RILz6MRdd9+U9xS5IcreGqfjAzMHgaXgK8vOzxL6lBejeIkCGBGGz4k07hwhOVOR8oFVn/QuFaAAbNzXqHdbeqkB49UuOYFmtsEahpqtXgq79DPNrv/PO7WF4In29J3HhhRIggJfCJs3dr/moT5+IMURMgVGbQeKLqeEGIis69rEVOY8KeEgRnpikPSBWMA==", "Live");
+	// Instantiate the new CyberSource client
 
-		// keys from wheelswander plugin
+	$client = new Sdv_CyberSource_Client();
 
-		// $request = new CyberSource("absa_seytravel_eur_0981357", "jpwlcXvYQ0qlY0j8qqgYHIBDsqKyODJLB/zZg3Z61+Tpj5yG2rzNuKjnAnKiSYQ34J99B6xogm12uxYZAlrobUiSZ3X/26x5ll5kYqMWbsRWaMS78ShJTJIK5v/6+MjDuV4y/V53aYsthV2JGzWkPWx8SKQPr/pYmaddifG482SC+EY6iLyvcn7nSm6/2XiNRwdurvrmPzEImT8OGGukDxGAXVSbZ3Pfh5PtcFjzZVx0Rt8ms7qFOdalFkVZ684tfS3Nlk1d15vdQjV6odLuWmKFKYUpBrZXf4Q/v5DCj/h0/89it3Emerfui9mjix2y8kpTEV9sCsYw7Rkf6jeFvw==", "Live");
 
-		$request = new CyberSource("absa_seytravel_eur_0981357", "geyjU8HpUTYxthFqCaEIXF14/6+336dvZNzNda0LUQObwy28UtM97lgODPiwM/dhe66Ycry6OWiOxQ+cAQe8K8Os2/03UUOOISxQq6m+9Olko+Djoe1jqYi+QdZoT7YEMXm4nYzd6YR8vLMEsxza1IMbhF/hyBOIFmnTgOkd1QA1JSGgkhpt2EP1oaIYfmKC/CIuXWsiKOp9SOAXIdTMsLm3nLAwIY6IhCmqBVUCQYf4qquULJju1f1439I13OwNZ75V5xoi42Jhyca5vLoQ725TqSSfo5/sEljJG10SUB+vy+qYcG1mPR/nd8edYZEqZlMaE+nSHDcGVUsQRhil3g==", "Live");
-
-	}
-
-	// @todo Remove Caliphsoft keys
-
-	$request->reference_code = "Order-" . @$_POST['applicantId'];
-
-	$billTo             = new stdClass();
-
-	$billTo->firstName  = @$_POST['data']['firstName'];
-
-	$billTo->lastName   = @$_POST['data']["lastName"];
-
-	$billTo->street1    = @$_POST['data']["street1"];
-
-	$billTo->city       = @$_POST['data']["city"];
-
-	$billTo->state      = @$_POST['data']["state"];
-
-	$billTo->postalCode = @$_POST['data']["postalCode"];
-
-	$billTo->country    = trim(@$_POST['data']["country"]);
-
-	$billTo->email      = @$_POST['data']["email"];
-
-	$billTo->ipAddress  = $_SERVER['REMOTE_ADDR'];
-
-	$card                  = new stdClass();
-
-	$card->accountNumber   = @$_POST['data']["cardNumber"];
-
-	$card->fullName        = @$_POST['data']["cardHolderName"];
-
-	$card->expirationMonth = @$_POST['data']["cardExpMonth"];
-
-	$card->expirationYear  = @$_POST['data']["cardExpYear"];
-
-	$card->cvNumber          = @$_POST['data']["cardCvv"];
-
-	$card->cardType        = @$request->card_types[@$_POST['data']["cardType"]];
-
-	$request->billTo = $billTo;
-
-	$request->card   = $card;
 
 	try {
 
-		//$request->charge(1);
+		$payment_response = $client->create_payment($amount, $currency, $transientTokenJwt, $billingDetails);
 
-		$request->charge(@$_POST["amount"]);
 
-	} catch (Exception $exp) {
 
-		error_log("Cybersource Exception" . $exp);
+		if (is_wp_error($payment_response)) {
 
-		$response['error'] = $exp->getMessage();
+			$response['message'] = $payment_response->get_error_message();
 
-	}
-
-	if ($request->response && $request->response->resMessage) {
-
-		if (!$request->response->success) {
-
-			// error Message
-
-			$response['success'] = false;
-
-			$response['message'] = $request->response->resMessage;
-
-		} else {
+		} elseif (isset($payment_response['json']['status']) && $payment_response['json']['status'] === 'AUTHORIZED') {
 
 			$response['success'] = true;
 
-			$response['message'] = "Payment processed";
+			$response['message'] = "Payment processed successfully!";
 
-			// Some Further Steps after payment processed
 
-			$paymentId = $request->response->requestID;
 
-			$medicalProtection = htmlspecialchars($_POST["data"]['medical_protection']);
+			// --- Start: Logic moved from cs_save_booking_sy ---
 
-			$amount = htmlspecialchars($_POST["data"]['amount']);
+			$email = sanitize_email($_POST['dynamic_email']);
+
+
+
+			$post_id = wp_insert_post([
+
+				"post_title"   => "New Booking - " . $email,
+
+				"post_content" => "",
+
+				"post_type"    => "protection",
+
+				"post_status"  => "private",
+
+			]);
+
+
+
+			if (is_wp_error($post_id)) {
+
+				$response['message'] = "Post creation failed.";
+
+				die(json_encode($response));
+
+			}
+
+
+
+			// Personal Information
+
+			update_field("phone_number", sanitize_text_field($_POST['dynamic_phone_number']), $post_id);
+
+			update_field("email", $email, $post_id);
+
+
+
+			if (isset($_POST['dynamic_applicants']) && is_array($_POST['dynamic_applicants'])) {
+
+				$applicants_data = [];
+
+				foreach ($_POST['dynamic_applicants'] as $applicant) {
+
+					$applicants_data[] = [
+
+						"emergency_contact_name" => sanitize_text_field($applicant['emergency_contact_name']),
+
+						"emergency_contact_dob" => sanitize_text_field($applicant['emergency_contact_dob']),
+
+					];
+
+				}
+
+				update_field("emergency_contacts", $applicants_data, $post_id);
+
+			}
+
+
+
+			// Trip Information
+
+			update_field("arrival_date", sanitize_text_field($_POST['dynamic_arrival_date']), $post_id);
+
+			update_field("departure_date", sanitize_text_field($_POST['dynamic_departure_date']), $post_id);
+
+			update_field("home_address", sanitize_text_field($_POST['dynamic_address_in_seychelles']), $post_id);
+
+
+
+			// Medical Protection
+
+			update_field("medical_protection", sanitize_text_field($_POST['dynamic_medical_protection']), $post_id);
+
+			update_field("amount", sanitize_text_field($_POST['dynamic_amount']), $post_id);
+
+
+
+			$response['post_id'] = $post_id;
+
+			// --- End: Logic moved from cs_save_booking_sy ---
+
+
+
+			// --- Existing Post-Payment Actions (after successful booking) ---
+
+			$paymentId = $payment_response['json']['id'] ?? 'N/A'; // Use the actual payment ID from response
+
+			$medicalProtection = htmlspecialchars($_POST["dynamic_medical_protection"]);
+
+			$amount = htmlspecialchars($_POST["dynamic_amount"]);
+
+
 
 			if ($medicalProtection == "total_protection") {
 
@@ -264,29 +306,49 @@ function cs_cybersource_sy()
 
 			}
 
-			update_field("payment_id", $paymentId, $applicantId);
 
-			update_field("medical_protection", $protection, $applicantId);
 
-			update_field("amount", $amount, $applicantId);
+			update_field("payment_id", $paymentId, $post_id); // Use $post_id here
 
-			$customer_email = get_field('email', $applicantId, false);
+			update_field("medical_protection", $protection, $post_id); // Use $post_id here
 
-			$start_date =  get_field('arrival_date', $applicantId, false);
+			update_field("amount", $amount, $post_id); // Use $post_id here
 
-			$end_date = get_field('departure_date', $applicantId, false);
+
+
+			$customer_email = get_field('email', $post_id, false); // Use $post_id here
+
+			$start_date =  get_field('arrival_date', $post_id, false); // Use $post_id here
+
+			$end_date = get_field('departure_date', $post_id, false); // Use $post_id here
 
 			$days_dif = sp_get_days($start_date, $end_date);
 
-			sy_send_customer_confirmation_email($customer_email, $applicantId, $amount, $days_dif);
 
-			sy_send_admin_confirmation_email($customer_email, $applicantId, $amount, $days_dif);
+
+			sy_send_customer_confirmation_email($customer_email, $post_id, $amount, $days_dif); // Use $post_id here
+
+			sy_send_admin_confirmation_email($customer_email, $post_id, $amount, $days_dif); // Use $post_id here
 
 			// Extra Steps Ends
 
+
+
+		} else {
+
+			$response['message'] = $payment_response['json']['reason'] ?? "Payment not authorized.";
+
 		}
 
+	} catch (Exception $e) {
+
+		error_log("Cybersource Payment Exception: " . $e->getMessage());
+
+		$response['message'] = "An unexpected error occurred during payment processing.";
+
 	}
+
+
 
 	die(json_encode($response));
 

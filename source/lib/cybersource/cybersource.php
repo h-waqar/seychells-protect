@@ -16,7 +16,7 @@
 		public $merchant_id;
 		public $transaction_id;
 		public $reference_code = 'Unknown';		// for backend transaction reporting
-		
+		public $currency = 'EUR';
 		public $billTo = null;
 		public $card = null;
 		
@@ -247,8 +247,7 @@
 			
 			// this also is pretty stupid, particularly the name
 			$purchase_totals = new stdClass();
-			// $purchase_totals->currency = 'USD';
-			$purchase_totals->currency = 'EUR';
+			$purchase_totals->currency = $this->currency;
 			$request->purchaseTotals = $purchase_totals;
 			
 			return $request;
