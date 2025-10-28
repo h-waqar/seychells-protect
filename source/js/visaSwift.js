@@ -613,44 +613,42 @@ class VisaSwift {
     this.setupPaymentOptions();
   }
 
-  getAllFormData() {
-    let data = {};
+  // getAllFormData() {
+  //   let data = {};
 
-    // Personal Information
-    data.phone_number = this.$("#input_ContactYourNumber").val();
-    data.email = this.$("#input_ContactYourEmail").val();
+  //   // Personal Information
+  //   data.phone_number = this.$("#input_ContactYourNumber").val();
+  //   data.email = this.$("#input_ContactYourEmail").val();
 
-    data.applicants = [];
-    this.$("#contact_Duplicate .cs-contact-details").each(function () {
-      let applicant = {};
-      applicant.name = _visaSwift
-        .$(this)
-        .find('input[name="emg_contact_name"]')
-        .val();
-      applicant.dob = _visaSwift
-        .$(this)
-        .find('input[name="emg_contact_dob"]')
-        .val();
-      data.applicants.push(applicant);
-    });
+  //   data.applicants = [];
+  //   this.$("#contact_Duplicate .cs-contact-details").each(function () {
+  //     let applicant = {};
+  //     applicant.name = _visaSwift
+  //       .$(this)
+  //       .find('input[name="emg_contact_name"]')
+  //       .val();
+  //     applicant.dob = _visaSwift
+  //       .$(this)
+  //       .find('input[name="emg_contact_dob"]')
+  //       .val();
+  //     data.applicants.push(applicant);
+  //   });
 
-    // Trip Information
-    data.arrival_date = this.$("#input_TripArrivalDate").val();
-    data.departure_date = this.$("#date_TripReturn").val();
-    data.address_in_seychelles = this.$("#address_in_seychelles").val();
+  //   // Trip Information
+  //   data.arrival_date = this.$("#input_TripArrivalDate").val();
+  //   data.departure_date = this.$("#date_TripReturn").val();
+  //   data.address_in_seychelles = this.$("#address_in_seychelles").val();
 
-    // Medical Protection
-    data.medical_protection = this.$(
-      'input[name="radio_medical_protection"]:checked'
-    ).val();
+  //   // Medical Protection
+  //   data.medical_protection = this.$(
+  //     'input[name="radio_medical_protection"]:checked'
+  //   ).val();
 
-    // Amount
-    data.amount = this.$("#summaryTotal").text();
+  //   // Amount
+  //   data.amount = this.$("#summaryTotal").text();
 
-    return data;
-  }
-
-  // !:TODO
+  //   return data;
+  // }
 
   // handle_btnPaymentOptionContinue(e) {
   //   e.preventDefault();
@@ -718,8 +716,51 @@ class VisaSwift {
   //   }
   // }
 
+  // !: TODO
+
+  getAllFormData() {
+    let data = {};
+
+    // Personal Information
+    data.phone_number = this.$("#input_ContactYourNumber").val();
+    data.email = this.$("#input_ContactYourEmail").val();
+
+    // Emergency Contacts - FIXED: Use correct field names
+    data.applicants = [];
+    this.$("#contact_Duplicate .cs-contact-details").each(function () {
+      let applicant = {};
+      // Changed from 'emg_contact_name' to 'name' and 'emg_contact_dob' to 'dob'
+      applicant.name = _visaSwift
+        .$(this)
+        .find('input[name="emg_contact_name"]')
+        .val();
+      applicant.dob = _visaSwift
+        .$(this)
+        .find('input[name="emg_contact_dob"]')
+        .val();
+      data.applicants.push(applicant);
+    });
+
+    // Trip Information
+    data.arrival_date = this.$("#input_TripArrivalDate").val();
+    data.departure_date = this.$("#date_TripReturn").val();
+    data.address_in_seychelles = this.$("#address_in_seychelles").val();
+
+    // Medical Protection
+    data.medical_protection = this.$(
+      'input[name="radio_medical_protection"]:checked'
+    ).val();
+
+    // Amount
+    data.amount = this.$("#summaryTotal").text();
+
+    return data;
+  }
+
+  // Your handle_btnPaymentOptionContinue is good, just ensure token before submit:
   handle_btnPaymentOptionContinue(e) {
     console.log("Pay Now clicked");
+    e.preventDefault();
 
     const form = document.getElementById("payment-form");
     if (!form) {
@@ -727,61 +768,170 @@ class VisaSwift {
       return;
     }
 
-    // 1️⃣ Grab token from hidden input (already set by CyberSource)
-    const token = form.querySelector("#cybs_token")?.value?.trim();
-    if (!token) {
+    // Check if CyberSource is initialized
+    if (typeof window.cybs === "undefined" || !window.cybs.isInitialized) {
       _visaSwift.alertDanger(
         "Payment Error",
-        "Payment token not found. Please try again."
+        "Payment system not ready. Please refresh the page."
       );
       return;
     }
 
-    // 2️⃣ Collect extra dynamic data
-    const allData = this.getAllFormData();
+    // Validate card fields
+    if (!window.cybs.cardNumberValid || !window.cybs.cvvValid) {
+      _visaSwift.alertDanger(
+        "Payment Error",
+        "Please enter valid card details."
+      );
+      return;
+    }
 
-    // 3️⃣ Create FormData directly from the form (includes cybs_token + billing fields)
-    const formData = new FormData(form);
+    // Ensure token exists before proceeding
+    this.runSpinner(true);
 
-    // 4️⃣ Append dynamic fields
-    Object.entries(allData).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach((item, index) => {
-          Object.entries(item).forEach(([subKey, subVal]) => {
-            formData.append(
-              `dynamic_${key}[${index}][${subKey}]`,
-              subVal ?? ""
+    window.cybs
+      .ensureToken()
+      .then(() => {
+        const token = form.querySelector("#cybs_token")?.value?.trim();
+
+        if (!token) {
+          this.runSpinner(false);
+          _visaSwift.alertDanger(
+            "Payment Error",
+            "Payment token not found. Please try again."
+          );
+
+          cybs.generateTokenSilently();
+          return;
+        }
+
+        console.log("Token verified, proceeding with payment...");
+
+        // Collect all form data
+        const allData = this.getAllFormData();
+
+        // Create FormData from form
+        const formData = new FormData(form);
+
+        // Append dynamic fields
+        Object.entries(allData).forEach(([key, value]) => {
+          if (Array.isArray(value)) {
+            value.forEach((item, index) => {
+              Object.entries(item).forEach(([subKey, subVal]) => {
+                formData.append(
+                  `dynamic_${key}[${index}][${subKey}]`,
+                  subVal ?? ""
+                );
+              });
+            });
+          } else {
+            formData.append(`dynamic_${key}`, value ?? "");
+          }
+        });
+
+        // Add WP action
+        formData.append("action", "cybersource_sy");
+
+        // Submit via AJAX
+        _ajaxRequest
+          .imageCall(formData, "json", "post")
+          .then((response) => {
+            this.runSpinner(false);
+            console.log("Payment Response:", response);
+
+            if (response.success) {
+              // Success - you can show success message or redirect
+              console.log("Payment successful!");
+              alert("Payment Successful! Booking ID: " + response.post_id);
+              // Optional: Redirect to thank you page
+              // window.location.href = "/thank-you";
+            } else {
+              _visaSwift.alertDanger("Payment Error", response.message);
+            }
+          })
+          .catch((err) => {
+            this.runSpinner(false);
+            console.error("Payment submission failed:", err);
+            _visaSwift.alertDanger(
+              "Payment Error",
+              "Unexpected error occurred."
             );
           });
-        });
-      } else {
-        formData.append(`dynamic_${key}`, value ?? "");
-      }
-    });
-
-    // 5️⃣ Add WP action
-    formData.append("action", "cybersource_sy");
-
-    // 6️⃣ Submit via AJAX
-    this.runSpinner(true);
-    _ajaxRequest
-      .imageCall(formData, "json", "post")
-      .then((response) => {
-        this.runSpinner(false);
-        console.log("Payment Response:", response);
-
-        if (response.success) {
-          // _visaSwift.alertSuccess("Payment Successful", response.message);
-        } else {
-          _visaSwift.alertDanger("Payment Error", response.message);
-        }
       })
-      .catch((err) => {
+      .catch((error) => {
         this.runSpinner(false);
-        console.error("Payment submission failed:", err);
-        _visaSwift.alertDanger("Payment Error", "Unexpected error occurred.");
+        console.error("Token generation failed:", error);
+        _visaSwift.alertDanger(
+          "Payment Error",
+          "Failed to generate payment token. Please check your card details."
+        );
       });
   }
+
+  // handle_btnPaymentOptionContinue(e) {
+  //   console.log("Pay Now clicked");
+
+  //   const form = document.getElementById("payment-form");
+  //   if (!form) {
+  //     _visaSwift.alertDanger("Payment Error", "Payment form not found.");
+  //     return;
+  //   }
+
+  //   // 1️⃣ Grab token from hidden input (already set by CyberSource)
+  //   const token = form.querySelector("#cybs_token")?.value?.trim();
+  //   if (!token) {
+  //     _visaSwift.alertDanger(
+  //       "Payment Error",
+  //       "Payment token not found. Please try again."
+  //     );
+  //     return;
+  //   }
+
+  //   // 2️⃣ Collect extra dynamic data
+  //   const allData = this.getAllFormData();
+
+  //   // 3️⃣ Create FormData directly from the form (includes cybs_token + billing fields)
+  //   const formData = new FormData(form);
+
+  //   // 4️⃣ Append dynamic fields
+  //   Object.entries(allData).forEach(([key, value]) => {
+  //     if (Array.isArray(value)) {
+  //       value.forEach((item, index) => {
+  //         Object.entries(item).forEach(([subKey, subVal]) => {
+  //           formData.append(
+  //             `dynamic_${key}[${index}][${subKey}]`,
+  //             subVal ?? ""
+  //           );
+  //         });
+  //       });
+  //     } else {
+  //       formData.append(`dynamic_${key}`, value ?? "");
+  //     }
+  //   });
+
+  //   // 5️⃣ Add WP action
+  //   formData.append("action", "cybersource_sy");
+
+  //   // 6️⃣ Submit via AJAX
+  //   this.runSpinner(true);
+  //   _ajaxRequest
+  //     .imageCall(formData, "json", "post")
+  //     .then((response) => {
+  //       this.runSpinner(false);
+  //       console.log("Payment Response:", response);
+
+  //       if (response.success) {
+  //         // _visaSwift.alertSuccess("Payment Successful", response.message);
+  //       } else {
+  //         _visaSwift.alertDanger("Payment Error", response.message);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       this.runSpinner(false);
+  //       console.error("Payment submission failed:", err);
+  //       _visaSwift.alertDanger("Payment Error", "Unexpected error occurred.");
+  //     });
+  // }
 
   handle_btnAddStayingAddress(event) {
     let iN = this.$("#tripInfoWrap .tripInfoWrap").length;
@@ -2146,11 +2296,9 @@ class VisaSwift {
           );
 
           // Bind form submit handler AFTER initialization completes
-          const paymentForm = document.getElementById(
-            "cybersource-payment-form"
-          );
+          const paymentForm = document.getElementById("payment-form");
           if (paymentForm) {
-            window.cybs.bindFormSubmit("#cybersource-payment-form");
+            window.cybs.bindFormSubmit("#payment-form");
             console.log("visaSwift: Form binding completed.");
           } else {
             console.error("visaSwift: Payment form not found!");
