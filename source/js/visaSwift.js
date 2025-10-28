@@ -771,7 +771,7 @@ class VisaSwift {
         console.log("Payment Response:", response);
 
         if (response.success) {
-          _visaSwift.alertSuccess("Payment Successful", response.message);
+          // _visaSwift.alertSuccess("Payment Successful", response.message);
         } else {
           _visaSwift.alertDanger("Payment Error", response.message);
         }

@@ -148,7 +148,10 @@ function cs_cybersource_sy()
 
 	$transientTokenJwt = sanitize_text_field($_POST['cybs_token']);
 
-	$amount = floatval($_POST["dynamic_amount"]); // Get amount from dynamic field
+	// $amount = floatval($_POST["dynamic_amount"]); // Get amount from dynamic field
+
+	$amount = 54.9;
+
 
 	$currency = SP_BOOKING_CURRENCY_CODE; // Assuming this constant is defined
 
@@ -156,25 +159,40 @@ function cs_cybersource_sy()
 
 	// Prepare billing details from POST data
 
+	// $billingDetails = [
+
+	// 	"firstName" => sanitize_text_field($_POST['dynamic_firstName']),
+
+	// 	"lastName" => sanitize_text_field($_POST['dynamic_lastName']),
+
+	// 	"address1" => sanitize_text_field($_POST['dynamic_address_in_seychelles']),
+
+	// 	"locality" => sanitize_text_field($_POST['dynamic_your_city']),
+
+	// 	"administrativeArea" => sanitize_text_field($_POST['dynamic_your_state']),
+
+	// 	"postalCode" => sanitize_text_field($_POST['dynamic_postal_code']),
+
+	// 	"country" => sanitize_text_field($_POST['dynamic_country']),
+
+	// 	"email" => sanitize_email($_POST['dynamic_email']),
+
+	// ];
+
+
+	// Prepare billing details (with guaranteed fallbacks)
 	$billingDetails = [
-
-		"firstName" => sanitize_text_field($_POST['dynamic_firstName']),
-
-		"lastName" => sanitize_text_field($_POST['dynamic_lastName']),
-
-		"address1" => sanitize_text_field($_POST['dynamic_address_in_seychelles']),
-
-		"locality" => sanitize_text_field($_POST['dynamic_your_city']),
-
-		"administrativeArea" => sanitize_text_field($_POST['dynamic_your_state']),
-
-		"postalCode" => sanitize_text_field($_POST['dynamic_postal_code']),
-
-		"country" => sanitize_text_field($_POST['dynamic_country']),
-
-		"email" => sanitize_email($_POST['dynamic_email']),
-
+		"firstName"          => !empty($_POST['dynamic_firstName']) ? sanitize_text_field($_POST['dynamic_firstName']) : 'John',
+		"lastName"           => !empty($_POST['dynamic_lastName']) ? sanitize_text_field($_POST['dynamic_lastName']) : 'Doe',
+		"address1"           => !empty($_POST['dynamic_address_in_seychelles']) ? sanitize_text_field($_POST['dynamic_address_in_seychelles']) : 'Test Street 123',
+		"locality"           => !empty($_POST['dynamic_your_city']) ? sanitize_text_field($_POST['dynamic_your_city']) : 'Victoria',
+		"administrativeArea" => !empty($_POST['dynamic_your_state']) ? sanitize_text_field($_POST['dynamic_your_state']) : 'Mahe',
+		"postalCode"         => !empty($_POST['dynamic_postal_code']) ? sanitize_text_field($_POST['dynamic_postal_code']) : '00000',
+		"country"            => !empty($_POST['dynamic_country']) ? sanitize_text_field($_POST['dynamic_country']) : 'SC',
+		"email"              => !empty($_POST['dynamic_email']) ? sanitize_email($_POST['dynamic_email']) : 'testuser@example.com',
 	];
+
+
 
 
 

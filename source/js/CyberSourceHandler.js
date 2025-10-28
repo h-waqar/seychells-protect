@@ -345,7 +345,7 @@ class CyberSourceHandler {
                 typeof _visaSwift !== "undefined" &&
                 _visaUiManager.alertSuccess
               ) {
-                _visaSwift.alertSuccess("Payment Successful", result.message);
+                // _visaSwift.alertSuccess("Payment Successful", result.message);
               } else {
                 // alert("Payment Successful: " + result.message);
               }
