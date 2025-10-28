@@ -650,70 +650,137 @@ class VisaSwift {
     return data;
   }
 
+  // !:TODO
+
+  // handle_btnPaymentOptionContinue(e) {
+  //   e.preventDefault();
+  //   const paymentForm = document.getElementById("payment-form");
+
+  //   if (!paymentForm) {
+  //     alert("!paymentForm");
+
+  //     console.error(
+  //       "Error: Payment form with ID 'cybersource-payment-form' not found."
+  //     );
+
+  //     _visaSwift.alertDanger(
+  //       "Payment Error",
+  //       "Payment form not found. Please refresh the page."
+  //     );
+
+  //     return;
+  //   }
+
+  //   const formData = new FormData(paymentForm);
+  //   let allData = this.getAllFormData();
+  //   console.log("allData", allData);
+  //   console.log("formData", formData);
+
+  //   // Clear previous dynamic fields
+
+  //   const existingDynamicFields =
+  //     paymentForm.querySelectorAll('[name^="dynamic_"]');
+
+  //   existingDynamicFields.forEach((field) => field.remove());
+
+  //   // Add all form data as hidden fields to the cybersource-payment-form
+
+  //   for (const key in allData) {
+  //     if (allData.hasOwnProperty(key)) {
+  //       if (Array.isArray(allData[key])) {
+  //         allData[key].forEach((item, index) => {
+  //           for (const subKey in item) {
+  //             if (item.hasOwnProperty(subKey)) {
+  //               const input = document.createElement("input");
+
+  //               input.type = "hidden";
+
+  //               input.name = `dynamic_${key}[${index}][${subKey}]`;
+
+  //               input.value = item[subKey];
+
+  //               paymentForm.appendChild(input);
+  //             }
+  //           }
+  //         });
+  //       } else {
+  //         const input = document.createElement("input");
+
+  //         input.type = "hidden";
+
+  //         input.name = `dynamic_${key}`;
+
+  //         input.value = allData[key];
+
+  //         paymentForm.appendChild(input);
+  //       }
+  //     }
+  //   }
+  // }
+
   handle_btnPaymentOptionContinue(e) {
-    e.preventDefault();
-    const paymentForm = document.getElementById("payment-form");
+    console.log("Pay Now clicked");
 
-    if (!paymentForm) {
-      alert("!paymentForm");
-
-      console.error(
-        "Error: Payment form with ID 'cybersource-payment-form' not found."
-      );
-
-      _visaSwift.alertDanger(
-        "Payment Error",
-        "Payment form not found. Please refresh the page."
-      );
-
+    const form = document.getElementById("payment-form");
+    if (!form) {
+      _visaSwift.alertDanger("Payment Error", "Payment form not found.");
       return;
     }
 
-    const formData = new FormData(paymentForm);
-    let allData = this.getAllFormData();
-    console.log("allData", allData);
-    console.log("formData", formData);
-
-    // Clear previous dynamic fields
-
-    const existingDynamicFields =
-      paymentForm.querySelectorAll('[name^="dynamic_"]');
-
-    existingDynamicFields.forEach((field) => field.remove());
-
-    // Add all form data as hidden fields to the cybersource-payment-form
-
-    for (const key in allData) {
-      if (allData.hasOwnProperty(key)) {
-        if (Array.isArray(allData[key])) {
-          allData[key].forEach((item, index) => {
-            for (const subKey in item) {
-              if (item.hasOwnProperty(subKey)) {
-                const input = document.createElement("input");
-
-                input.type = "hidden";
-
-                input.name = `dynamic_${key}[${index}][${subKey}]`;
-
-                input.value = item[subKey];
-
-                paymentForm.appendChild(input);
-              }
-            }
-          });
-        } else {
-          const input = document.createElement("input");
-
-          input.type = "hidden";
-
-          input.name = `dynamic_${key}`;
-
-          input.value = allData[key];
-
-          paymentForm.appendChild(input);
-        }
-      }
+    // 1️⃣ Grab token from hidden input (already set by CyberSource)
+    const token = form.querySelector("#cybs_token")?.value?.trim();
+    if (!token) {
+      _visaSwift.alertDanger(
+        "Payment Error",
+        "Payment token not found. Please try again."
+      );
+      return;
     }
+
+    // 2️⃣ Collect extra dynamic data
+    const allData = this.getAllFormData();
+
+    // 3️⃣ Create FormData directly from the form (includes cybs_token + billing fields)
+    const formData = new FormData(form);
+
+    // 4️⃣ Append dynamic fields
+    Object.entries(allData).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        value.forEach((item, index) => {
+          Object.entries(item).forEach(([subKey, subVal]) => {
+            formData.append(
+              `dynamic_${key}[${index}][${subKey}]`,
+              subVal ?? ""
+            );
+          });
+        });
+      } else {
+        formData.append(`dynamic_${key}`, value ?? "");
+      }
+    });
+
+    // 5️⃣ Add WP action
+    formData.append("action", "cybersource_sy");
+
+    // 6️⃣ Submit via AJAX
+    this.runSpinner(true);
+    _ajaxRequest
+      .imageCall(formData, "json", "post")
+      .then((response) => {
+        this.runSpinner(false);
+        console.log("Payment Response:", response);
+
+        if (response.success) {
+          _visaSwift.alertSuccess("Payment Successful", response.message);
+        } else {
+          _visaSwift.alertDanger("Payment Error", response.message);
+        }
+      })
+      .catch((err) => {
+        this.runSpinner(false);
+        console.error("Payment submission failed:", err);
+        _visaSwift.alertDanger("Payment Error", "Unexpected error occurred.");
+      });
   }
 
   handle_btnAddStayingAddress(event) {
@@ -2097,23 +2164,6 @@ class VisaSwift {
     }
 
     console.log("visaSwift: Attaching click listener for Pay Now button.");
-
-    // Attach event listener for the Pay Now button
-    if (
-      this.btn_PaymentOptionContinue &&
-      !this.btn_PaymentOptionContinue._hasClickListener
-    ) {
-      this.btn_PaymentOptionContinue.addEventListener(
-        "click",
-        this.handle_btnPaymentOptionContinue.bind(this)
-      );
-      this.btn_PaymentOptionContinue._hasClickListener = true;
-      console.log("visaSwift: Click listener attached.");
-    } else if (this.btn_PaymentOptionContinue) {
-      console.log("visaSwift: Click listener already attached.");
-    } else {
-      console.error("visaSwift: Pay Now button not found.");
-    }
   }
 
   // hideAlertDanger(){
