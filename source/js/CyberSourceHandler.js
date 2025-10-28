@@ -39,26 +39,31 @@ class CyberSourceHandler {
     this.tokenTTL = options.tokenTTL || 10 * 60 * 1000; // 10 minutes
     this.tokenDebounceMs = options.tokenDebounceMs || 700; // 700 ms
     this.minTokenInterval = options.minTokenInterval || 6000; // 6 seconds
+
+    jQuery(this.cardContainer, this.cvvContainer).on("change", () => {
+      alert("custom on change called");
+      this.generateToken();
+    });
   }
 
   async initCyberSource() {
-    alert("CSH: initCyberSource called.");
+    // alert("CSH: initCyberSource called.");
     try {
       console.log("Initializing CyberSource Microform...");
       const captureContext = await this.fetchCaptureContext();
-      alert("CSH: Capture Context fetched.");
+      // alert("CSH: Capture Context fetched.");
       await this.loadMicroformScript(captureContext);
-      alert("CSH: Microform script loaded.");
+      // alert("CSH: Microform script loaded.");
       if (typeof window.Flex === "undefined") {
         throw new Error("Flex library did not load.");
       }
       this.setupMicroform(captureContext);
       console.log("CyberSource Microform initialized successfully.");
-      alert("CSH: Microform setup complete.");
+      // alert("CSH: Microform setup complete.");
     } catch (e) {
       console.error("CyberSource Initialization Failed:", e);
       this.showError(e.message || e);
-      alert("CSH: initCyberSource failed: " + (e.message || e));
+      // alert("CSH: initCyberSource failed: " + (e.message || e));
     }
   }
 
@@ -202,21 +207,28 @@ class CyberSourceHandler {
   }
 
   scheduleTokenization(debounceMs = 4) {
+    console.log("schedule debounce called");
+
     clearTimeout(this.tokenDebounceTimer);
     const ms = debounceMs ?? this.tokenDebounceMs;
     this.tokenDebounceTimer = setTimeout(() => {
       const cardNumberField = document.querySelector(this.cardContainer);
       const cvvField = document.querySelector(this.cvvContainer);
 
+      this.generateToken().catch(() => {});
       // Only attempt tokenization if both fields have some input
-      if (cardNumberField && cardNumberField.value && cvvField && cvvField.value) {
-        // generate token in background (no immediate form resubmit)
-        // swallow errors (getToken already shows them)
-        this.generateToken().catch(() => {});
-      } else {
-        // If fields are empty, just invalidate token without showing error
-        this.invalidateToken();
-      }
+      // if (
+      //   cardNumberField &&
+      //   cardNumberField.value &&
+      //   cvvField &&
+      //   cvvField.value
+      // ) {
+      //   // generate token in background (no immediate form resubmit)
+      //   // swallow errors (getToken already shows them)
+      // } else {
+      //   // If fields are empty, just invalidate token without showing error
+      //   this.invalidateToken();
+      // }
     }, ms);
   }
 
@@ -229,18 +241,17 @@ class CyberSourceHandler {
    * - If formElementToResubmit is provided, calls formElementToResubmit.submit() once token is ready.
    */
   async generateToken(formElementToResubmit = null, immediate = false) {
-    alert("CSH: generateToken called. immediate: " + immediate);
+    console.log("Generate Token Called");
+    // alert("CSH: generateToken called. immediate: " + immediate);
     // Return existing in-flight promise if present
     if (this.tokenPromise) {
-      alert("CSH: Token promise already exists.");
+      // alert("CSH: Token promise already exists.");
       // if caller wants resubmit after this token finishes, chain it
       if (formElementToResubmit) {
         return this.tokenPromise.then((tok) => {
           try {
             formElementToResubmit.submit();
-          }
-          catch (e) {
-          }
+          } catch (e) {}
           return tok;
         });
       }
@@ -249,13 +260,11 @@ class CyberSourceHandler {
 
     // If we already have a fresh token
     if (this.isTokenFresh()) {
-      alert("CSH: Token is fresh, returning existing token.");
+      // alert("CSH: Token is fresh, returning existing token.");
       if (formElementToResubmit) {
         try {
           formElementToResubmit.submit();
-        }
-        catch (e) {
-        }
+        } catch (e) {}
       }
       return this.token;
     }
@@ -263,7 +272,7 @@ class CyberSourceHandler {
     // rate limiting: enforce minTokenInterval unless immediate
     const sinceLast = Date.now() - (this.lastTokenRequestAt || 0);
     if (!immediate && sinceLast < this.minTokenInterval) {
-      alert("CSH: Rate limiting active, waiting to generate token.");
+      // alert("CSH: Rate limiting active, waiting to generate token.");
       const wait = this.minTokenInterval - sinceLast;
       // create a short-lived promise to wait then retry
       this.tokenPromise = new Promise((resolve, reject) => {
@@ -281,13 +290,13 @@ class CyberSourceHandler {
     // Start token request
     this.tokenRequestInFlight = true;
     this.lastTokenRequestAt = Date.now();
-    alert("CSH: Starting new token request.");
+    // alert("CSH: Starting new token request.");
 
     this.tokenPromise = (async () => {
       try {
-        alert("CSH: Calling getToken().");
+        // alert("CSH: Calling getToken().");
         const transient = await this.getToken({});
-        alert("CSH: getToken() returned. Transient: " + transient);
+        // alert("CSH: getToken() returned. Transient: " + transient);
         if (!transient) throw new Error("No token received from Microform.");
 
         // set token + hidden input
@@ -296,9 +305,9 @@ class CyberSourceHandler {
         const hiddenInput = document.getElementById("cybs_token");
         if (hiddenInput) {
           hiddenInput.value = this.token;
-          alert("CSH: cybs_token hidden input populated.");
+          // alert("CSH: cybs_token hidden input populated.");
         } else {
-          alert("CSH: cybs_token hidden input NOT found.");
+          // alert("CSH: cybs_token hidden input NOT found.");
         }
 
         // schedule expiry (clear only if token unchanged)
@@ -311,7 +320,7 @@ class CyberSourceHandler {
 
         // auto-resubmit if requested
         if (formElementToResubmit) {
-          alert("CSH: formElementToResubmit exists, performing AJAX submission.");
+          // alert("CSH: formElementToResubmit exists, performing AJAX submission.");
           try {
             const formData = new FormData(formElementToResubmit);
             formData.append("action", "cybersource_sy"); // Add the AJAX action
@@ -321,15 +330,21 @@ class CyberSourceHandler {
               body: formData,
             });
             const result = await response.json();
-            alert("CSH: AJAX response received. Success: " + result.success + ", Message: " + result.message);
+            // alert("CSH: AJAX response received. Success: " + result.success + ", Message: " + result.message);
 
             if (result.success) {
-              if (typeof _swiftUiManager !== 'undefined' && _swiftUiManager.handle_PaymentSuccessful) {
+              if (
+                typeof _swiftUiManager !== "undefined" &&
+                _swiftUiManager.handle_PaymentSuccessful
+              ) {
                 _swiftUiManager.handle_PaymentSuccessful();
-              } else if (typeof _visaSwift !== 'undefined' && _visaUiManager.alertSuccess) {
+              } else if (
+                typeof _visaSwift !== "undefined" &&
+                _visaUiManager.alertSuccess
+              ) {
                 _visaSwift.alertSuccess("Payment Successful", result.message);
               } else {
-                alert("Payment Successful: " + result.message);
+                // alert("Payment Successful: " + result.message);
               }
             } else {
               this.showError(result.message || "Payment failed.");
@@ -337,7 +352,7 @@ class CyberSourceHandler {
           } catch (e) {
             console.error("Form submission after token generation failed:", e);
             this.showError("An error occurred after token generation.");
-            alert("CSH: AJAX submission failed: " + (e.message || e));
+            // alert("CSH: AJAX submission failed: " + (e.message || e));
           }
         }
 
@@ -365,36 +380,34 @@ class CyberSourceHandler {
    * - If token request already in-flight: prevents submit + shows message then retries resubmit shortly.
    */
   bindFormSubmit(formSelector) {
-    alert("CSH: bindFormSubmit called for " + formSelector);
+    // alert("CSH: bindFormSubmit called for " + formSelector);
     console.log("bindFormSubmit Called");
 
     document
       .querySelector(formSelector)
       .addEventListener("submit", async (e) => {
-        alert("CSH: Form submit event caught for " + formSelector);
+        // alert("CSH: Form submit event caught for " + formSelector);
         // happy path: we already have a fresh token — let native submit run
         if (this.isTokenFresh()) {
-          alert("CSH: Token is fresh, allowing native submit.");
+          // alert("CSH: Token is fresh, allowing native submit.");
           return;
         }
 
         // if a token request is already in-flight, block submit and retry shortly
         if (this.tokenRequestInFlight) {
-          alert("CSH: Token request in-flight, preventing default.");
+          // alert("CSH: Token request in-flight, preventing default.");
           e.preventDefault();
           this.showError("Processing payment — please wait a moment...");
           // try to resubmit after a short delay if token becomes ready
           setTimeout(() => {
             const formEl = document.querySelector(formSelector);
             if (this.isTokenFresh()) {
-              alert("CSH: Token now fresh, resubmitting form.");
+              // alert("CSH: Token now fresh, resubmitting form.");
               try {
                 formEl.submit();
-              }
-              catch (err) {
-              }
+              } catch (err) {}
             } else {
-              alert("CSH: Token still not fresh after delay.");
+              // alert("CSH: Token still not fresh after delay.");
               // if still no token, leave it — user can click again (or we could re-trigger)
               this.hideError();
             }
@@ -403,16 +416,16 @@ class CyberSourceHandler {
         }
 
         // fallback: no token and no in-flight request => generate immediately and resubmit
-        alert("CSH: No fresh token, generating immediately and preventing default.");
+        // alert("CSH: No fresh token, generating immediately and preventing default.");
         e.preventDefault();
         try {
           const formEl = e.currentTarget;
           await this.generateToken(formEl, true); // immediate = true bypasses minTokenInterval
-          alert("CSH: Token generation initiated on submit.");
+          // alert("CSH: Token generation initiated on submit.");
         } catch (err) {
           console.error("Token generation on-submit failed:", err);
           this.showError(err.message || "Token generation on-submit failed.");
-          alert("CSH: Token generation on-submit failed: " + (err.message || err));
+          // alert("CSH: Token generation on-submit failed: " + (err.message || err));
         }
       });
   }
@@ -421,11 +434,11 @@ class CyberSourceHandler {
 
   showError(message) {
     console.error("Displaying error: ", message);
-    if (typeof _visaSwift !== 'undefined' && _visaSwift.alertDanger) {
+    if (typeof _visaSwift !== "undefined" && _visaSwift.alertDanger) {
       _visaSwift.alertDanger("Payment Error", message);
     } else {
       console.warn("CSH error: ", message);
-      alert("Payment Error: " + message); // Fallback alert
+      // alert("Payment Error: " + message); // Fallback alert
     }
   }
 
@@ -464,5 +477,3 @@ class CyberSourceHandler {
     return token;
   }
 }
-
-

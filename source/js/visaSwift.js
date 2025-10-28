@@ -608,7 +608,11 @@ class VisaSwift {
     }
 
     // Call setupPaymentOptions during VisaSwift initialization
-    this.setupPaymentOptions();
+    // this.setupPaymentOptions();
+
+    setTimeout(() => {
+      this.setupPaymentOptions();
+    }, 5000);
   }
 
   getAllFormData() {
@@ -648,105 +652,79 @@ class VisaSwift {
     return data;
   }
 
-    handle_btnPaymentOptionContinue(e) {
+  handle_btnPaymentOptionContinue(e) {
+    // Do NOT prevent default here, let the form submit naturally
 
-      // Do NOT prevent default here, let the form submit naturally
+    // e.preventDefault(); // Removed
 
-      // e.preventDefault(); // Removed
+    // alert("handle_btnPaymentOptionContinue called");
 
-  
+    const paymentForm = document.getElementById("cybersource-payment-form");
 
-      alert("handle_btnPaymentOptionContinue called");
+    if (!paymentForm) {
+      alert("!paymentForm");
 
-  
+      console.error(
+        "Error: Payment form with ID 'cybersource-payment-form' not found."
+      );
 
-      const paymentForm = document.getElementById("cybersource-payment-form");
+      _visaSwift.alertDanger(
+        "Payment Error",
+        "Payment form not found. Please refresh the page."
+      );
 
-  
-
-      if (!paymentForm) {
-
-        alert("!paymentForm");
-
-        console.error("Error: Payment form with ID 'cybersource-payment-form' not found.");
-
-        _visaSwift.alertDanger("Payment Error", "Payment form not found. Please refresh the page.");
-
-        return;
-
-      }
-
-  
-
-      let allData = this.getAllFormData();
-
-  
-
-      // Clear previous dynamic fields
-
-      const existingDynamicFields = paymentForm.querySelectorAll('[name^="dynamic_"]');
-
-      existingDynamicFields.forEach(field => field.remove());
-
-  
-
-      // Add all form data as hidden fields to the cybersource-payment-form
-
-      for (const key in allData) {
-
-        if (allData.hasOwnProperty(key)) {
-
-          if (Array.isArray(allData[key])) {
-
-            allData[key].forEach((item, index) => {
-
-              for (const subKey in item) {
-
-                if (item.hasOwnProperty(subKey)) {
-
-                  const input = document.createElement("input");
-
-                  input.type = "hidden";
-
-                  input.name = `dynamic_${key}[${index}][${subKey}]`;
-
-                  input.value = item[subKey];
-
-                  paymentForm.appendChild(input);
-
-                }
-
-              }
-
-            });
-
-          } else {
-
-            const input = document.createElement("input");
-
-            input.type = "hidden";
-
-            input.name = `dynamic_${key}`;
-
-            input.value = allData[key];
-
-            paymentForm.appendChild(input);
-
-          }
-
-        }
-
-      }
-
-  
-
-      // Do NOT explicitly call paymentForm.submit() here.
-
-      // The CyberSourceHandler's bindFormSubmit will intercept the natural form submission.
-
-      // paymentForm.submit(); // Removed
-
+      return;
     }
+
+    let allData = this.getAllFormData();
+
+    // Clear previous dynamic fields
+
+    const existingDynamicFields =
+      paymentForm.querySelectorAll('[name^="dynamic_"]');
+
+    existingDynamicFields.forEach((field) => field.remove());
+
+    // Add all form data as hidden fields to the cybersource-payment-form
+
+    for (const key in allData) {
+      if (allData.hasOwnProperty(key)) {
+        if (Array.isArray(allData[key])) {
+          allData[key].forEach((item, index) => {
+            for (const subKey in item) {
+              if (item.hasOwnProperty(subKey)) {
+                const input = document.createElement("input");
+
+                input.type = "hidden";
+
+                input.name = `dynamic_${key}[${index}][${subKey}]`;
+
+                input.value = item[subKey];
+
+                paymentForm.appendChild(input);
+              }
+            }
+          });
+        } else {
+          const input = document.createElement("input");
+
+          input.type = "hidden";
+
+          input.name = `dynamic_${key}`;
+
+          input.value = allData[key];
+
+          paymentForm.appendChild(input);
+        }
+      }
+    }
+
+    // Do NOT explicitly call paymentForm.submit() here.
+
+    // The CyberSourceHandler's bindFormSubmit will intercept the natural form submission.
+
+    // paymentForm.submit(); // Removed
+  }
 
   handle_btnAddStayingAddress(event) {
     let iN = this.$("#tripInfoWrap .tripInfoWrap").length;
@@ -2089,84 +2067,63 @@ class VisaSwift {
   }
 
   setupPaymentOptions() {
-    alert("visaSwift: setupPaymentOptions called.");
-    const paymentOptionsSection = document.getElementById("ten_PaymentOptions");
-    if (paymentOptionsSection && !paymentOptionsSection.classList.contains("hidden")) {
-      alert("visaSwift: Payment options section visible.");
-      // Ensure CyberSourceHandler is instantiated and initialized only once
-      if (typeof window.cybs === 'undefined') {
-        alert("visaSwift: Initializing CyberSourceHandler.");
-        window.cybs = new CyberSourceHandler({
-          restUrl: cybs_object.restUrl,
-          ajaxUrl: cybs_object.ajaxUrl,
-          cardContainer: "#cybs-card-number-container",
-          cvvContainer: "#cybs-security-code-container",
+    console.log("visaSwift: setupPaymentOptions called.");
+
+    // Ensure CyberSourceHandler is instantiated and initialized only once
+    if (typeof window.cybs === "undefined") {
+      console.log("visaSwift: Initializing CyberSourceHandler.");
+
+      window.cybs = new CyberSourceHandler({
+        restUrl: cybs_object.restUrl,
+        ajaxUrl: cybs_object.ajaxUrl,
+        cardContainer: "#cybs-card-number-container",
+        cvvContainer: "#cybs-security-code-container",
+      });
+
+      // Initialize CyberSource
+      window.cybs
+        .initCyberSource()
+        .then(() => {
+          console.log(
+            "visaSwift: CyberSourceHandler initialized successfully."
+          );
+
+          // Bind form submit handler AFTER initialization completes
+          const paymentForm = document.getElementById(
+            "cybersource-payment-form"
+          );
+          if (paymentForm) {
+            window.cybs.bindFormSubmit("#cybersource-payment-form");
+            console.log("visaSwift: Form binding completed.");
+          } else {
+            console.error("visaSwift: Payment form not found!");
+          }
+        })
+        .catch((error) => {
+          console.error("visaSwift: CyberSource initialization failed:", error);
         });
-        window.cybs.initCyberSource();
-        alert("visaSwift: CyberSourceHandler initialized.");
-        window.cybs.bindFormSubmit("#cybersource-payment-form");
-        alert("visaSwift: Form binding attempted.");
-      } else {
-        alert("visaSwift: CyberSourceHandler already exists.");
-      }
-
-      alert("visaSwift: Attaching click listener for Pay Now button.");
-      // Attach event listener for the Pay Now button
-      if (this.btn_PaymentOptionContinue && !this.btn_PaymentOptionContinue._hasClickListener) {
-        this.btn_PaymentOptionContinue.addEventListener(
-          "click",
-          this.handle_btnPaymentOptionContinue.bind(this)
-        );
-        this.btn_PaymentOptionContinue._hasClickListener = true; // Prevent duplicate listeners
-        alert("visaSwift: Click listener attached.");
-      } else if (this.btn_PaymentOptionContinue) {
-        alert("visaSwift: Click listener already attached.");
-      } else {
-        alert("visaSwift: Pay Now button not found.");
-      }
-    }
-  }
-
-  handle_btnPaymentOptionContinue(e) {
-    alert("visaSwift: handle_btnPaymentOptionContinue called.");
-    const paymentForm = document.getElementById("cybersource-payment-form");
-
-    if (!paymentForm) {
-      console.error("Error: Payment form with ID 'cybersource-payment-form' not found.");
-      _visaSwift.alertDanger("Payment Error", "Payment form not found. Please refresh the page.");
-      return;
+    } else {
+      console.log("visaSwift: CyberSourceHandler already exists.");
     }
 
-    let allData = this.getAllFormData();
-    alert("visaSwift: getAllFormData completed. Data keys: " + Object.keys(allData).join(', '));
+    console.log("visaSwift: Attaching click listener for Pay Now button.");
 
-    const existingDynamicFields = paymentForm.querySelectorAll('[name^="dynamic_"]');
-    existingDynamicFields.forEach(field => field.remove());
-
-    for (const key in allData) {
-      if (allData.hasOwnProperty(key)) {
-        if (Array.isArray(allData[key])) {
-          allData[key].forEach((item, index) => {
-            for (const subKey in item) {
-              if (item.hasOwnProperty(subKey)) {
-                const input = document.createElement("input");
-                input.type = "hidden";
-                input.name = `dynamic_${key}[${index}][${subKey}]`;
-                input.value = item[subKey];
-                paymentForm.appendChild(input);
-              }
-            }
-          });
-        } else {
-          const input = document.createElement("input");
-          input.type = "hidden";
-          input.name = `dynamic_${key}`;
-          input.value = allData[key];
-          paymentForm.appendChild(input);
-        }
-      }
+    // Attach event listener for the Pay Now button
+    if (
+      this.btn_PaymentOptionContinue &&
+      !this.btn_PaymentOptionContinue._hasClickListener
+    ) {
+      this.btn_PaymentOptionContinue.addEventListener(
+        "click",
+        this.handle_btnPaymentOptionContinue.bind(this)
+      );
+      this.btn_PaymentOptionContinue._hasClickListener = true;
+      console.log("visaSwift: Click listener attached.");
+    } else if (this.btn_PaymentOptionContinue) {
+      console.log("visaSwift: Click listener already attached.");
+    } else {
+      console.error("visaSwift: Pay Now button not found.");
     }
-    alert("visaSwift: Dynamic fields added to form. Attempting natural form submit.");
   }
 
   // hideAlertDanger(){
