@@ -428,11 +428,4 @@ class CyberSourceHandler {
   }
 }
 
-/* ========================= USAGE ========================= */
 
-window.cybs = new CyberSourceHandler({
-  restUrl: cybs_object.restUrl,
-  ajaxUrl: cybs_object.ajaxUrl,
-  cardContainer: "#cybs-card-number-container",
-  cvvContainer: "#cybs-security-code-container",
-});

@@ -615,27 +615,35 @@ class VisaSwift {
     let data = {};
 
     // Personal Information
-    data.phone_number = this.$('#input_ContactYourNumber').val();
-    data.email = this.$('#input_ContactYourEmail').val();
+    data.phone_number = this.$("#input_ContactYourNumber").val();
+    data.email = this.$("#input_ContactYourEmail").val();
 
     data.applicants = [];
-    this.$('#contact_Duplicate .cs-contact-details').each(function () {
+    this.$("#contact_Duplicate .cs-contact-details").each(function () {
       let applicant = {};
-      applicant.name = _visaSwift.$(this).find('input[name="emg_contact_name"]').val();
-      applicant.dob = _visaSwift.$(this).find('input[name="emg_contact_dob"]').val();
+      applicant.name = _visaSwift
+        .$(this)
+        .find('input[name="emg_contact_name"]')
+        .val();
+      applicant.dob = _visaSwift
+        .$(this)
+        .find('input[name="emg_contact_dob"]')
+        .val();
       data.applicants.push(applicant);
     });
 
     // Trip Information
-    data.arrival_date = this.$('#input_TripArrivalDate').val();
-    data.departure_date = this.$('#date_TripReturn').val();
-    data.address_in_seychelles = this.$('#address_in_seychelles').val();
+    data.arrival_date = this.$("#input_TripArrivalDate").val();
+    data.departure_date = this.$("#date_TripReturn").val();
+    data.address_in_seychelles = this.$("#address_in_seychelles").val();
 
     // Medical Protection
-    data.medical_protection = this.$('input[name="radio_medical_protection"]:checked').val();
+    data.medical_protection = this.$(
+      'input[name="radio_medical_protection"]:checked'
+    ).val();
 
     // Amount
-    data.amount = this.$('#summaryTotal').text();
+    data.amount = this.$("#summaryTotal").text();
 
     return data;
   }
@@ -643,19 +651,28 @@ class VisaSwift {
   handle_btnPaymentOptionContinue(e) {
     e.preventDefault();
 
+    alert("handle_btnPaymentOptionContinue called");
+
     const paymentForm = document.getElementById("cybersource-payment-form");
 
     if (!paymentForm) {
-      console.error("Error: Payment form with ID 'cybersource-payment-form' not found.");
-      _visaSwift.alertDanger("Payment Error", "Payment form not found. Please refresh the page.");
+      alert("!paymentForm");
+      console.error(
+        "Error: Payment form with ID 'cybersource-payment-form' not found."
+      );
+      _visaSwift.alertDanger(
+        "Payment Error",
+        "Payment form not found. Please refresh the page."
+      );
       return;
     }
 
     let allData = this.getAllFormData();
 
     // Clear previous dynamic fields
-    const existingDynamicFields = paymentForm.querySelectorAll('[name^="dynamic_"]');
-    existingDynamicFields.forEach(field => field.remove());
+    const existingDynamicFields =
+      paymentForm.querySelectorAll('[name^="dynamic_"]');
+    existingDynamicFields.forEach((field) => field.remove());
 
     // Add all form data as hidden fields to the cybersource-payment-form
     for (const key in allData) {
@@ -2028,9 +2045,13 @@ class VisaSwift {
 
   setupPaymentOptions() {
     const paymentOptionsSection = document.getElementById("ten_PaymentOptions");
-    if (paymentOptionsSection && !paymentOptionsSection.classList.contains("hidden")) {
+    if (
+      paymentOptionsSection &&
+      !paymentOptionsSection.classList.contains("hidden")
+    ) {
       // Ensure CyberSourceHandler is instantiated and initialized only once
-      if (typeof window.cybs === 'undefined') {
+      if (typeof window.cybs === "undefined") {
+        alert("typeof window.cybs === 'undefined'");
         window.cybs = new CyberSourceHandler({
           restUrl: cybs_object.restUrl,
           ajaxUrl: cybs_object.ajaxUrl,
@@ -2038,10 +2059,15 @@ class VisaSwift {
           cvvContainer: "#cybs-security-code-container",
         });
         window.cybs.initCyberSource();
+        window.cybs.bindFormSubmit("#cybersource-payment-form");
+        alert("bind complete");
       }
 
       // Attach event listener for the Pay Now button
-      if (this.btn_PaymentOptionContinue && !this.btn_PaymentOptionContinue._hasClickListener) {
+      if (
+        this.btn_PaymentOptionContinue &&
+        !this.btn_PaymentOptionContinue._hasClickListener
+      ) {
         this.btn_PaymentOptionContinue.addEventListener(
           "click",
           this.handle_btnPaymentOptionContinue.bind(this)

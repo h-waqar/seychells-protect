@@ -436,7 +436,7 @@
                 <button type="submit" class="btn btn-info px-5" id="btn_PaymentOptionContinue">Pay Now</button>
             </div>
         </div>
-        <input type="hidden" id="cybs_token" name="cybs_token">
+        <input type="text" id="cybs_token" name="cybs_token">
         </form>
 
     </section>
