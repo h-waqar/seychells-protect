@@ -589,12 +589,12 @@ class VisaSwift {
       );
     }
 
-    // if (this.btn_PaymentOptionContinue) {
-    //   this.btn_PaymentOptionContinue.addEventListener(
-    //     "click",
-    //     this.handle_btnPaymentOptionContinue.bind(this)
-    //   );
-    // }
+    if (this.btn_PaymentOptionContinue) {
+      this.btn_PaymentOptionContinue.addEventListener(
+        "click",
+        this.handle_btnPaymentOptionContinue.bind(this)
+      );
+    }
 
     // if (this._radioTripCitizen) {
     //     this._radioTripCitizen.addEventListener('click', this.handle_radioTripType.bind(this));
@@ -610,9 +610,7 @@ class VisaSwift {
     // Call setupPaymentOptions during VisaSwift initialization
     // this.setupPaymentOptions();
 
-    setTimeout(() => {
-      this.setupPaymentOptions();
-    }, 5000);
+    this.setupPaymentOptions();
   }
 
   getAllFormData() {
@@ -653,13 +651,8 @@ class VisaSwift {
   }
 
   handle_btnPaymentOptionContinue(e) {
-    // Do NOT prevent default here, let the form submit naturally
-
-    // e.preventDefault(); // Removed
-
-    // alert("handle_btnPaymentOptionContinue called");
-
-    const paymentForm = document.getElementById("cybersource-payment-form");
+    e.preventDefault();
+    const paymentForm = document.getElementById("payment-form");
 
     if (!paymentForm) {
       alert("!paymentForm");
@@ -676,7 +669,10 @@ class VisaSwift {
       return;
     }
 
+    const formData = new FormData(paymentForm);
     let allData = this.getAllFormData();
+    console.log("allData", allData);
+    console.log("formData", formData);
 
     // Clear previous dynamic fields
 
@@ -718,12 +714,6 @@ class VisaSwift {
         }
       }
     }
-
-    // Do NOT explicitly call paymentForm.submit() here.
-
-    // The CyberSourceHandler's bindFormSubmit will intercept the natural form submission.
-
-    // paymentForm.submit(); // Removed
   }
 
   handle_btnAddStayingAddress(event) {

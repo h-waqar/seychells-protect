@@ -62,7 +62,7 @@ class CyberSourceHandler {
       // alert("CSH: Microform setup complete.");
     } catch (e) {
       console.error("CyberSource Initialization Failed:", e);
-      this.showError(e.message || e);
+      // this.showError(e.message || e);
       // alert("CSH: initCyberSource failed: " + (e.message || e));
     }
   }
@@ -99,17 +99,20 @@ class CyberSourceHandler {
   }
 
   setupMicroform(captureContext) {
-    const styles = {
-      input: {
-        "font-size": "16px",
-        "line-height": "1.5",
-      },
-      "::-webkit-input-placeholder": { color: "#888" },
-      "::placeholder": { color: "#888" },
-    };
+    // const styles = {
+    //   input: {
+    //     "font-size": "16px",
+    //     "line-height": "1.5",
+    //   },
+    //   "::-webkit-input-placeholder": { color: "#888" },
+    //   "::placeholder": { color: "#888" },
+    // };
 
     this.flex = new window.Flex(captureContext);
-    this.microform = this.flex.microform({ styles });
+    this.microform = this.flex.microform({
+      placeholder: { number: "•••• •••• •••• ••••", securityCode: "CVV" },
+      showErrorMessages: false,
+    });
 
     // create fields
     const number = this.microform.createField("number", {
@@ -172,7 +175,7 @@ class CyberSourceHandler {
             err.details?.map((d) => d.message).join(" ") ||
             err.message ||
             "Please check your card details and try again.";
-          this.showError(errorMessage);
+          // this.showError(errorMessage);
           reject(err);
         } else {
           const transientToken =
@@ -397,7 +400,7 @@ class CyberSourceHandler {
         if (this.tokenRequestInFlight) {
           // alert("CSH: Token request in-flight, preventing default.");
           e.preventDefault();
-          this.showError("Processing payment — please wait a moment...");
+          // this.showError("Processing payment — please wait a moment...");
           // try to resubmit after a short delay if token becomes ready
           setTimeout(() => {
             const formEl = document.querySelector(formSelector);
@@ -424,7 +427,7 @@ class CyberSourceHandler {
           // alert("CSH: Token generation initiated on submit.");
         } catch (err) {
           console.error("Token generation on-submit failed:", err);
-          this.showError(err.message || "Token generation on-submit failed.");
+          // this.showError(err.message || "Token generation on-submit failed.");
           // alert("CSH: Token generation on-submit failed: " + (err.message || err));
         }
       });

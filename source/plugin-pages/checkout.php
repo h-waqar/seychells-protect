@@ -433,7 +433,7 @@
                     <span class="dashicons dashicons-arrow-left-alt2"></span>
                     Previous
                 </button> -->
-                <button type="submit" class="btn btn-info px-5" id="btn_PaymentOptionContinue">Pay Now</button>
+                <button type="button" class="btn btn-info px-5" id="btn_PaymentOptionContinue">Pay Now</button>
             </div>
         </div>
         <input type="text" id="cybs_token" name="cybs_token">
