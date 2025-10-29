@@ -28,7 +28,7 @@ define('SY_SHORTCODE', 'seychelles_protect'); //To make the plugin conflict free
 
 
 define("SP_PIXLAB_API_KEY", "66b82a3ac80fd0d8a8531c7baf290374");
-define("SP_TESTING_ENV", false);
+define("SP_TESTING_ENV", true);
 /**
  * Plugin base url/path etc
  */

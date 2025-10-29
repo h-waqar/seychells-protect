@@ -66,7 +66,7 @@
                 <div class="col-12">
                     <div class="mb-3">
                         <label class="form-label" for="proceed_CardNumber">Card number</label>
-                        <div id="cybs-card-number-container" class="form-control"></div>
+                        <div id="cybs-card-number-container" class="form-control cybs-card-number-container"></div>
 
                         <!-- Card Images Start -->
                         <div class="card-img-wrapper">
@@ -196,7 +196,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="proceed_CardCvv">Card CVV No</label>
-                            <div id="cybs-security-code-container" class="form-control"></div>
+                            <div id="cybs-security-code-container" class="form-control cybs-security-code-container"></div>
                         </div>
                     </div>
                 </div>

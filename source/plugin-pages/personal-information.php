@@ -54,7 +54,7 @@
                                 <!-- <input type="text" onchange="_swiftFV.handle_emgTelephone(this)"
                                     class="form-control datepicker-dob d-block" placeholder="Date Of Birth" name=""> -->
                                 <input type="date" onchange="_swiftFV.handle_emgTelephone(this)"
-                                    class="form-control d-block" placeholder="Date Of Birth" name="emg_contact_dob">
+                                    class="form-control d-block datepickerDOB" placeholder="Date Of Birth" name="emg_contact_dob">
                             </div>
                         </div>
                     </div>

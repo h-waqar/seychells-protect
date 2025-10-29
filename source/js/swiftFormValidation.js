@@ -269,6 +269,17 @@ class SwiftFormValidation {
         }
       });
 
+    // this.$(".datepickerDOB")
+    //   .datepicker({
+    //     // Set the minimum date to the current date (0)
+    //     format: "yyyy-mm-dd", // Specify the date format as needed
+    //     autoclose: true, // Close the datepicker when a date is selected
+    //     keyboardNavigation: true, // Allow keyboard navigation
+    //     // minDate: 0,
+    //     startDate: new Date(),
+    //   })
+    //   .on("change", function (e) {});
+
     this.mountJqueryDatepickers();
 
     // Add a click event listener to all radio buttons with the same name attribute
@@ -1161,7 +1172,7 @@ class SwiftFormValidation {
                             <div class="mb-3">
                                 <label>Date of birth</label>
                                 <input type="date" onchange="_swiftFV.handle_emgTelephone(this)"
-                                    class="form-control d-block" placeholder="Date Of Birth" name="emg_contact_dob">
+                                    class="form-control d-block datepicker" placeholder="Date Of Birth" name="emg_contact_dob">
                             </div>
                         </div>
                     </div>
@@ -1169,6 +1180,19 @@ class SwiftFormValidation {
                 </div>`;
 
     this.$("#contact_Duplicate").append(html);
+
+    // this.$("#contact_Duplicate .datepicker")
+    //   .datepicker({
+    //     // Set the minimum date to the current date (0)
+    //     format: "yyyy-mm-dd", // Specify the date format as needed
+    //     autoclose: true, // Close the datepicker when a date is selected
+    //     keyboardNavigation: true, // Allow keyboard navigation
+    //     // minDate: 0,
+    //     startDate: new Date(),
+    //   })
+    //   .on("change", function (e) {
+    //     // your logic here for datepicker change
+    //   });
 
     // this.mountJqueryDatepickers();
 

@@ -2746,3 +2746,7 @@ section.container_PageZero
 .bs-heading p {
   color: var(--bs-text-secondary) !important;
 }
+.cybs-card-number-container,
+.cybs-security-code-container{
+  height: 50px;
+}
