@@ -44,6 +44,7 @@ define('PLUGIN_BASEURL_SY', plugin_dir_url(SP_PLUGIN_BASEFILE));
 require_once(SP_PLUGIN_BASEPATH . '/vendor/autoload.php');
 
 
+include_once('source/classes/class_coupon.php');
 include_once('source/classes/class_swift_helper.php');
 include_once('source/classes/class_swift_data.php');
 include_once('source/classes/class_pdf_passport.php');
@@ -230,6 +231,7 @@ class Seychelles_Protect
             wp_enqueue_style('cs_root', plugins_url('/source/styles/root.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
 
             wp_enqueue_style('cs_main', plugins_url('/source/styles/main.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
+            wp_enqueue_style('cs_main_backup', plugins_url('/source/styles/main-backup.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
 
             wp_enqueue_style('cs_sidebar', plugins_url('/source/styles/side-bar.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
 
@@ -367,6 +369,16 @@ class Seychelles_Protect
 // Instantiate the class
 $seychelles_protect = new Seychelles_Protect();
 
-// Activation and deactivation hooks
-register_activation_hook(__FILE__, array('Seychelles_Protect', 'activate'));
+SMP_Coupons::init();
+
+register_activation_hook( __FILE__, 'seychelles_plugin_activate' );
+function seychelles_plugin_activate() {
+    if ( class_exists( 'Seychelles_Protect' ) ) {
+        Seychelles_Protect::activate();
+    }
+
+    // if ( class_exists( 'SMP_Coupons' ) ) {
+    //     SMP_Coupons::on_plugin_activate();
+    // }
+}
 register_deactivation_hook(__FILE__, array('Seychelles_Protect', 'deactivate'));

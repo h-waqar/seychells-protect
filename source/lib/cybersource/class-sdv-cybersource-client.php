@@ -15,6 +15,7 @@ class Sdv_CyberSource_Client
             'api_key_id'  => get_option('sp_cybersource_merchant_key_id'),
             'secret_key'  => get_option('sp_cybersource_merchant_secret_key'),
             'environment' => 'test', // Assuming test environment as it is not in the settings
+            // 'environment' => 'live', // Assuming test environment as it is not in the settings
             'target_origin' => home_url(), // Assuming home_url as it is not in the settings
         ];
     }

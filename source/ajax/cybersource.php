@@ -129,7 +129,7 @@ function cs_cybersource_sy()
 
     try {
         $payment_response = $client->create_payment($amount, $currency, $transientTokenJwt, $billingDetails);
-
+ 
         if (is_wp_error($payment_response)) {
             $response['message'] = $payment_response->get_error_message();
             error_log("CyberSource Error: " . $response['message']);
