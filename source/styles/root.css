@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 /* === Root Variable (from user) === */
 :root {
   --bs-primary-color: #3c72c8;
@@ -8,4 +10,10 @@
   --bs-text-primary: #333;
   --bs-text-secondary: #444;
   --bs-text-muted: #555;
+  --bs-link-color: #3c72c7;
+
+  /* Text Sizes */
+  --bs-heading: 64px;
+  --bs-text: 16px;
+  --bs-font-primary: "Montserrat", sans-serif;
 }

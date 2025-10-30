@@ -6,3 +6,9 @@
   border-radius: none !important;
   border-color: black !important;
 }
+
+#three_ContactInfo .bs-link {
+  color: var(--bs-link-color) !important;
+  font-weight: bold !important;
+  text-decoration: underline;
+}
