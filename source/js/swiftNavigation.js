@@ -301,6 +301,7 @@ class SwiftNavigation {
   handle_btnContactInfoContinue(event) {
     let valid = _swiftFV.personalInformation();
     if (!valid) {
+      
       // _visaSwift.alertDanger(
       //   "All Fields Required",
       //   "Please fill in all the highlighted  fields"

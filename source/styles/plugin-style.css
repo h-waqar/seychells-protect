@@ -91,6 +91,9 @@
   transition: background-color 0.3s ease;
   height: 50px;
 }
+.cs-container{
+  overflow-x: clip;
+}
 
 .cs-coupon-wrapper button:hover {
   background-color: #005f8d;

@@ -1,5 +1,5 @@
 <div id="clinicalQuestionTwo">
-  <!-ADD hidden here ->
+  
     <section id="ten_PaymentOptions" class="hidden">
       <div class="cs-container">
         <div class="bs-heading mb-4">
@@ -61,6 +61,7 @@
               </div>
             </div>
 
+           
             <!-- Card NUmber -->
             <div class="col-12">
               <div class="mb-3">

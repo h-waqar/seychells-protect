@@ -269,16 +269,16 @@ class SwiftFormValidation {
         }
       });
 
-    // this.$(".datepickerDOB")
-    //   .datepicker({
-    //     // Set the minimum date to the current date (0)
-    //     format: "yyyy-mm-dd", // Specify the date format as needed
-    //     autoclose: true, // Close the datepicker when a date is selected
-    //     keyboardNavigation: true, // Allow keyboard navigation
-    //     // minDate: 0,
-    //     startDate: new Date(),
-    //   })
-    //   .on("change", function (e) {});
+    this.$(".datepickerDOB")
+      .datepicker({
+        // Set the minimum date to the current date (0)
+        format: "yyyy-mm-dd", // Specify the date format as needed
+        autoclose: true, // Close the datepicker when a date is selected
+        keyboardNavigation: true, // Allow keyboard navigation
+        // minDate: 0,
+        startDate: new Date(),
+      })
+      .on("change", function (e) {});
 
     this.mountJqueryDatepickers();
 
@@ -437,7 +437,10 @@ class SwiftFormValidation {
       if (!$(this).is(":visible")) return;
 
       const nameInput = $(this).find('input[name="emg_contact_name"]');
-      const dobInput = $(this).find('input[type="date"]');
+      
+
+      const dobInput = $(this).find('input[data-datepicker="true"]');
+
 
       if (nameInput.length === 0 && dobInput.length === 0) return;
 
@@ -1173,8 +1176,8 @@ class SwiftFormValidation {
                             <!-- Emergency Contact Phone Number Input -->
                             <div class="mb-3">
                                 <label>Date of birth</label>
-                                <input type="date" onchange="_swiftFV.handle_emgTelephone(this)"
-                                    class="form-control d-block datepicker" placeholder="Date Of Birth" name="emg_contact_dob">
+                                <input type="text" onchange="_swiftFV.handle_emgTelephone(this)"
+                                    class="form-control d-block datepicker" data-datepicker="true" placeholder="Date Of Birth" name="emg_contact_dob">
                             </div>
                         </div>
                     </div>
@@ -1183,18 +1186,18 @@ class SwiftFormValidation {
 
     this.$("#contact_Duplicate").append(html);
 
-    // this.$("#contact_Duplicate .datepicker")
-    //   .datepicker({
-    //     // Set the minimum date to the current date (0)
-    //     format: "yyyy-mm-dd", // Specify the date format as needed
-    //     autoclose: true, // Close the datepicker when a date is selected
-    //     keyboardNavigation: true, // Allow keyboard navigation
-    //     // minDate: 0,
-    //     startDate: new Date(),
-    //   })
-    //   .on("change", function (e) {
-    //     // your logic here for datepicker change
-    //   });
+    this.$("#contact_Duplicate .datepicker")
+      .datepicker({
+        // Set the minimum date to the current date (0)
+        format: "yyyy-mm-dd", // Specify the date format as needed
+        autoclose: true, // Close the datepicker when a date is selected
+        keyboardNavigation: true, // Allow keyboard navigation
+        // minDate: 0,
+        startDate: new Date(),
+      })
+      .on("change", function (e) {
+        // your logic here for datepicker change
+      });
 
     // this.mountJqueryDatepickers();
 

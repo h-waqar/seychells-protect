@@ -1292,6 +1292,7 @@ section.container_PageZero
   position: relative;
   border-color: black;
   padding: 0.6rem 1rem;
+  height: 50px;
 }
 #four_TripInfo .cs-container .cs-arrival-details .alert-warning {
   display: flex;
