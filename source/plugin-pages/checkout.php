@@ -1,6 +1,6 @@
 <div id="clinicalQuestionTwo">
   <!-ADD hidden here ->
-    <section id="ten_PaymentOptions" class="">
+    <section id="ten_PaymentOptions" class="hidden">
       <div class="cs-container">
         <div class="bs-heading mb-4">
           <h1>Complete your Application</h1>

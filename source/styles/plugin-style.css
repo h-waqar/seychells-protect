@@ -26,10 +26,16 @@
   display: flex;
   gap: 0;
 }
+.main-svg-wrap {
+  color: var(--bs-primary-color);
+}
+.cs-qna-radio input[type="radio"]:checked + .cs-form-control .main-svg-wrap {
+  color: white;
+}
 .text-wrap .text-regular {
   background: transparent !important;
   border: none !important;
-  color: white !important;
+  color: var(--bs-primary-color) !important;
   font-size: 16px;
 }
 .cs-qna-radio .text-items {
@@ -39,4 +45,21 @@
   font-size: 16px;
   font-weight: initial;
   font-family: Montserrat;
+}
+.cs-qna-radio input[type="radio"]:checked + .cs-form-control span.text-regular {
+  color: white !important;
+}
+
+@media only screen and (max-width: 768px) {
+  /* Your mobile styles go here */
+  #bsContainer {
+    margin: auto;
+    padding: 0.5rem;
+  }
+  .cs-qna-radio .cs-form-control {
+    padding: 2rem 1.5rem;
+  }
+  .bs-heading h1{
+    font-size: 2rem !important;
+  }
 }

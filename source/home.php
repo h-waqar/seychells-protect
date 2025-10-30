@@ -45,10 +45,10 @@
 				// _swiftFV.mountJqueryDatepickers();
 
 				// |> New Routing
-				// include_once('plugin-pages/medical-protection.php');
-				// include_once('plugin-pages/personal-information.php');
-				// include_once('plugin-pages/trip-information.php');
-				// include_once('plugin-pages/summary.php');
+				include_once('plugin-pages/medical-protection.php');
+				include_once('plugin-pages/personal-information.php');
+				include_once('plugin-pages/trip-information.php');
+				include_once('plugin-pages/summary.php');
 				include_once('plugin-pages/checkout.php');
 
 				// ---------------------------------------------------
