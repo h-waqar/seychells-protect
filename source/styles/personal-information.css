@@ -5,6 +5,7 @@
 #three_ContactInfo input {
   border-radius: none !important;
   border-color: black !important;
+  height: 50px;
 }
 
 #three_ContactInfo .bs-link {

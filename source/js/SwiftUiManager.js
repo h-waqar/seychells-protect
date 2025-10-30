@@ -233,8 +233,9 @@ class SwiftUiManager {
     const departureDateStr = this.$("#date_TripReturn").val();
 
     const applicants = [];
+
     this.$(".cs-emergency-contact-numbers").each(function () {
-      const dob = $(this).find('input[type="date"]').val();
+      const dob = $(this).find('input[data-datepicker="true"]').val();
       applicants.push({ dob: dob });
     });
 
