@@ -54,10 +54,18 @@ class SwiftUiManager {
   }
 
   handle_applyCoupon() {
-    const couponCode = this.$("#coupon-code").val();
+    const $button = this.$("#apply-coupon");
+    const $status = this.$("#csCouponStatus");
+    const couponCode = this.$("#coupon-code").val().trim();
+
     if (!couponCode) {
       return;
     }
+
+    // Disable button and show loading text
+    $button.prop("disabled", true).text("Applying Coupon...");
+    // Clear previous message
+    $status.addClass("hidden").text("");
 
     let _data = {
       action: "validate_coupon",
@@ -67,19 +75,32 @@ class SwiftUiManager {
     _ajaxRequest
       .call(_data, "json", "post")
       .error((error) => {
-        alert(error.message);
+        $status
+          .removeClass("hidden")
+          .text("An error occurred. Please try again.")
+          .css("color", "#d9534f"); // red for error
         this.couponPrices = null;
         this.prepareSummary();
       })
       .then((response) => {
         if (response.success) {
           this.couponPrices = response.data;
-          this.prepareSummary();
+          $status
+            .removeClass("hidden")
+            .text("Coupon applied successfully!")
+            .css("color", "#28a745"); // green for success
         } else {
-          alert(response.data.message);
           this.couponPrices = null;
-          this.prepareSummary();
+          $status
+            .removeClass("hidden")
+            .text(response.data.message || "Invalid coupon code.")
+            .css("color", "#d9534f"); // red for failure
         }
+        this.prepareSummary();
+      })
+      .always(() => {
+        // Re-enable button and restore text
+        $button.prop("disabled", false).text("Apply");
       });
   }
 
@@ -251,17 +272,17 @@ class SwiftUiManager {
     // 4. Get per day fee
     let perDayFee = 0;
     if (protectionType === "basic_protection") {
-        if (this.couponPrices) {
-            perDayFee = parseFloat(this.couponPrices.basic_price) || 0;
-        } else {
-            perDayFee = parseFloat(_swiftUiData.basic_protection_price) || 0;
-        }
+      if (this.couponPrices) {
+        perDayFee = parseFloat(this.couponPrices.basic_price) || 0;
+      } else {
+        perDayFee = parseFloat(_swiftUiData.basic_protection_price) || 0;
+      }
     } else if (protectionType === "total_protection") {
-        if (this.couponPrices) {
-            perDayFee = parseFloat(this.couponPrices.total_price) || 0;
-        } else {
-            perDayFee = parseFloat(_swiftUiData.total_protection_price) || 0;
-        }
+      if (this.couponPrices) {
+        perDayFee = parseFloat(this.couponPrices.total_price) || 0;
+      } else {
+        perDayFee = parseFloat(_swiftUiData.total_protection_price) || 0;
+      }
     }
 
     // 5. Calculate medical protection fee

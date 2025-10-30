@@ -47,14 +47,18 @@
         </div>
       </div>
 
-      <!-- Coupon Code -->
-      <div class="cs-summary-row">
-        <div class="cs-coupon-wrapper">
-          <input type="text" id="coupon-code" placeholder="Coupon Code">
-          <button type="button" id="apply-coupon">Apply</button>
-        </div>
+
+    </div>
+
+    <!-- Coupon Code -->
+    <div class="cs-summary-row" style="border-bottom: 0; padding: 0;">
+      <div class="cs-coupon-wrapper">
+        <input type="text" id="coupon-code" placeholder="Coupon Code">
+        <button type="button" id="apply-coupon">Apply</button>
       </div>
     </div>
+    <span id="csCouponStatus" class="hidden">Coupon Code applied</span>
+
 
     <!-- Navigation Buttons -->
     <div class="cs-button-wrapper">

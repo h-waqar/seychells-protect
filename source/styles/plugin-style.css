@@ -50,6 +50,71 @@
   color: white !important;
 }
 
+/* Coupon Code  */
+/* Coupon Wrapper */
+.cs-coupon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* small space between input and button */
+  width: 100%;
+  max-width: 100%; /* optional limit */
+  margin: 0 auto;
+}
+
+/* Input Field */
+.cs-coupon-wrapper input[type="text"] {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid black;
+  border-radius: 0;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  height: 50px;
+}
+
+.cs-coupon-wrapper input[type="text"]:focus {
+  border-color: #0073aa; /* WordPress blue or any theme color */
+}
+
+/* Apply Button */
+.cs-coupon-wrapper button {
+  padding: 10px 16px;
+  border: none;
+  background-color: var(--bs-primary-color) !important;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+  height: 50px;
+}
+
+.cs-coupon-wrapper button:hover {
+  background-color: #005f8d;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 600px) {
+  .cs-coupon-wrapper {
+    gap: 6px;
+  }
+
+  .cs-coupon-wrapper input[type="text"] {
+    flex: 1; /* input takes available space */
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .cs-coupon-wrapper button {
+    flex: 0 0 auto; /* button takes only needed width */
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   /* Your mobile styles go here */
   #bsContainer {
@@ -59,7 +124,7 @@
   .cs-qna-radio .cs-form-control {
     padding: 2rem 1.5rem;
   }
-  .bs-heading h1{
+  .bs-heading h1 {
     font-size: 2rem !important;
   }
 }
