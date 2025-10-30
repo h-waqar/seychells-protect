@@ -255,6 +255,7 @@ class SwiftFormValidation {
         autoclose: true, // Close the datepicker when a date is selected
         keyboardNavigation: true, // Allow keyboard navigation
         minDate: 0,
+        
         startDate: new Date(),
       })
       .on("change", function (e) {
@@ -276,6 +277,7 @@ class SwiftFormValidation {
         autoclose: true, // Close the datepicker when a date is selected
         keyboardNavigation: true, // Allow keyboard navigation
         // minDate: 0,
+        maxDate: 0, // 0 = today; positive = days from today, negative = days before today
         startDate: new Date(),
       })
       .on("change", function (e) {});
@@ -437,10 +439,8 @@ class SwiftFormValidation {
       if (!$(this).is(":visible")) return;
 
       const nameInput = $(this).find('input[name="emg_contact_name"]');
-      
 
       const dobInput = $(this).find('input[data-datepicker="true"]');
-
 
       if (nameInput.length === 0 && dobInput.length === 0) return;
 
@@ -1193,6 +1193,7 @@ class SwiftFormValidation {
         autoclose: true, // Close the datepicker when a date is selected
         keyboardNavigation: true, // Allow keyboard navigation
         // minDate: 0,
+        maxDate: 0, // 0 = today; positive = days from today, negative = days before today
         startDate: new Date(),
       })
       .on("change", function (e) {

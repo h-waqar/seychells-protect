@@ -1,0 +1,11 @@
+Remove Dialog After Payment wrong card details
+Success Thankyou page
+pass realtime information to email
+Added Applicat Id where we add multiple contacts
+Display Correspondance errors so user can understand what should we do to solve that error
+Display Address the dropdown the hotels including other functioanlity
+Should i display the label for Payment Details
+Border of Coupon functiaonliaty
+should we design the backend
+QA Design wise
+If All DOB are less than 10 should we proceed

@@ -223,10 +223,10 @@ function sy_send_admin_confirmation_email($customer_email, $applicantId, $amount
     wp_mail($admin_email, $subject, $message, $headers);
 
     // Send a copy to finance (only in live mode)
-    if (!SP_TESTING_ENV) {
-        $finance_email = "finance@seychellesmedicalservices.com";
-        wp_mail($finance_email, $subject, $message, $headers);
-    }
+    // if (!SP_TESTING_ENV) {
+    //     $finance_email = "finance@seychellesmedicalservices.com";
+    //     wp_mail($finance_email, $subject, $message, $headers);
+    // }
 }
 
 
