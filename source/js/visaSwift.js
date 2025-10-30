@@ -142,6 +142,7 @@ class VisaSwift {
   btn_ProceedPrev = null;
   btn_OptionalDocsPrev = null;
   btn_ContactInfoPrev = null;
+  btn_CheckoutPrev = null;
   btn_ContactInfoContinue = null;
   btn_CustomsInfoPrev = null;
   btn_RequiredDocsPrev = null;
@@ -250,6 +251,7 @@ class VisaSwift {
     this.btn_RequiredDocsPrev = this.$("#btn_RequiredDocsPrev").get(0);
     this.btn_HealthInfoPrev = this.$("#btn_HealthInfoPrev").get(0);
     this.btn_ContactInfoPrev = this.$("#btn_ContactInfoPrev").get(0);
+    this.btn_CheckoutPrev = this.$("#btn_CheckoutPrev").get(0);
     this.btn_ContactInfoContinue = this.$("#btn_ContactInfoContinue").get(0);
     // this.btn_TripInfoContinue = this.$("#btn_TripInfoContinue").get(0);
     this.btn_SummaryPrev = this.$("#btn_SummaryPrev").get(0);

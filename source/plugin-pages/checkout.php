@@ -182,7 +182,7 @@
                 <div class="mb-3">
                   <label class="form-label" for="proceed_CardHolderName">Card Holder Name</label>
                   <input type="text" class="form-control" name="proceed_card_holder_name" id="proceed_CardHolderName"
-                    placeholder="Card Holder Name">
+                    placeholder="">
                 </div>
               </div>
 
@@ -197,7 +197,7 @@
             </div>
 
             <!-- Expiration Date -->
-            <div class="row px-0 mx-0">
+            <div class="row px-0 mx-0" style="margin-top: 15px;">
 
               <!--        Choose Expiration Month        -->
               <div class="col-md-4">
@@ -226,15 +226,15 @@
                   <select id="cybs-expiration-year" name="proceed_exp_year" class="col-50" required>
                     <option value="" class="d-none">Choose Expiration Year</option>
                     <?php
-                                $start_year = date("Y");
-                                for ($x = $start_year; $x <= $start_year + 10; $x++) {
-                                    ?>
-                    <option value="<?php echo $x; ?>">
-                      <?php echo $x; ?>
-                    </option>
+                    $start_year = date("Y");
+                    for ($x = $start_year; $x <= $start_year + 10; $x++) {
+                    ?>
+                      <option value="<?php echo $x; ?>">
+                        <?php echo $x; ?>
+                      </option>
                     <?php
-                                }
-                                ?>
+                    }
+                    ?>
                   </select>
                 </div>
               </div>
@@ -424,10 +424,9 @@
             </div> -->
 
         <div type="button" class="cs-button-wrapper ">
-          <!-- <button type="button" class="border-0 bg-transparent pr-3" id="btn_PaymentOptionPrev">
-                    <span class="dashicons dashicons-arrow-left-alt2"></span>
-                    Previous
-                </button> -->
+          <button type="button" class="prev pr-3" id="btn_CheckoutPrev">
+            Previous
+          </button>
           <button type="button" class="btn btn-info px-5" id="btn_PaymentOptionContinue">Pay Now</button>
         </div>
       </div>
@@ -437,59 +436,59 @@
     </section>
 
     <script>
-    // Get all payment method radio buttons
-    const paymentMethodRadios = document.querySelectorAll('input[name="proceed_payment_method"]');
+      // Get all payment method radio buttons
+      const paymentMethodRadios = document.querySelectorAll('input[name="proceed_payment_method"]');
 
-    const payByCard = document.getElementById('div_PayByCard');
-    const payByGiro = document.getElementById('div_PayByGiro');
-    const payByWeChat = document.getElementById('div_PayByWeChat');
-    const payByAliPay = document.getElementById('div_PayByAliPay');
+      const payByCard = document.getElementById('div_PayByCard');
+      const payByGiro = document.getElementById('div_PayByGiro');
+      const payByWeChat = document.getElementById('div_PayByWeChat');
+      const payByAliPay = document.getElementById('div_PayByAliPay');
 
-    // Add an event listener to each radio button
-    paymentMethodRadios.forEach((radio) => {
-      radio.addEventListener('change', (event) => {
-        // Get the selected payment method
-        const selectedPaymentMethod = event.target.value;
+      // Add an event listener to each radio button
+      paymentMethodRadios.forEach((radio) => {
+        radio.addEventListener('change', (event) => {
+          // Get the selected payment method
+          const selectedPaymentMethod = event.target.value;
 
-        // Perform actions based on the selected payment method
-        switch (selectedPaymentMethod) {
-          case 'Card':
-            // Code to handle Card payment method selection
-            payByCard.classList.remove('hidden');
-            payByGiro.classList.add('hidden');
-            payByWeChat.classList.add('hidden');
-            payByAliPay.classList.add('hidden');
-            break;
-          case 'giropay':
-            // Code to handle giropay payment method selection
-            payByGiro.classList.remove('hidden');
-            payByCard.classList.add('hidden');
-            payByWeChat.classList.add('hidden');
-            payByAliPay.classList.add('hidden');
-            break;
-          case 'WeChat Pay':
-            // Code to handle WeChat Pay payment method selection
-            payByWeChat.classList.remove('hidden');
-            payByCard.classList.add('hidden');
-            payByGiro.classList.add('hidden');
-            payByAliPay.classList.add('hidden');
-            break;
-          case 'Alipay':
-            // Code to handle Alipay payment method selection
-            payByAliPay.classList.remove('hidden');
-            payByCard.classList.add('hidden');
-            payByGiro.classList.add('hidden');
-            payByWeChat.classList.add('hidden');
-            break;
-          default:
-            // Handle other payment methods or provide an error message
-            payByCard.classList.remove('hidden');
-            break;
-        }
+          // Perform actions based on the selected payment method
+          switch (selectedPaymentMethod) {
+            case 'Card':
+              // Code to handle Card payment method selection
+              payByCard.classList.remove('hidden');
+              payByGiro.classList.add('hidden');
+              payByWeChat.classList.add('hidden');
+              payByAliPay.classList.add('hidden');
+              break;
+            case 'giropay':
+              // Code to handle giropay payment method selection
+              payByGiro.classList.remove('hidden');
+              payByCard.classList.add('hidden');
+              payByWeChat.classList.add('hidden');
+              payByAliPay.classList.add('hidden');
+              break;
+            case 'WeChat Pay':
+              // Code to handle WeChat Pay payment method selection
+              payByWeChat.classList.remove('hidden');
+              payByCard.classList.add('hidden');
+              payByGiro.classList.add('hidden');
+              payByAliPay.classList.add('hidden');
+              break;
+            case 'Alipay':
+              // Code to handle Alipay payment method selection
+              payByAliPay.classList.remove('hidden');
+              payByCard.classList.add('hidden');
+              payByGiro.classList.add('hidden');
+              payByWeChat.classList.add('hidden');
+              break;
+            default:
+              // Handle other payment methods or provide an error message
+              payByCard.classList.remove('hidden');
+              break;
+          }
+        });
       });
-    });
 
-    // Close Summary Total
+      // Close Summary Total
     </script>
 
 

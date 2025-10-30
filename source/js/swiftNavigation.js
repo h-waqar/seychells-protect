@@ -157,6 +157,13 @@ class SwiftNavigation {
       );
     }
 
+    if (_visaSwift.btn_CheckoutPrev) {
+      _visaSwift.btn_CheckoutPrev.addEventListener(
+        "click",
+        this.handle_btn_CheckoutPrev.bind(this)
+      );
+    }
+
     if (_visaSwift.btn_ContactInfoContinue) {
       _visaSwift.btn_ContactInfoContinue.addEventListener(
         "click",
@@ -410,6 +417,12 @@ class SwiftNavigation {
       "Selfie or Photo",
       "Please upload a selfie or passport-type photo."
     );
+  }
+
+  handle_btn_CheckoutPrev(event) {
+    this.prepareNavigation();
+    this.$("#four_summary").removeClass("hidden");
+    this.$("#bsNavCheckout").removeClass("bs-active");
   }
 
   handle_btnContactInfoPrev(event) {
