@@ -1,52 +1,52 @@
 <!-- Trip Information -->
 <section id="four_TripInfo" class="four-trip-info hidden">
 
-    <div class="cs-container">
-        <!-- Arrival Details -->
-        <div class="cs-arrival-details mb-5">
+  <div class="cs-container">
+    <!-- Arrival Details -->
+    <div class="cs-arrival-details mb-5">
 
-            <div class="bs-heading mb-4">
-                <h1>Trip Information</h1>
-                <p>
-                    Please provide a photo or scan of the biographic data page of your passport.
-                    This is the page featuring your photo, name, etc.
-                </p>
-            </div>
+      <div class="bs-heading mb-4">
+        <h1>Trip Information</h1>
+        <p>
+          Please provide a photo or scan of the biographic data page of your passport.
+          This is the page featuring your photo, name, etc.
+        </p>
+      </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-3 arrival-details">
-                        <label for="input_TripArrivalDetails" class="form-label">Arrival Details</label>
-                        <input type="text" class="form-control datepicker" placeholder="Arrival Details"
-                            id="input_TripArrivalDate" name="input_TripArrivalDetails" readonly>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3 arrival-details">
+            <label for="input_TripArrivalDetails" class="form-label">Arrival Details</label>
+            <input type="text" class="form-control datepicker" placeholder="Arrival Details" id="input_TripArrivalDate"
+              name="input_TripArrivalDetails" readonly>
 
-                    </div>
-                </div>
+          </div>
+        </div>
 
-                <div class="col-md-6">
-                    <div class="mb-2 return-details">
-                        <label for="date_TripReturnDetails" class="form-label">Departure Details</label>
-                        <input type="text" class="form-control datepicker" placeholder="Departure Details"
-                            name="date_TripReturnDetails" id="date_TripReturn" readonly>
-                    </div>
-                </div>
-            </div>
+        <div class="col-md-6">
+          <div class="mb-2 return-details">
+            <label for="date_TripReturnDetails" class="form-label">Departure Details</label>
+            <input type="text" class="form-control datepicker" placeholder="Departure Details"
+              name="date_TripReturnDetails" id="date_TripReturn" readonly>
+          </div>
+        </div>
+      </div>
 
-            <div class="mb-2 return-details">
-                <label for="address_in_seychelles" class="form-label">Address in Seychelles</label>
-                <input type="text" class="form-control" placeholder="Address in Seychelles" name="address_in_seychelles"
-                    id="address_in_seychelles" style="background: transparent !important;">
-            </div>
+      <div class="mb-2 return-details">
+        <label for="address_in_seychelles" class="form-label">Address in Seychelles</label>
+        <input type="text" class="form-control" placeholder="Address in Seychelles" name="address_in_seychelles"
+          id="address_in_seychelles" style="background: transparent !important;">
+      </div>
 
-            <!-- Prev/Next (<_>) Button Wrapper -->
+      <!-- Prev/Next (<_>) Button Wrapper -->
 
-            <div class="cs-button-wrapper">
-                <button type="button" class="prev pr-3" id="btn_TripInfoPrev">
-                    <span class="dashicons dashicons-arrow-left-alt2"></span>
-                    Previous
-                </button>
-                <button type="button" class="btn btn-info" id="btn_TripInfoContinue">Continue</button>
-            </div>
+      <div class="cs-button-wrapper">
+        <button type="button" class="prev pr-3" id="btn_TripInfoPrev">
+          <span class="dashicons dashicons-arrow-left-alt2"></span>
+          Previous
+        </button>
+        <button type="button" class="btn btn-info" id="btn_TripInfoContinue">Continue</button>
+      </div>
 
 
 </section>
@@ -218,7 +218,7 @@
 //             // Add more airlines and their flights here if needed
 //         ];
 
-//         //--------------------> This is the code for generating Select-Airlines 
+//         //--------------------> This is the code for generating Select-Airlines
 //         const frequentAirlinesIds = [4, 12, 10, 17, 21]; // IDs of the frequent airlines
 //         const allOptions = $('#allOptions');
 //         const frequentOptions = $('#frequentOptions');
@@ -320,7 +320,7 @@
 //             //---------------------> This is the Return Airlines Object
 //             const returnAirlines = airlines;
 
-//             //--------------------> This is the code for generating Select-Return-Airlines 
+//             //--------------------> This is the code for generating Select-Return-Airlines
 //             const returnFrequentAirlinesIds = [4, 12, 10, 17, 21]; // IDs of the frequent return airlines
 //             const returnAllOptions = $('#return_allOptions');
 //             const returnFrequentOptions = $('#return_frequentOptions');

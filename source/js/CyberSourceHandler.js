@@ -44,6 +44,7 @@ class CyberSourceHandler {
       this.setupMicroform(captureContext);
       this.isInitialized = true;
       console.log("CyberSource Microform initialized successfully.");
+
     } catch (e) {
       console.error("CyberSource Initialization Failed:", e);
     }
@@ -59,6 +60,7 @@ class CyberSourceHandler {
     if (!json.captureContext) {
       throw new Error("Capture context not found in server response.");
     }
+
     return json.captureContext;
   }
 

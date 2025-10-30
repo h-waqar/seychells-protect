@@ -151,7 +151,7 @@ function sy_send_admin_confirmation_email($customer_email, $applicantId, $amount
           <table width="100%" align="center" cellpadding="0" cellspacing="0" border="0" style="max-width:615px;margin:auto">
             <tr>
               <td style="padding:0;color:#000000;text-align:left" bgcolor="#FFFFFF" align="left">
-                
+
                 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed">
                   <tr>
                     <td style="padding:18px 0;text-align:center;background-color:#d2ebff;">

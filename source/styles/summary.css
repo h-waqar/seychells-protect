@@ -9,7 +9,8 @@
   background: var(--bs-white);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+  border: 1px solid var(--bs-primary-color);
 }
 
 /* Header with Total */
@@ -55,13 +56,13 @@
 }
 
 .cs-summary-label {
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--bs-text-primary);
+  font-size: 22px;
+  font-weight: 700;
+  color: black;
 }
 
 .cs-summary-value {
-  font-size: 20px;
+  font-size: 30px !important;
   font-weight: 700;
   color: var(--bs-primary-color);
 }
@@ -81,7 +82,8 @@
   }
 
   .cs-summary-title {
-    font-size: 20px;
+    font-size: 22px;
+    color: black;
     margin-bottom: 20px;
   }
 
@@ -91,11 +93,11 @@
     font-weight: bold;
   }
 
-  .cs-summary-value {
-    font-size: 18px;
-  }
-
   .cs-btn {
     width: 100%;
   }
+}
+
+#summaryTotal {
+  text-decoration: underline !important;
 }

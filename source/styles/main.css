@@ -107,6 +107,7 @@
 }
 
 .cs-button-wrapper {
+  font-family: var(--bs-font-primary) !important;
   margin-top: 2rem;
   /* float: right; */
 }
@@ -114,10 +115,10 @@
   background: var(--bs-bg-light) !important ;
   border-radius: 12px !important;
   padding: 0.75rem 2rem !important;
-  color: var(--bs-text-muted) !important;
   font-weight: bold !important;
   border: 0 !important;
   margin-right: 0.5rem;
+  color: #0000 !important;
 }
 .cs-button-wrapper button {
   border-color: #046055;
@@ -178,7 +179,7 @@ hr {
   height: 42px;
   margin-right: 0.5rem;
 }
-/* 
+/*
 .question-wrapper .cs-qna-radio .cs-form-control {
   width: 150px;
   font-weight: bold;
@@ -2523,6 +2524,7 @@ section.container_PageZero
     transform: translateY(0);
   }
   #bsContainer .right {
+    font-family: var(--bs-font-primary) !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
@@ -2734,19 +2736,24 @@ section.container_PageZero
 } /*# sourceMappingURL=main.css.map */
 
 .form-label {
+  font-family: var(--bs-font-primary) !important;
   color: var(--bs-text-secondary) !important;
   display: block !important;
 }
 
 .bs-heading h1 {
+  font-family: var(--bs-font-primary) !important;
   color: var(--bs-text-primary) !important;
+  font-size: var(--bs-heading) !important;
   font-weight: bold !important;
 }
 
 .bs-heading p {
+  font-family: var(--bs-font-primary) !important;
   color: var(--bs-text-secondary) !important;
+  font-size: var(--bs-text);
 }
 .cybs-card-number-container,
-.cybs-security-code-container{
+.cybs-security-code-container {
   height: 50px;
 }
