@@ -54,7 +54,7 @@
 
 /* 6. Add the '✓' checkmark before each <p> tag */
 .cs-qna-radio .cs-form-control p::before {
-  content: "✓";
+  content: "";
   font-weight: bold;
   position: absolute;
   left: 1rem; /* Position checkmark inside the padding */

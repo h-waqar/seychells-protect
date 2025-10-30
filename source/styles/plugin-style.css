@@ -1,0 +1,42 @@
+.bs-navmenu ul li a {
+  font-size: 16px;
+  font-family: Montserrat;
+}
+.cs-qna-radio .cs-form-control {
+  padding: 2rem 2rem;
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 32px;
+}
+.cs-qna-radio .cs-form-control h4 {
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 4px;
+}
+.cs-qna-radio .cs-form-control span {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: Montserrat;
+}
+.cs-qna-radio .cs-form-control p {
+  padding-left: 0;
+}
+.cs-qna-radio .text-wrap {
+  display: flex;
+  gap: 0;
+}
+.text-wrap .text-regular {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 16px;
+}
+.cs-qna-radio .text-items {
+  margin-top: 1.3rem;
+}
+.cs-qna-radio .text-items p {
+  font-size: 16px;
+  font-weight: initial;
+  font-family: Montserrat;
+}

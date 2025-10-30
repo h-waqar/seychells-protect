@@ -145,13 +145,13 @@ class Seychelles_Protect
         $contents = ob_get_contents();
         ob_end_clean();
 
-        ?>
+?>
 
         <script>
             const ajaxUrl = "<?php echo (admin_url('admin-ajax.php')); ?>";
         </script>
 
-        <?php
+<?php
 
         return ($contents);
     }
@@ -230,7 +230,16 @@ class Seychelles_Protect
             // Enqueue your custom CSS file
             wp_enqueue_style('cs_root', plugins_url('/source/styles/root.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
 
-            wp_enqueue_style('cs_main', plugins_url('/source/styles/main.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
+            wp_enqueue_style(
+                'cs_main',
+                plugins_url('/source/styles/main.css', __FILE__),
+                array(),
+                SP_PLUGIN_VERSION,
+                'all'
+            );
+
+           
+
             wp_enqueue_style('cs_main_backup', plugins_url('/source/styles/main-backup.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
 
             wp_enqueue_style('cs_sidebar', plugins_url('/source/styles/side-bar.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
@@ -244,6 +253,17 @@ class Seychelles_Protect
             wp_enqueue_style('cs_pure_main', plugins_url('/source/styles/main-style.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
 
             wp_enqueue_style('niceCountryInput', plugins_url('/source/styles/niceCountryInput.css', __FILE__), array(), SP_PLUGIN_VERSION, 'all');
+
+
+             wp_enqueue_style(
+                'plugin_style',
+                plugins_url('/source/styles/plugin-style.css', __FILE__),
+                array('cs_main'), // depend on main.css
+                SP_PLUGIN_VERSION,
+                'all'
+            );
+
+            
         }
     }
 
@@ -371,9 +391,10 @@ $seychelles_protect = new Seychelles_Protect();
 
 SMP_Coupons::init();
 
-register_activation_hook( __FILE__, 'seychelles_plugin_activate' );
-function seychelles_plugin_activate() {
-    if ( class_exists( 'Seychelles_Protect' ) ) {
+register_activation_hook(__FILE__, 'seychelles_plugin_activate');
+function seychelles_plugin_activate()
+{
+    if (class_exists('Seychelles_Protect')) {
         Seychelles_Protect::activate();
     }
 
