@@ -46,6 +46,14 @@
         <div class="cs_summary_persons" id="csSummaryPersons" style="display: none;">
         </div>
       </div>
+
+      <!-- Coupon Code -->
+      <div class="cs-summary-row">
+        <div class="cs-coupon-wrapper">
+          <input type="text" id="coupon-code" placeholder="Coupon Code">
+          <button type="button" id="apply-coupon">Apply</button>
+        </div>
+      </div>
     </div>
 
     <!-- Navigation Buttons -->

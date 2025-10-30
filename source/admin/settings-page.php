@@ -55,6 +55,35 @@
         </td>
       </tr>
     </table>
+    <h2>Coupon Settings</h2>
+    <table id="coupons-repeater" class="form-table">
+        <thead>
+            <tr>
+                <th>Coupon Name</th>
+                <th>Basic Protection Price</th>
+                <th>Total Protection Price</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $coupons = get_option('sp_coupons', []);
+            if (!empty($coupons)) {
+                foreach ($coupons as $i => $coupon) {
+            ?>
+                    <tr>
+                        <td><input type="text" name="sp_coupons[<?php echo $i; ?>][name]" value="<?php echo esc_attr($coupon['name']); ?>" /></td>
+                        <td><input type="text" name="sp_coupons[<?php echo $i; ?>][basic_price]" value="<?php echo esc_attr($coupon['basic_price']); ?>" /></td>
+                        <td><input type="text" name="sp_coupons[<?php echo $i; ?>][total_price]" value="<?php echo esc_attr($coupon['total_price']); ?>" /></td>
+                        <td><button type="button" class="button remove-coupon">Remove</button></td>
+                    </tr>
+            <?php
+                }
+            }
+            ?>
+        </tbody>
+    </table>
+    <button type="button" id="add-coupon" class="button">Add Coupon</button>
     <?php submit_button(); ?>
   </form>
 </div>

@@ -67,6 +67,7 @@ include_once('source/ajax/cybersource.php');
 include_once('source/ajax/get_establishment.php');
 include_once('source/ajax/create_custom_post.php');
 include_once('source/ajax/save_booking.php');
+include_once('source/ajax/validate_coupon.php');
 include_once('source/lib/cybersource/loader.php');
 new Sdv_CyberSource_Integration();
 
@@ -96,6 +97,7 @@ class Seychelles_Protect
         add_action('init', array($this, 'init'));
         add_action('admin_menu', array($this, 'add_admin_menu'));
         add_action('admin_init', array($this, 'register_settings'));
+        add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_css_js'));
         // Add more hooks and actions as needed.
     }
 
@@ -133,7 +135,17 @@ class Seychelles_Protect
         register_setting('seychelles_protect_settings_group', 'sp_cybersource_merchant_key_id');
         register_setting('seychelles_protect_settings_group', 'sp_cybersource_merchant_secret_key');
         register_setting('seychelles_protect_settings_group', 'sp_bank_fee_percentage');
+        register_setting('seychelles_protect_settings_group', 'sp_coupons');
     }
+
+    public function admin_enqueue_css_js($hook)
+    {
+        if ($hook !== 'settings_page_seychelles-protect-settings') {
+            return;
+        }
+        wp_enqueue_script('admin-coupons', plugins_url('/source/js/admin-coupons.js', __FILE__), array('jquery'), SP_PLUGIN_VERSION, true);
+    }
+
 
 
 
