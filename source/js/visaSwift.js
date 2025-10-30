@@ -615,109 +615,6 @@ class VisaSwift {
     this.setupPaymentOptions();
   }
 
-  // getAllFormData() {
-  //   let data = {};
-
-  //   // Personal Information
-  //   data.phone_number = this.$("#input_ContactYourNumber").val();
-  //   data.email = this.$("#input_ContactYourEmail").val();
-
-  //   data.applicants = [];
-  //   this.$("#contact_Duplicate .cs-contact-details").each(function () {
-  //     let applicant = {};
-  //     applicant.name = _visaSwift
-  //       .$(this)
-  //       .find('input[name="emg_contact_name"]')
-  //       .val();
-  //     applicant.dob = _visaSwift
-  //       .$(this)
-  //       .find('input[name="emg_contact_dob"]')
-  //       .val();
-  //     data.applicants.push(applicant);
-  //   });
-
-  //   // Trip Information
-  //   data.arrival_date = this.$("#input_TripArrivalDate").val();
-  //   data.departure_date = this.$("#date_TripReturn").val();
-  //   data.address_in_seychelles = this.$("#address_in_seychelles").val();
-
-  //   // Medical Protection
-  //   data.medical_protection = this.$(
-  //     'input[name="radio_medical_protection"]:checked'
-  //   ).val();
-
-  //   // Amount
-  //   data.amount = this.$("#summaryTotal").text();
-
-  //   return data;
-  // }
-
-  // handle_btnPaymentOptionContinue(e) {
-  //   e.preventDefault();
-  //   const paymentForm = document.getElementById("payment-form");
-
-  //   if (!paymentForm) {
-  //     alert("!paymentForm");
-
-  //     console.error(
-  //       "Error: Payment form with ID 'cybersource-payment-form' not found."
-  //     );
-
-  //     _visaSwift.alertDanger(
-  //       "Payment Error",
-  //       "Payment form not found. Please refresh the page."
-  //     );
-
-  //     return;
-  //   }
-
-  //   const formData = new FormData(paymentForm);
-  //   let allData = this.getAllFormData();
-  //   console.log("allData", allData);
-  //   console.log("formData", formData);
-
-  //   // Clear previous dynamic fields
-
-  //   const existingDynamicFields =
-  //     paymentForm.querySelectorAll('[name^="dynamic_"]');
-
-  //   existingDynamicFields.forEach((field) => field.remove());
-
-  //   // Add all form data as hidden fields to the cybersource-payment-form
-
-  //   for (const key in allData) {
-  //     if (allData.hasOwnProperty(key)) {
-  //       if (Array.isArray(allData[key])) {
-  //         allData[key].forEach((item, index) => {
-  //           for (const subKey in item) {
-  //             if (item.hasOwnProperty(subKey)) {
-  //               const input = document.createElement("input");
-
-  //               input.type = "hidden";
-
-  //               input.name = `dynamic_${key}[${index}][${subKey}]`;
-
-  //               input.value = item[subKey];
-
-  //               paymentForm.appendChild(input);
-  //             }
-  //           }
-  //         });
-  //       } else {
-  //         const input = document.createElement("input");
-
-  //         input.type = "hidden";
-
-  //         input.name = `dynamic_${key}`;
-
-  //         input.value = allData[key];
-
-  //         paymentForm.appendChild(input);
-  //       }
-  //     }
-  //   }
-  // }
-
   // !: TODO
 
   getAllFormData() {
@@ -1127,7 +1024,7 @@ class VisaSwift {
   display_OptionalDocument(data) {
     let html = `<div class="cs-view-docs">
 
-		
+
 		<div class="w-100">
 			<p class="file-name">${data.filename}</p>
 		</div>
@@ -1140,7 +1037,7 @@ class VisaSwift {
 			<i data-id="${data.attachment_id}" data-doc-name="optional" onclick="_visaSwift.delAccDocument(this)" class="fa fa-trash"></i>
 		</div>
 
-		
+
 	</div>`;
 
     if (_visaSwift._applicationSingle) this.$("#optionalDocs").append(html);
@@ -1249,11 +1146,11 @@ class VisaSwift {
 
     let html = `
         <div class="cs-pop-up-view-docs" onclick="this.style.display = 'none'; document.body.style.overflow = ''; ">
-            
-            <div class="cs-iframe-wrapper">            
-                <iframe width="100%" height="100%"  src="${fileUrl}" scrolling="yes"></iframe>             
-            </div>            
-               
+
+            <div class="cs-iframe-wrapper">
+                <iframe width="100%" height="100%"  src="${fileUrl}" scrolling="yes"></iframe>
+            </div>
+
         </div>`;
 
     this.$("body").append(html);
@@ -2346,7 +2243,7 @@ class VisaSwift {
    */
   alertDanger(heading, text) {
     let html = `
-            
+
                 <section class="alert_ValidPassport" id="alert_ValidPassport">
         <div class="cs-container">
             <div class="cs-alert-danger">
@@ -2378,7 +2275,7 @@ class VisaSwift {
 
             </div>
         </div>
-    </section>                
+    </section>
 
             `;
 

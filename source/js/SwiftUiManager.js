@@ -10,6 +10,7 @@ class SwiftUiManager {
   viewSummaryTotal = null;
   timeout = null;
   targetAddressInput = null;
+  couponPrices = null;
 
   constructor($) {
     // Constructor code here
@@ -47,7 +48,39 @@ class SwiftUiManager {
       this.handle_hotelClick.bind(this)
     );
 
+    this.$("#apply-coupon").on("click", this.handle_applyCoupon.bind(this));
+
     // this.addListnerDragAndDrop();
+  }
+
+  handle_applyCoupon() {
+    const couponCode = this.$("#coupon-code").val();
+    if (!couponCode) {
+      return;
+    }
+
+    let _data = {
+      action: "validate_coupon",
+      coupon_code: couponCode,
+    };
+
+    _ajaxRequest
+      .call(_data, "json", "post")
+      .error((error) => {
+        alert(error.message);
+        this.couponPrices = null;
+        this.prepareSummary();
+      })
+      .then((response) => {
+        if (response.success) {
+          this.couponPrices = response.data;
+          this.prepareSummary();
+        } else {
+          alert(response.data.message);
+          this.couponPrices = null;
+          this.prepareSummary();
+        }
+      });
   }
 
   handle_hotelClick(e) {
@@ -218,9 +251,17 @@ class SwiftUiManager {
     // 4. Get per day fee
     let perDayFee = 0;
     if (protectionType === "basic_protection") {
-      perDayFee = parseFloat(_swiftUiData.basic_protection_price) || 0;
+        if (this.couponPrices) {
+            perDayFee = parseFloat(this.couponPrices.basic_price) || 0;
+        } else {
+            perDayFee = parseFloat(_swiftUiData.basic_protection_price) || 0;
+        }
     } else if (protectionType === "total_protection") {
-      perDayFee = parseFloat(_swiftUiData.total_protection_price) || 0;
+        if (this.couponPrices) {
+            perDayFee = parseFloat(this.couponPrices.total_price) || 0;
+        } else {
+            perDayFee = parseFloat(_swiftUiData.total_protection_price) || 0;
+        }
     }
 
     // 5. Calculate medical protection fee
